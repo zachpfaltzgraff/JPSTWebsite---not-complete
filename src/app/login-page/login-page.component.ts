@@ -1,14 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css'
 })
 export class LoginPageComponent {
+
   onSubmit() {
     if (this.profileForm.valid) {
       const emailValue = this.profileForm.value.email ?? '';
@@ -19,7 +21,6 @@ export class LoginPageComponent {
     }
     else {
       alert('Error: All fields must be filled in');
-      window.location.reload();
     }
   }
 

@@ -26,7 +26,6 @@ export class SignupPageComponent {
     }
     else {
       alert('Error: All fields must be filled in');
-      window.location.reload();
     }
   }
 
