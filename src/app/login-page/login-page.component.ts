@@ -10,15 +10,21 @@ import { FormControl, FormGroup, MinLengthValidator, ReactiveFormsModule, Valida
 })
 export class LoginPageComponent {
   onSubmit() {
-    const emailValue = this.profileForm.value.email ?? '';
-    const passwordValue = this.profileForm.value.password ?? '';
+    if (this.profileForm.valid) {
+      const emailValue = this.profileForm.value.email ?? '';
+      const passwordValue = this.profileForm.value.password ?? '';
 
-    console.log('Email:', emailValue);
-    console.log('Password:', passwordValue);
+      console.log('Email:', emailValue);
+      console.log('Password:', passwordValue);
+    }
+    else {
+      alert('Error: All fields must be filled in');
+      window.location.reload();
+    }
   }
 
   profileForm = new FormGroup( {
-    email: new FormControl(''),
-    password: new FormControl(''),
+    email: new FormControl('', [Validators.email, Validators.required]),
+    password: new FormControl('', Validators.required),
   })
 }
