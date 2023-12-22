@@ -18,4 +18,8 @@
 
         <p>Need an acoount?<a href="\signup"> Sign up</a></p>
     </form>
+
+    <div class="display-error" *ngIf="errorMessage !== ''">
+        <p>{{errorMessage}}</p>
+    </div>
 </div>

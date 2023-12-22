@@ -11,8 +11,11 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular
 })
 export class LoginPageComponent {
 
+  errorMessage = '';
+
   onSubmit() {
     if (this.profileForm.valid) {
+      this.errorMessage = '';
       const emailValue = this.profileForm.value.email ?? '';
       const passwordValue = this.profileForm.value.password ?? '';
 
@@ -20,7 +23,7 @@ export class LoginPageComponent {
       console.log('Password:', passwordValue);
     }
     else {
-      alert('Error: All fields must be filled in');
+      this.errorMessage = 'Invalid Form: Please fill out all fields';
     }
   }
 
