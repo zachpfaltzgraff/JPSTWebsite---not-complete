@@ -16,7 +16,7 @@ h1 {
 
 form {
     min-width: 18%;
-    margin: 0px 10px;
+    margin: auto 10px;
     padding: 16px 16px 24px;
     box-shadow: 0 2px 32px black;
     border-radius: 4px;

@@ -10,7 +10,6 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular
   styleUrl: './login-page.component.css'
 })
 export class LoginPageComponent {
-
   errorMessage = '';
 
   onSubmit() {
