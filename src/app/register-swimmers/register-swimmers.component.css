@@ -1,0 +1,17 @@
+.background-image {
+    background-image: url('/assets/swimmer.jpg');
+    background-size: cover;
+    width: 100vw;
+    opacity: 60%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+
+}
+
+.white-box {
+    margin: 80px;
+    width: 100%;
+    background-color: white;
+    
+}
