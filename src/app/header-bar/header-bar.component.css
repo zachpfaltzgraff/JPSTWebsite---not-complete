@@ -4,8 +4,8 @@ img {
     height: 60px;
     object-fit: cover;
     position: absolute;
-    z-index: -1;
     top: 0;
+    z-index: -1;
 }
 
 h1 {
@@ -18,14 +18,20 @@ h1 {
     justify-content: center;
     align-items: center;
     text-shadow: 2px 2px 4px black;
+    z-index: 1;
+}
+
+.middle-logo h1 {
+    z-index: 1;
 }
 
 .menu-bar {
     width: 100%;
     list-style: none;
     background-color: lightblue;
-    padding: 5px;
     text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .menu-bar:nth-child(5),
