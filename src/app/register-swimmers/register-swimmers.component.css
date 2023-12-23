@@ -6,12 +6,10 @@
     height: 100vh;
     display: flex;
     justify-content: center;
-
 }
 
 .white-box {
     margin: 80px;
     width: 100%;
     background-color: white;
-    
 }
