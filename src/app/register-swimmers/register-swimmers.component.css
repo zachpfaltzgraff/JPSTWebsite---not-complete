@@ -15,4 +15,14 @@
 
 .add-button {
     margin: 10px;
+    background-color: darkgrey;
+    color: white;
+    padding: 4px;
+    border-radius: 4px;
+    font-size: 18px;
+    margin: 10px;
+}
+.add-button:hover {
+    cursor: pointer;
+    background-color: grey;
 }

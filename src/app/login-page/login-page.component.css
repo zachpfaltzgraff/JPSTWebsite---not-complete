@@ -48,6 +48,10 @@ button {
     font-size: 18px;
     margin: 10px;
 }
+button:hover {
+    background-color: darkblue;
+    cursor: pointer;
+}
 
 p {
     margin: 10px;
@@ -58,11 +62,6 @@ a {
 }
 a:hover {
     text-decoration: underline;
-}
-
-button:hover {
-    background-color: darkblue;
-    cursor: pointer;
 }
 
 .display-error {
