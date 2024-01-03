@@ -117,6 +117,10 @@ button:hover {
         height: 475%;
     }
 
+    .form-group {
+        margin: 5px;
+    }
+
     .swimmer-info,
     .parent-info,
     .emergency-contact-info {
@@ -138,11 +142,4 @@ button:hover {
         width: 100%;
         margin-top: 5px;
     }
-    
-
-    input {
-        width: 100%;
-    }
-
-    
 }
