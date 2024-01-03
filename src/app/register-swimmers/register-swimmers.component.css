@@ -39,7 +39,7 @@ form {
     grid-template-rows: 25% 37.5% 37.5%;
     grid-template-columns: 50% 50%;
     align-items: center;
-    margin-right: 50px;
+    margin-right: 15px;
 }
 
 h2 {
@@ -93,9 +93,9 @@ button:hover {
 }
 
 .form-buttons {
-    display: grid;
-    grid-template-rows: 50% 50%;
-    grid-template-columns: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 7%;
 }
 
 .cancel-button {
@@ -105,6 +105,12 @@ button:hover {
     background-color: rgb(75, 75, 75);
 }
 
+
+@media only screen and (max-width: 1600px){
+    .form-buttons {
+        padding: 0%;
+    }
+}
 
 @media only screen and (max-width: 800px) { /* Phone Screens and smaller tablets(?) */
     .white-box {
@@ -118,7 +124,7 @@ button:hover {
     }
 
     .form-group {
-        margin: 5px;
+        margin: 0px;
     }
 
     .swimmer-info,
