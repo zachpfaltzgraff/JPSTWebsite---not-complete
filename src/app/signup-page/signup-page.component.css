@@ -1,7 +1,7 @@
 .background-image {
     background-image: url('/assets/dolphins.png');
     background-size: cover;
-    width: 100vw;
+    width: 99.1vw;
     height: 100vh;
     z-index: -1;
     justify-content: center;
@@ -77,4 +77,34 @@ button:hover {
     top: 95%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width: 1500px) {
+    form {
+        width: 25%;
+    }
+}
+
+@media only screen and (max-width: 1250px) {
+    form {
+        width: 28%;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    form {
+        width: 36%;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    form {
+        width: 42%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    form {
+        width: 60%;
+    }
 }

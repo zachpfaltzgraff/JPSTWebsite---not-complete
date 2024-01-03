@@ -106,7 +106,7 @@ button:hover {
 }
 
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 800px) { /* Phone Screens and smaller tablets(?) */
     .white-box {
         grid-template-rows: auto;
         grid-template-columns: 1fr;
