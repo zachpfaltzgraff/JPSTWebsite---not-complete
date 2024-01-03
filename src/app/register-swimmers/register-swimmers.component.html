@@ -2,19 +2,19 @@
     <div class="background-image">
         <div class="white-box">
             <div class="swimmer-form">
-                <form action="">
+                <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
                     <div class="swimmer-info">
 
                         <h2>Swimmer Information</h2>
                         
                         <div class="form-group">
                             <label for="first-name">First Name</label>
-                            <input id="first-name" autocomplete="first-name" type="text" formControlName="first-name" required>
+                            <input id="first-name" autocomplete="first-name" type="text" formControlName="first-name">
                         </div>
 
                         <div class="form-group">
                             <label for="last-name">Last Name</label>
-                            <input id="last-name" autocomplete="family-name" type="text" formControlName="last-name" required>
+                            <input id="last-name" autocomplete="family-name" type="text" formControlName="last-name">
                         </div>
 
                         <div class="form-group">
@@ -24,7 +24,7 @@
 
                         <div class="form-group">
                             <label for="birth-date">Date of Birth</label>
-                            <input id="birth-date" autocomplete="bday" type="date" formControlName="birth-date" required>
+                            <input id="birth-date" autocomplete="bday" type="date" formControlName="birth-date">
                         </div>
                     </div>
 
@@ -34,22 +34,22 @@
 
                         <div class="form-group">
                             <label for="first-name">First Name</label>
-                            <input id="first-name" autocomplete="first-name" type="text" formControlName="p-first-name" required>
+                            <input id="first-name" autocomplete="first-name" type="text" formControlName="p-first-name">
                         </div>
 
                         <div class="form-group">
                             <label for="last-name">Last Name</label>
-                            <input id="last-name" autocomplete="family-name" type="text" formControlName="p-last-name" required>
+                            <input id="last-name" autocomplete="family-name" type="text" formControlName="p-last-name">
                         </div>
 
                         <div class="form-group">
                             <label for="phone-number">Phone Number</label>
-                            <input id="phone-number" autocomplete="tel" type="tel" formControlname="p-phone-number" required>
+                            <input id="phone-number" autocomplete="tel" type="tel" formControlname="p-phone-number">
                         </div>
 
                         <div class="form-group">
                             <label for="street-address">Address</label>
-                            <input id="street-address" autocomplete="street-address" type="street-address" formControlname="p-address" required>
+                            <input id="street-address" autocomplete="street-address" type="street-address" formControlname="p-address">
                         </div>
                     </div>
 
@@ -59,30 +59,31 @@
 
                         <div class="form-group">
                             <label for="first-name">First Name</label>
-                            <input id="first-name" autocomplete="first-name" type="text" formControlName="e-first-name" required>
+                            <input id="first-name" autocomplete="first-name" type="text" formControlName="e-first-name">
                         </div>
 
                         <div class="form-group">
                             <label for="last-name">Last Name</label>
-                            <input id="last-name" autocomplete="family-name" type="text" formControlName="e-last-name" required>
+                            <input id="last-name" autocomplete="family-name" type="text" formControlName="e-last-name">
                         </div>
 
                         <div class="form-group">
                             <label for="phone-number">Phone Number</label>
-                            <input id="phone-number" autocomplete="tel" type="tel" formControlname="e-phone-number" required>
+                            <input id="phone-number" autocomplete="tel" type="tel" formControlname="e-phone-number">
                         </div>
 
                         <div class="form-group">
                             <label for="street-address">Address</label>
-                            <input id="street-address" autocomplete="street-address" type="street-address" formControlname="e-address" required>
+                            <input id="street-address" autocomplete="street-address" type="street-address" formControlname="e-address">
                         </div>
                     </div>
 
-                    <button type="submit">Save</button>
+                    <div class="form-buttons">
+                        <button type="submit">Save</button>
+                        <button class="cancel-button">Cancel</button>
+                    </div>
                 </form>
             </div>
-
-
 
             <div class="add-button">
                 <button>Add Swimmer</button>
