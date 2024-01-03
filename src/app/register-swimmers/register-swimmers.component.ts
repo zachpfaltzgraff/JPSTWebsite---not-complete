@@ -14,7 +14,7 @@ export class RegisterSwimmersComponent {
     if (this.profileForm.valid) {
       const firstName = this.profileForm.value.firstName ?? '';
       const lastName = this.profileForm.value.lastName ?? '';
-      const prefferedName = this.profileForm.value.prefferedName ?? firstName;
+      const preferredName = this.profileForm.value.preferredName ?? firstName;
       const birthDate = this.profileForm.value.birthDate ?? '';
 
       const pFirstName = this.profileForm.value.pFirstName ?? '';
@@ -26,9 +26,11 @@ export class RegisterSwimmersComponent {
       const eLastName = this.profileForm.value.eLastName ?? '';
       const ePhoneNumber = this.profileForm.value.ePhoneNumber ?? '';
       const eAddress = this.profileForm.value.eAddress ?? '';
+
+      console.log(firstName, lastName, preferredName, birthDate, pFirstName, pLastName, pPhoneNumber, pAddress, eFirstName, eLastName, ePhoneNumber, eAddress);
     }
     else {
-      alert("Please fill in all required fields");
+      alert("Please Fill in all required fields");
     }
   }
 
@@ -38,7 +40,7 @@ export class RegisterSwimmersComponent {
   profileForm = new FormGroup( {
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
-    prefferedName: new FormControl(''),
+    preferredName: new FormControl(''),
     birthDate: new FormControl('', Validators.required),
     pFirstName: new FormControl('', Validators.required),
     pLastName: new FormControl('', Validators.required),

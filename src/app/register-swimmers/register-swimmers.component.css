@@ -104,3 +104,45 @@ button:hover {
 .cancel-button:hover {
     background-color: rgb(75, 75, 75);
 }
+
+
+@media only screen and (max-width: 800px) {
+    .white-box {
+        grid-template-rows: auto;
+        grid-template-columns: 1fr;
+        margin: 35px;
+    }
+
+    .swimmer-form {
+        height: 475%;
+    }
+
+    .swimmer-info,
+    .parent-info,
+    .emergency-contact-info {
+        display: flex;
+        flex-direction: column;
+        margin-right: 0;
+    }
+
+    form {
+        flex-direction: column;
+        overflow: scroll;
+    }
+
+    input {
+        margin-bottom: 10px;
+    }
+
+    form button {
+        width: 100%;
+        margin-top: 5px;
+    }
+    
+
+    input {
+        width: 100%;
+    }
+
+    
+}
