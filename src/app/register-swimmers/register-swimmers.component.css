@@ -106,9 +106,68 @@ button:hover {
 }
 
 
-@media only screen and (max-width: 1600px){
+@media only screen and (max-width: 1700px){ 
+    label {
+        font-size: 12px;
+    }
+
+    .add-button button {
+        padding: 0;
+        margin: 0;
+        margin-right: 5px;
+    }
+}
+
+@media only screen and (max-width: 1650px){
     .form-buttons {
         padding: 0%;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 1460px){ 
+    .white-box {
+        grid-template-rows: auto;
+        grid-template-columns: 1fr;
+    }
+
+    .swimmer-info,
+    .parent-info,
+    .emergency-contact-info {
+        display: flex;
+        flex-direction: column;
+        margin-right: 0;
+    }
+
+    .swimmer-form {
+        height: 250%;
+        width: 100%;
+    }
+
+    form {
+        flex-direction: column;
+        overflow: scroll;
+    }
+
+    .form-group {
+        margin: 10px;
+    }
+
+    .form-buttons {
+        align-items: center;
+    }
+
+    form button {
+        width: 40%;
+        margin: 5px;
+    }
+
+    .add-button button {
+        padding: 5px;
+        margin: 5px;
     }
 }
 
