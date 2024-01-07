@@ -1,92 +1,94 @@
 <div class="register-page">
     <div class="background-image">
         <div class="white-box">
-            <div class="swimmer-form">
-                <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-                    <div class="swimmer-info">
+            <div class="form-box">
+                <div class="swimmer-form" *ngFor="let formGroup of formGroups; let i = index">
+                    <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup)">
+                        <div class="swimmer-info">
 
-                        <h2>Swimmer Information</h2>
-                        
-                        <div class="form-group">
-                            <label for="first-name">First Name</label>
-                            <input id="first-name" autocomplete="first-name" type="text" formControlName="firstName">
+                            <h2>Swimmer Information</h2>
+                            
+                            <div class="form-group">
+                                <label for="first-name">First Name</label>
+                                <input id="first-name" autocomplete="first-name" type="text" formControlName="firstName">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="last-name">Last Name</label>
+                                <input id="last-name" autocomplete="family-name" type="text" formControlName="lastName">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="preferred-name">Preferred Name (option)</label>
+                                <input id="preferred-name" autocomplete="first-name" type="text" formControlName="preferredName">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="birth-date">Date of Birth</label>
+                                <input id="birth-date" autocomplete="bday" type="date" formControlName="birthDate">
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="last-name">Last Name</label>
-                            <input id="last-name" autocomplete="family-name" type="text" formControlName="lastName">
+                        <div class="parent-info">
+
+                            <h2>Parent Information</h2>
+
+                            <div class="form-group">
+                                <label for="first-name">First Name</label>
+                                <input id="first-name" autocomplete="first-name" type="text" formControlName="pFirstName">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="last-name">Last Name</label>
+                                <input id="last-name" autocomplete="family-name" type="text" formControlName="pLastName">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone-number">Phone Number</label>
+                                <input id="phone-number" autocomplete="tel" type="tel" formControlName="pPhoneNumber">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="street-address">Address</label>
+                                <input id="street-address" autocomplete="street-address" type="street-address" formControlName="pAddress">
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="preferred-name">Preferred Name (option)</label>
-                            <input id="preferred-name" autocomplete="first-name" type="text" formControlName="preferredName">
+                        <div class="emergency-contact-info">
+
+                            <h2>Emergency Contact Information</h2>
+
+                            <div class="form-group">
+                                <label for="first-name">First Name</label>
+                                <input id="first-name" autocomplete="first-name" type="text" formControlName="eFirstName">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="last-name">Last Name</label>
+                                <input id="last-name" autocomplete="family-name" type="text" formControlName="eLastName">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone-number">Phone Number</label>
+                                <input id="phone-number" autocomplete="tel" type="tel" formControlName="ePhoneNumber">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="street-address">Address</label>
+                                <input id="street-address" autocomplete="street-address" type="street-address" formControlName="eAddress">
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="birth-date">Date of Birth</label>
-                            <input id="birth-date" autocomplete="bday" type="date" formControlName="birthDate">
+                        <div class="form-buttons">
+                            <button type="submit">Save</button>
+                            <button class="cancel-button" (click)="removeForm(i)">Cancel</button>
                         </div>
-                    </div>
+                    </form>
+                </div>
 
-                    <div class="parent-info">
-
-                        <h2>Parent Information</h2>
-
-                        <div class="form-group">
-                            <label for="first-name">First Name</label>
-                            <input id="first-name" autocomplete="first-name" type="text" formControlName="pFirstName">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="last-name">Last Name</label>
-                            <input id="last-name" autocomplete="family-name" type="text" formControlName="pLastName">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phone-number">Phone Number</label>
-                            <input id="phone-number" autocomplete="tel" type="tel" formControlName="pPhoneNumber">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="street-address">Address</label>
-                            <input id="street-address" autocomplete="street-address" type="street-address" formControlName="pAddress">
-                        </div>
-                    </div>
-
-                    <div class="emergency-contact-info">
-
-                        <h2>Emergency Contact Information</h2>
-
-                        <div class="form-group">
-                            <label for="first-name">First Name</label>
-                            <input id="first-name" autocomplete="first-name" type="text" formControlName="eFirstName">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="last-name">Last Name</label>
-                            <input id="last-name" autocomplete="family-name" type="text" formControlName="eLastName">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phone-number">Phone Number</label>
-                            <input id="phone-number" autocomplete="tel" type="tel" formControlName="ePhoneNumber">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="street-address">Address</label>
-                            <input id="street-address" autocomplete="street-address" type="street-address" formControlName="eAddress">
-                        </div>
-                    </div>
-
-                    <div class="form-buttons">
-                        <button type="submit">Save</button>
-                        <button class="cancel-button">Cancel</button>
-                    </div>
-                </form>
-            </div>
-
-            <div class="add-button">
-                <button>Add Swimmer</button>
+                <div class="add-button">
+                    <button (click)="addForm()">Add Swimmer</button>
+                </div>
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators, FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-register-swimmers',
@@ -10,22 +10,51 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular
   styleUrl: './register-swimmers.component.css'
 })
 export class RegisterSwimmersComponent {
-  onSubmit() {
-    if (this.profileForm.valid) {
-      const firstName = this.profileForm.value.firstName ?? '';
-      const lastName = this.profileForm.value.lastName ?? '';
-      const preferredName = this.profileForm.value.preferredName ?? firstName;
-      const birthDate = this.profileForm.value.birthDate ?? '';
+  formGroups: FormGroup[] = [];
 
-      const pFirstName = this.profileForm.value.pFirstName ?? '';
-      const pLastName = this.profileForm.value.pLastName ?? '';
-      const pPhoneNumber = this.profileForm.value.pPhoneNumber ?? '';
-      const pAddress = this.profileForm.value.pAddress ?? '';
+  constructor(private fb: FormBuilder) {
+    this.addForm();
+  }
+  
+  addForm() {
+    const newFormGroup = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      preferredName: [''],
+      birthDate: ['', Validators.required],
+      pFirstName: ['', Validators.required],
+      pLastName: ['', Validators.required],
+      pPhoneNumber: ['', Validators.required],
+      pAddress: ['', Validators.required],
+      eFirstName: ['', Validators.required],
+      eLastName: ['', Validators.required],
+      ePhoneNumber: ['', Validators.required],
+      eAddress: ['', Validators.required]
+    });
 
-      const eFirstName = this.profileForm.value.eFirstName ?? '';
-      const eLastName = this.profileForm.value.eLastName ?? '';
-      const ePhoneNumber = this.profileForm.value.ePhoneNumber ?? '';
-      const eAddress = this.profileForm.value.eAddress ?? '';
+    this.formGroups.push(newFormGroup);
+  }
+
+  removeForm(index: number) {
+    this.formGroups.splice(index, 1);
+  }
+
+  onSubmit(formGroup: FormGroup) {
+    if (formGroup.valid) {
+      const firstName = formGroup.value.firstName ?? '';
+      const lastName = formGroup.value.lastName ?? '';
+      const preferredName = formGroup.value.preferredName ?? firstName;
+      const birthDate = formGroup.value.birthDate ?? '';
+
+      const pFirstName = formGroup.value.pFirstName ?? '';
+      const pLastName = formGroup.value.pLastName ?? '';
+      const pPhoneNumber = formGroup.value.pPhoneNumber ?? '';
+      const pAddress = formGroup.value.pAddress ?? '';
+
+      const eFirstName = formGroup.value.eFirstName ?? '';
+      const eLastName = formGroup.value.eLastName ?? '';
+      const ePhoneNumber = formGroup.value.ePhoneNumber ?? '';
+      const eAddress = formGroup.value.eAddress ?? '';
 
       console.log(firstName, lastName, preferredName, birthDate, pFirstName, pLastName, pPhoneNumber, pAddress, eFirstName, eLastName, ePhoneNumber, eAddress);
     }
@@ -33,22 +62,4 @@ export class RegisterSwimmersComponent {
       alert("Please Fill in all required fields");
     }
   }
-
-
-
-
-  profileForm = new FormGroup( {
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
-    preferredName: new FormControl(''),
-    birthDate: new FormControl('', Validators.required),
-    pFirstName: new FormControl('', Validators.required),
-    pLastName: new FormControl('', Validators.required),
-    pPhoneNumber: new FormControl('', Validators.required),
-    pAddress: new FormControl('', Validators.required),
-    eFirstName: new FormControl('', Validators.required),
-    eLastName: new FormControl('', Validators.required),
-    ePhoneNumber: new FormControl('', Validators.required),
-    eAddress: new FormControl('', Validators.required)
-  })
 }
