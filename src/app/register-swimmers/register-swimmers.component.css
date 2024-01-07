@@ -15,8 +15,9 @@
 }
 
 .form-box {
-    height: 90%;
+    height: 89%;
     overflow: auto;
+    border-bottom: 3px solid black;
 }
 
 .swimmer-form {
