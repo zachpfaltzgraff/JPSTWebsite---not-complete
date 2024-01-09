@@ -3,7 +3,7 @@
         <div class="white-box">
             <div class="form-box">
                 <div class="swimmer-form" *ngFor="let formGroup of formGroups; let i = index">
-                    <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup)">
+                    <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup, i)">
                         <div class="swimmer-info">
 
                             <h2>Swimmer Information</h2>
@@ -49,8 +49,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="street-address">Address</label>
-                                <input id="street-address" autocomplete="street-address" type="street-address" formControlName="pAddress">
+                                <label for="street-address">Email</label>
+                                <input id="street-address" autocomplete="email" type="email" formControlName="pEmail">
                             </div>
                         </div>
 
@@ -74,13 +74,13 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="street-address">Address</label>
-                                <input id="street-address" autocomplete="street-address" type="street-address" formControlName="eAddress">
+                                <label for="street-address">Email</label>
+                                <input id="street-address" autocomplete="email" type="email" formControlName="eEmail">
                             </div>
                         </div>
 
                         <div class="form-buttons">
-                            <button type="submit">Save</button>
+                            <button type="submit">{{saveRegisterText(i)}}</button>
                             <button class="cancel-button" (click)="removeForm(i)">Cancel</button>
                         </div>
                     </form>
