@@ -49,14 +49,14 @@ export class RegisterSwimmersComponent {
     });
 
     this.saveButtonText.push('Save');
-    this.cancelButtonText.push('Cancel')
+    this.cancelButtonText.push('Delete')
     this.submitted.push(false);
     this.isOpenForm = true;
     this.formGroups.push(newFormGroup);
   }
 
   cancelEditBtn(index: number) {
-    if (this.cancelButtonText[index] == 'Cancel') {
+    if (this.cancelButtonText[index] == 'Delete') {
       this.saveButtonText[index] = 'Save';
       this.isOpenForm = false;
       this.formGroups.splice(index, 1);
@@ -71,28 +71,33 @@ export class RegisterSwimmersComponent {
   }
 
   onSubmit(formGroup: FormGroup, index: number) {
-    if (formGroup.valid) {
-      const firstName = formGroup.value.firstName ?? '';
-      const lastName = formGroup.value.lastName ?? '';
-      const preferredName = formGroup.value.preferredName ?? firstName;
-      const birthDate = formGroup.value.birthDate ?? '';
+    if (this.saveButtonText[index] == 'Save') {
+      if (formGroup.valid) {
+        const firstName = formGroup.value.firstName ?? '';
+        const lastName = formGroup.value.lastName ?? '';
+        const preferredName = formGroup.value.preferredName ?? firstName;
+        const birthDate = formGroup.value.birthDate ?? '';
 
-      const pFirstName = formGroup.value.pFirstName ?? '';
-      const pLastName = formGroup.value.pLastName ?? '';
-      const pPhoneNumber = formGroup.value.pPhoneNumber ?? '';
-      const pEmail = formGroup.value.pEmail ?? '';
+        const pFirstName = formGroup.value.pFirstName ?? '';
+        const pLastName = formGroup.value.pLastName ?? '';
+        const pPhoneNumber = formGroup.value.pPhoneNumber ?? '';
+        const pEmail = formGroup.value.pEmail ?? '';
 
-      const eFirstName = formGroup.value.eFirstName ?? '';
-      const eLastName = formGroup.value.eLastName ?? '';
-      const ePhoneNumber = formGroup.value.ePhoneNumber ?? '';
-      const eEmail = formGroup.value.eEmail ?? '';
+        const eFirstName = formGroup.value.eFirstName ?? '';
+        const eLastName = formGroup.value.eLastName ?? '';
+        const ePhoneNumber = formGroup.value.ePhoneNumber ?? '';
+        const eEmail = formGroup.value.eEmail ?? '';
 
-      this.isOpenForm = false;
-      this.submitted[index] = true;
-      this.saveButtonText[index] = 'Register';
-      this.cancelButtonText[index] = 'Edit';
+        this.isOpenForm = false;
+        this.submitted[index] = true;
+        this.saveButtonText[index] = 'Register';
+        this.cancelButtonText[index] = 'Edit';
 
-      console.log(firstName, lastName, preferredName, birthDate, pFirstName, pLastName, pPhoneNumber, pEmail, eFirstName, eLastName, ePhoneNumber, eEmail);
+        console.log(firstName, lastName, preferredName, birthDate, pFirstName, pLastName, pPhoneNumber, pEmail, eFirstName, eLastName, ePhoneNumber, eEmail);
+      }
+    }
+    else if (this.saveButtonText[index] == 'Register') {
+      console.log('TESTING TSRING THIS DID WORK')
     }
     else {
       alert("Please Fill in all required fields");
