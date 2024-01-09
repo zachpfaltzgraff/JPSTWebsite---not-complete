@@ -27,7 +27,7 @@
 form {
     display: flex;
     margin: 10px;
-    height: 100px;
+    height: 120px;
     padding: 8px 16px 16px 16px;
     box-shadow: 0 2px 32px black;
     border-radius: 4px;
@@ -42,7 +42,7 @@ form {
     grid-template-columns: 50% 50%;
     align-items: center;
     margin-right: 15px;
-    height: 100px;
+    height: 120px;
 }
 
 h2 {
@@ -60,7 +60,7 @@ label {
 }
 
 input {
-    padding: 8px;
+    padding: 6px;
     height: 12px;
     border-radius: 4px;
     width: 100%;
