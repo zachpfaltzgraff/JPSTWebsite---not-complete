@@ -191,10 +191,33 @@ button:hover {
     }
 }
 
-@media only screen and (max-width: 800px) { /* Phone Screens and smaller tablets(?) 
-    TODO fix this asap!!!*/
+@media only screen and (max-width: 800px) { /* Phone Screens and smaller tablets(?) */
     .white-box {
+        grid-template-rows: auto;
+        grid-template-columns: 100%;
         margin: 35px;
+    }
+
+    .swimmer-form {
+        height: auto;
+        margin: 0px;
+    }
+
+    .swimmer-info,
+    .parent-info,
+    .emergency-contact-info {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+
+    form {
+        flex-direction: column;
+        overflow: auto;
+    }
+
+    .form-group {
+        margin: 0px;
     }
 
     input {
@@ -204,5 +227,14 @@ button:hover {
     form button {
         width: 100%;
         margin-top: 5px;
+        justify-content: center;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    h2 {
+        font-size: 16px;
     }
 }
