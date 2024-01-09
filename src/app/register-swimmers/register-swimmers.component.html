@@ -87,7 +87,7 @@
                 </div>
 
                 <div class="add-button">
-                    <button (click)="addForm()">Add Swimmer</button>
+                    <button [disabled]="isOpenForm" (click)="addForm()">Add Swimmer</button>
                 </div>
             </div>
         </div>

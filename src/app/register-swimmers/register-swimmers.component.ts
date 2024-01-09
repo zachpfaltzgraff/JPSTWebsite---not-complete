@@ -11,6 +11,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators, FormBuilder} f
 })
 export class RegisterSwimmersComponent {
   formGroups: FormGroup[] = [];
+  isOpenForm: boolean = true;
 
   constructor(private fb: FormBuilder) {
     this.addForm();
@@ -32,10 +33,13 @@ export class RegisterSwimmersComponent {
       eAddress: ['', Validators.required]
     });
 
+    
+    this.isOpenForm = true;
     this.formGroups.push(newFormGroup);
   }
 
   removeForm(index: number) {
+    this.isOpenForm = false;
     this.formGroups.splice(index, 1);
   }
 
@@ -55,6 +59,8 @@ export class RegisterSwimmersComponent {
       const eLastName = formGroup.value.eLastName ?? '';
       const ePhoneNumber = formGroup.value.ePhoneNumber ?? '';
       const eAddress = formGroup.value.eAddress ?? '';
+
+      this.isOpenForm = false;
 
       console.log(firstName, lastName, preferredName, birthDate, pFirstName, pLastName, pPhoneNumber, pAddress, eFirstName, eLastName, ePhoneNumber, eAddress);
     }
