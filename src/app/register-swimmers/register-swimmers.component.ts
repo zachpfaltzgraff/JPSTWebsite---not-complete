@@ -14,6 +14,7 @@ export class RegisterSwimmersComponent {
   isOpenForm: boolean = true;
   submitted: boolean[] = [];
   saveButtonText: string[] = [];
+  cancelButtonText: string[] = [];
 
   constructor(private fb: FormBuilder) {
     this.addForm();
@@ -22,33 +23,51 @@ export class RegisterSwimmersComponent {
   saveRegisterText(index: number): string {
     return this.saveButtonText[index];
   }
+
+  cancelEditText(index: number): string {
+    return this.cancelButtonText[index];
+  }
+
+  isSumbitted(index:number): boolean {
+    return this.submitted[index];
+  }
   
   addForm() {
     const newFormGroup = this.fb.group({
-      firstName: [{ value: '', disabled: false }, Validators.required],
-    lastName: [{ value: '', disabled: false }, Validators.required],
-    preferredName: [{ value: '', disabled: false }],
-    birthDate: [{ value: '', disabled: false }, Validators.required],
-    pFirstName: [{ value: '', disabled: false }, Validators.required],
-    pLastName: [{ value: '', disabled: false }, Validators.required],
-    pPhoneNumber: [{ value: '', disabled: false }, Validators.required],
-    pEmail: [{ value: '', disabled: false }, Validators.required],
-    eFirstName: [{ value: '', disabled: false }, Validators.required],
-    eLastName: [{ value: '', disabled: false }, Validators.required],
-    ePhoneNumber: [{ value: '', disabled: false }, Validators.required],
-    eEmail: [{ value: '', disabled: false }, Validators.required]
+      firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    preferredName: [''],
+    birthDate: ['', Validators.required],
+    pFirstName: ['', Validators.required],
+    pLastName: ['', Validators.required],
+    pPhoneNumber: ['', Validators.required],
+    pEmail: ['', Validators.required],
+    eFirstName: ['', Validators.required],
+    eLastName: ['', Validators.required],
+    ePhoneNumber: ['', Validators.required],
+    eEmail: ['', Validators.required]
     });
 
     this.saveButtonText.push('Save');
+    this.cancelButtonText.push('Cancel')
     this.submitted.push(false);
     this.isOpenForm = true;
     this.formGroups.push(newFormGroup);
   }
 
-  removeForm(index: number) {
-    this.isOpenForm = false;
-    this.formGroups.splice(index, 1);
-    this.submitted.splice(index, 1);
+  cancelEditBtn(index: number) {
+    if (this.cancelButtonText[index] == 'Cancel') {
+      this.saveButtonText[index] = 'Save';
+      this.isOpenForm = false;
+      this.formGroups.splice(index, 1);
+      this.submitted.splice(index, 1);
+    }
+    else {
+      this.submitted[index] = false;
+      this.isOpenForm = true;
+      this.saveButtonText[index] = 'Save';
+      this.cancelButtonText[index] = 'Delete';
+    }
   }
 
   onSubmit(formGroup: FormGroup, index: number) {
@@ -71,10 +90,7 @@ export class RegisterSwimmersComponent {
       this.isOpenForm = false;
       this.submitted[index] = true;
       this.saveButtonText[index] = 'Register';
-
-      if (index < this.formGroups.length - 1) {
-        this.saveButtonText[index + 1] = 'Save';
-      }
+      this.cancelButtonText[index] = 'Edit';
 
       console.log(firstName, lastName, preferredName, birthDate, pFirstName, pLastName, pPhoneNumber, pEmail, eFirstName, eLastName, ePhoneNumber, eEmail);
     }

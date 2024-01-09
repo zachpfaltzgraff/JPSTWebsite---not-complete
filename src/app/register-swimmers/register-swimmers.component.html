@@ -10,22 +10,22 @@
                             
                             <div class="form-group">
                                 <label for="first-name">First Name</label>
-                                <input id="first-name" autocomplete="first-name" type="text" formControlName="firstName">
+                                <input id="first-name" autocomplete="first-name" type="text" formControlName="firstName" [readonly]="isSumbitted(i)">
                             </div>
 
                             <div class="form-group">
                                 <label for="last-name">Last Name</label>
-                                <input id="last-name" autocomplete="family-name" type="text" formControlName="lastName">
+                                <input id="last-name" autocomplete="family-name" type="text" formControlName="lastName" [readonly]="isSumbitted(i)">
                             </div>
 
                             <div class="form-group">
-                                <label for="preferred-name">Preferred Name (option)</label>
-                                <input id="preferred-name" autocomplete="first-name" type="text" formControlName="preferredName">
+                                <label for="preferred-name">Preferred Name (optional)</label>
+                                <input id="preferred-name" autocomplete="first-name" type="text" formControlName="preferredName" [readonly]="isSumbitted(i)">
                             </div>
 
                             <div class="form-group">
                                 <label for="birth-date">Date of Birth</label>
-                                <input id="birth-date" autocomplete="bday" type="date" formControlName="birthDate">
+                                <input id="birth-date" autocomplete="bday" type="date" formControlName="birthDate" [readonly]="isSumbitted(i)">
                             </div>
                         </div>
 
@@ -35,22 +35,22 @@
 
                             <div class="form-group">
                                 <label for="first-name">First Name</label>
-                                <input id="first-name" autocomplete="first-name" type="text" formControlName="pFirstName">
+                                <input id="first-name" autocomplete="first-name" type="text" formControlName="pFirstName" [readonly]="isSumbitted(i)">
                             </div>
 
                             <div class="form-group">
                                 <label for="last-name">Last Name</label>
-                                <input id="last-name" autocomplete="family-name" type="text" formControlName="pLastName">
+                                <input id="last-name" autocomplete="family-name" type="text" formControlName="pLastName" [readonly]="isSumbitted(i)">
                             </div>
 
                             <div class="form-group">
                                 <label for="phone-number">Phone Number</label>
-                                <input id="phone-number" autocomplete="tel" type="tel" formControlName="pPhoneNumber">
+                                <input id="phone-number" autocomplete="tel" type="tel" formControlName="pPhoneNumber" [readonly]="isSumbitted(i)">
                             </div>
 
                             <div class="form-group">
                                 <label for="street-address">Email</label>
-                                <input id="street-address" autocomplete="email" type="email" formControlName="pEmail">
+                                <input id="street-address" autocomplete="email" type="email" formControlName="pEmail" [readonly]="isSumbitted(i)">
                             </div>
                         </div>
 
@@ -60,28 +60,28 @@
 
                             <div class="form-group">
                                 <label for="first-name">First Name</label>
-                                <input id="first-name" autocomplete="first-name" type="text" formControlName="eFirstName">
+                                <input id="first-name" autocomplete="first-name" type="text" formControlName="eFirstName" [readonly]="isSumbitted(i)">
                             </div>
 
                             <div class="form-group">
                                 <label for="last-name">Last Name</label>
-                                <input id="last-name" autocomplete="family-name" type="text" formControlName="eLastName">
+                                <input id="last-name" autocomplete="family-name" type="text" formControlName="eLastName" [readonly]="isSumbitted(i)">
                             </div>
 
                             <div class="form-group">
                                 <label for="phone-number">Phone Number</label>
-                                <input id="phone-number" autocomplete="tel" type="tel" formControlName="ePhoneNumber">
+                                <input id="phone-number" autocomplete="tel" type="tel" formControlName="ePhoneNumber" [readonly]="isSumbitted(i)">
                             </div>
 
                             <div class="form-group">
                                 <label for="street-address">Email</label>
-                                <input id="street-address" autocomplete="email" type="email" formControlName="eEmail">
+                                <input id="street-address" autocomplete="email" type="email" formControlName="eEmail" [readonly]="isSumbitted(i)">
                             </div>
                         </div>
 
                         <div class="form-buttons">
                             <button type="submit">{{saveRegisterText(i)}}</button>
-                            <button class="cancel-button" (click)="removeForm(i)">Cancel</button>
+                            <button type="button" class="cancel-button" (click)="cancelEditBtn(i)">{{cancelEditText(i)}}</button>
                         </div>
                     </form>
                 </div>

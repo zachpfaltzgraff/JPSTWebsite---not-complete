@@ -66,6 +66,12 @@ input {
     width: 100%;
     border: 2px solid grey;
 }
+input:read-only {
+    border-style: hidden;
+    font-size: 14px;
+    margin: 5px;
+    background-color: rgb(250, 249, 246);
+}
 
 form button {
     margin-top: auto;
