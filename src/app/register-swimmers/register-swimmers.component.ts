@@ -45,7 +45,9 @@ export class RegisterSwimmersComponent {
     eFirstName: ['', Validators.required],
     eLastName: ['', Validators.required],
     ePhoneNumber: ['', Validators.required],
-    eEmail: ['', Validators.required]
+    eEmail: ['', Validators.required],
+
+
     });
 
     this.saveButtonText.push('Save');
@@ -71,7 +73,10 @@ export class RegisterSwimmersComponent {
   }
 
   onSubmit(formGroup: FormGroup, index: number) {
-    if (this.saveButtonText[index] == 'Save') {
+    if (!formGroup.valid) {
+      alert("Please Fill in all required fields");
+    }
+    else if (this.saveButtonText[index] === 'Save') {
       if (formGroup.valid) {
         const firstName = formGroup.value.firstName ?? '';
         const lastName = formGroup.value.lastName ?? '';
@@ -97,10 +102,7 @@ export class RegisterSwimmersComponent {
       }
     }
     else if (this.saveButtonText[index] == 'Register') {
-      console.log('TESTING TSRING THIS DID WORK')
-    }
-    else {
-      alert("Please Fill in all required fields");
+      console.log('TESTING TSRING THIS DID WORK'); /* TODO make this so it pops up confirmation window*/
     }
   }
 }
