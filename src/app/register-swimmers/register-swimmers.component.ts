@@ -13,11 +13,28 @@ export class RegisterSwimmersComponent {
   formGroups: FormGroup[] = [];
   isOpenForm: boolean = true;
   submitted: boolean[] = [];
+  amtRegistered: number = 0;
   saveButtonText: string[] = [];
   cancelButtonText: string[] = [];
+  registerButtonClicked: boolean = false;
 
   constructor(private fb: FormBuilder) {
     this.addForm();
+  }
+
+  registeredOrNot(index: number): boolean {
+    if (this.saveButtonText[index] == 'Registered✓') {
+      return true;
+    }
+    return false;
+  }
+  registerCancelbtn() {
+    this.registerButtonClicked = false;
+  }
+
+  registerField(index: number) {
+    if (this.saveButtonText[index] == 'Register')
+    this.registerButtonClicked = true;
   }
 
   saveRegisterText(index: number): string {
@@ -51,7 +68,16 @@ export class RegisterSwimmersComponent {
       freestyle:[''],
       backstroke:[''],
       breaststroke:[''],
-      butterfly:['']
+      butterfly:[''],
+      firstStroke:[''],
+      secondStroke:[''],
+      thirdStroke:[''],
+      firstTime:[''],
+      secondTime:[''],
+      thirdTime:[''],
+
+      ageGroup:[''],
+      cost:['']
     });
 
     this.saveButtonText.push('Save');
@@ -59,6 +85,79 @@ export class RegisterSwimmersComponent {
     this.submitted.push(false);
     this.isOpenForm = true;
     this.formGroups.push(newFormGroup);
+  }
+
+  calcCost(index: number): string {
+    const today = new Date();
+    const month = today.getMonth() + 1;
+
+    let cost = 'Error';
+
+    if (month < 6) {
+      cost = (135 - (this.amtRegistered * 10)).toString();
+    }
+    else {
+      cost = (150 - (this.amtRegistered * 10)).toString();
+    }
+
+    return cost;
+  }
+
+  calcAgeGroup(index: number): string {
+    const birthDate = this.formGroups[index].get('birthDate');
+
+    if (birthDate && birthDate.value) {
+      const today = new Date();
+      const birthDateObj = new Date(birthDate.value);
+
+      const cutoffDate = new Date(today.getFullYear(), 5, 1);
+
+      let age = today.getFullYear() - birthDateObj.getFullYear();
+
+      const hasBirthOcc = today.getMonth() > birthDateObj.getMonth() ||
+      (today.getMonth() == birthDateObj.getMonth() &&
+      today.getDate() >= birthDateObj.getDate());
+
+      if (hasBirthOcc) {
+        age--;
+      }
+
+      const hasCelebratedBirthday =
+      today.getMonth() > cutoffDate.getMonth() ||
+      (today.getMonth() === cutoffDate.getMonth() &&
+        today.getDate() >= cutoffDate.getDate());
+
+      if (!hasCelebratedBirthday && birthDateObj.getMonth() <= 5) {
+        age--;
+      }
+      
+      if (age <= 8) {
+        this.formGroups[index].patchValue({
+          ageGroup: '8 & Under'
+        });
+        return '8 & Under';
+      }
+      else if (age == 9 || age == 10) {
+        this.formGroups[index].patchValue({
+          ageGroup: '9-10'
+        });
+        return '9-10';
+      }
+      else if (age == 11 || age == 12) {
+        this.formGroups[index].patchValue({
+          ageGroup: '11-12'
+        });
+        return '11-12';
+      }
+      else if (age > 13) {
+        this.formGroups[index].patchValue({
+          ageGroup: '13+'
+        });
+        return '13+';
+      }
+    }
+
+    return "Error";
   }
 
   cancelEditBtn(index: number) {
@@ -82,31 +181,25 @@ export class RegisterSwimmersComponent {
     }
     else if (this.saveButtonText[index] == 'Save') {
       if (formGroup.valid) {
-        const firstName = formGroup.value.firstName ?? '';
-        const lastName = formGroup.value.lastName ?? '';
-        const preferredName = formGroup.value.preferredName ?? firstName;
-        const birthDate = formGroup.value.birthDate ?? '';
-
-        const pFirstName = formGroup.value.pFirstName ?? '';
-        const pLastName = formGroup.value.pLastName ?? '';
-        const pPhoneNumber = formGroup.value.pPhoneNumber ?? '';
-        const pEmail = formGroup.value.pEmail ?? '';
-
-        const eFirstName = formGroup.value.eFirstName ?? '';
-        const eLastName = formGroup.value.eLastName ?? '';
-        const ePhoneNumber = formGroup.value.ePhoneNumber ?? '';
-        const eEmail = formGroup.value.eEmail ?? '';
-
         this.isOpenForm = false;
         this.submitted[index] = true;
         this.saveButtonText[index] = 'Register';
         this.cancelButtonText[index] = 'Edit';
-
-        console.log(firstName, lastName, preferredName, birthDate, pFirstName, pLastName, pPhoneNumber, pEmail, eFirstName, eLastName, ePhoneNumber, eEmail);
       }
     }
-    else if (this.saveButtonText[index] == 'Register') {
-      console.log('TESTING TSRING THIS DID WORK'); /* TODO make this so it pops up confirmation window*/
+  }
+
+  registerForm(index: number) {
+    const formGroup = this.formGroups[index];
+
+    if (formGroup) {
+      Object.keys(formGroup.controls).forEach(controlName => {
+        const control = formGroup.get(controlName);
+        console.log(`${controlName}: ${control?.value}`);
+      })
     }
+    this.saveButtonText[index] = 'Registered✓'
+    this.amtRegistered++;
+    this.registerButtonClicked = false;
   }
 }
