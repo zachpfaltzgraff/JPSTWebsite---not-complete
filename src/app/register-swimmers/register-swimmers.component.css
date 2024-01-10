@@ -14,10 +14,86 @@
     background-color: white;
 }
 
+.registration {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.register-group {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    margin-left: 0px;
+}
+
+.swim-strokes {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-rows: 25% 25% 25% 25%;
+    width: fit-content;
+}
+.swim-strokes label {
+    justify-self: start;
+}
+.swim-strokes input {
+    justify-self: end;
+    width: fit-content;
+    margin: 0px;
+    transform: scale(1.5);
+}
+
+.registration h1 {
+    margin: 0;
+    height: fit-content;
+    width: 100%;
+    color: black;
+    border-bottom: 2px solid grey;
+}
+
+.registration label {
+    margin: 5px;
+    font-size: 120%;
+    width: fit-content;
+}
+.registration select {
+    padding: 6px;
+    border-radius: 4px;
+    width: fit-content;
+    border: 2px solid grey;
+}
+
+.register-buttons {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    grid-template-columns: 50% 50%;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+.registration button {
+    width: fit-content;
+    padding: 10px;
+    margin-left: 20px;
+}
+.registration button:last-child {
+    background-color: grey;
+}
+.registration button:last-child:hover {
+    background-color: rgb(75, 75, 75);
+    
+}
+
 .form-box {
     height: 89%;
     overflow: auto;
-    border-bottom: 3px solid black;
+    border-bottom: 2px solid grey;
 }
 
 .swimmer-form {
@@ -86,6 +162,12 @@ form button {
     position: absolute;
     bottom: 10px;
     right: 10px;
+}
+.add-button button:disabled {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.add-button button:hover {
+    cursor: default;
 }
 
 .add-button button {

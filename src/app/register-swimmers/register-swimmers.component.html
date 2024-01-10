@@ -84,8 +84,50 @@
                             <button type="button" class="cancel-button" (click)="cancelEditBtn(i)">{{cancelEditText(i)}}</button>
                         </div>
                     </form>
-                </div>
 
+                    <form class="registration" [formGroup]="formGroup">
+                        <h1>Registration</h1>
+                        <div class="register-group">
+                            <label for="yrsOfExp">Years Of Experience:</label>
+                            <select name="yrsOfExp" id="yrsOfExp" formControlName="yrsOfExp">
+                                <option value="">--Select--</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10+">10+</option>
+                            </select>
+                        </div>
+
+                        <label for="strokes">Select Strokes You Can Swim:</label>
+                        <div class="swim-strokes">
+                            <input type="checkbox" id="freestyle" formControlName="freestyle">
+                            <label for="freestyle">Freestyle</label>
+                            <input type="checkbox" id="backstroke" formControlName="backstroke">
+                            <label for="backstroke">Backstroke</label>
+                            <input type="checkbox" id="breaststroke" formControlName="breaststroke">
+                            <label for="breaststroke">Breaststroke</label>
+                            <input type="checkbox" id="butterfly" formControlName="butterfly">
+                            <label for="butterfly">Butterfly</label>
+                        </div>
+
+                        <div class="best-strokes">
+                            
+                        </div>
+
+                        <div class="register-buttons">
+                            <button type="submit">Register</button>
+                            <button type="button" id="cancel-button">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+                
                 <div class="add-button">
                     <button [disabled]="isOpenForm" (click)="addForm()">Add Swimmer</button>
                 </div>

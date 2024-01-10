@@ -35,19 +35,23 @@ export class RegisterSwimmersComponent {
   addForm() {
     const newFormGroup = this.fb.group({
       firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
-    preferredName: [''],
-    birthDate: ['', Validators.required],
-    pFirstName: ['', Validators.required],
-    pLastName: ['', Validators.required],
-    pPhoneNumber: ['', Validators.required],
-    pEmail: ['', Validators.required],
-    eFirstName: ['', Validators.required],
-    eLastName: ['', Validators.required],
-    ePhoneNumber: ['', Validators.required],
-    eEmail: ['', Validators.required],
+      lastName: ['', Validators.required],
+      preferredName: [''],
+      birthDate: ['', Validators.required],
+      pFirstName: ['', Validators.required],
+      pLastName: ['', Validators.required],
+      pPhoneNumber: ['', Validators.required],
+      pEmail: ['', Validators.required],
+      eFirstName: ['', Validators.required],
+      eLastName: ['', Validators.required],
+      ePhoneNumber: ['', Validators.required],
+      eEmail: ['', Validators.required],
 
-
+      yrsOfExp:[''],
+      freestyle:[''],
+      backstroke:[''],
+      breaststroke:[''],
+      butterfly:['']
     });
 
     this.saveButtonText.push('Save');
@@ -76,7 +80,7 @@ export class RegisterSwimmersComponent {
     if (!formGroup.valid) {
       alert("Please Fill in all required fields");
     }
-    else if (this.saveButtonText[index] === 'Save') {
+    else if (this.saveButtonText[index] == 'Save') {
       if (formGroup.valid) {
         const firstName = formGroup.value.firstName ?? '';
         const lastName = formGroup.value.lastName ?? '';
