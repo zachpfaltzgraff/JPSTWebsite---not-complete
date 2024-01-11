@@ -224,6 +224,9 @@ button:disabled:hover:nth-child(2) {
 .cancel-button:hover {
     background-color: rgb(75, 75, 75);
 }
+.cancel-button:disabled {
+    opacity: 0;
+}
 
 @media only screen and (max-width: 1700px){ 
     .white-box {
