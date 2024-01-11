@@ -57,3 +57,32 @@ span {
 .practice-schedule span.times {
     margin-left: 4%;
 }
+
+.footer {
+    background-image: url('/assets/watertexturefooter.png');
+    background-size: cover;
+    width: auto;
+    padding: 16px;
+    text-align: center;
+    padding-bottom: 4%;
+}
+
+.footer h2 {
+    color: white;
+    font-size: 225%;
+    font-weight: bold;
+    letter-spacing: 0.20rem;
+    margin-bottom: 2.5%;
+}
+
+.footer a {
+    font-family: 'Lato', sans-serif;
+    text-decoration: none;
+    font-weight: 900;
+    background-color: white;
+    color: black;
+    padding: 15px 30px 13px;
+    border-radius: 25px;
+    font-size: 18px;
+    margin: 10px;
+}
