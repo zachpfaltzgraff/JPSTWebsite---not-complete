@@ -1,0 +1,59 @@
+.home-header {
+    background-color: rgb(48, 48, 243);
+    padding: 0.5%;
+}
+
+.home-header h1 {
+    color: white;
+    font-family: 'Merriweather', serif;
+    font-style: italic;
+    font-size: 300%;
+    margin: 0.5% 0% 0.5% 17%;
+    text-shadow: 0 2px 32px black;
+}
+
+.page-content-wrapper {
+    margin-left: 15%;
+}
+
+.info-wrapper {
+    width: 81%;
+    height: fit-content;
+    padding: 1% 2%;
+    margin: 2%;
+    box-shadow: 0 2px 32px black;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.ages-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.ages-section p {
+    margin-left: 4%;
+    margin-top: 0;
+    font-family: 'Lato', sans-serif;
+    text-transform: capitalize;
+}
+
+h2 {
+    font-family: 'Roboto Condensed', sans-serif;
+    text-transform: uppercase;
+}
+
+span {
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    margin-left: 2%;
+    margin-bottom: 1%;
+    text-transform: capitalize;
+    line-height: 125%;
+}
+
+.practice-schedule span.times {
+    margin-left: 4%;
+}
