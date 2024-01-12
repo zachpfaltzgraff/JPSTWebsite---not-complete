@@ -1,0 +1,50 @@
+.background-image {
+    background-image: url('/assets/dolphins.png');
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.form-wrapper {
+    background-color: white;
+    width: 50%;
+    height: 50%;
+    box-shadow: 0 2px 32px black;
+    border-radius: 4px;
+    padding: 1%;
+}
+
+form h1 {
+    font-family: 'Roboto Condensed', sans-serif;
+    text-transform: uppercase;
+    border-bottom: 2px solid grey;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin: 2%;
+}
+
+.form-group label {
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+}
+
+.form-group input {
+    width: 100%;
+    height: 20px;
+    border-radius: 4px;
+    border: 2px solid grey;
+}
+
+.names {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-right: 15%;
+}

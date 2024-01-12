@@ -1,1 +1,24 @@
-<p>contact works!</p>
+<div class="contact-wrapper">
+    <div class="background-image">
+
+        <div class="form-wrapper">
+            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+                <h1>Contact Us</h1>
+
+                <div class="names">
+                    <div class="form-group">
+                        <label for="name">First Name*</label>
+                        <input type="name" formControlName="firstName">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Last Name*</label>
+                        <input type="name" formControlName="lastName">
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
