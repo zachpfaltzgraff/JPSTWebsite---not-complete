@@ -86,3 +86,55 @@ span {
     font-size: 18px;
     margin: 10px;
 }
+
+@media only screen and (max-width: 1200px) {
+    .home-header h1 {
+        font-size: 200%;
+        margin-left: 10%;
+    }
+
+    .page-content-wrapper {
+        margin-left: 8%;
+    }
+
+    span {
+        font-size: 16px;
+    }
+
+    h2 {
+        font-size: 110%;
+    }
+
+    .ages-section p {
+        font-size: 14px;
+    }
+ }
+
+ @media only screen and (max-width: 900px) {
+    .home-header h1 {
+        font-size: 150%;
+        margin-left: 2%;
+    }
+
+    .footer h2 {
+        font-size: 175%;
+    }
+    
+    .footer a {
+        padding: 8px 16px 6px;
+        border-radius: 25px;
+        font-size: 18px;
+    }
+
+    .info-wrapper {
+        margin-bottom: 20px;
+    }
+
+    .ages-section p {
+        font-size: 12px;
+    }
+
+    span {
+        margin-bottom: 5%;
+    }
+ }
