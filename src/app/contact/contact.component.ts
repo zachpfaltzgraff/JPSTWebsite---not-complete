@@ -15,6 +15,7 @@ export class ContactComponent {
       const firstName = this.contactForm.value.firstName ?? '';
       const lastName = this.contactForm.value.lastName ?? '';
       const email = this.contactForm.value.email ?? '';
+      const phone = this.contactForm.value.phone ?? '';
       const message = this.contactForm.value.message ?? '';
     }
     else {
@@ -27,6 +28,7 @@ export class ContactComponent {
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.email, Validators.required]),
+    phone: new FormControl(''),
     message: new FormControl('', Validators.required)
   })
 }
