@@ -23,7 +23,6 @@ export class ContactComponent {
     }
   }
 
-
   contactForm = new FormGroup( {
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),

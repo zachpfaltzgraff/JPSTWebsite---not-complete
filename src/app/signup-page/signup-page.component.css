@@ -24,7 +24,7 @@ form {
     margin: auto 10px;
     padding: 16px 16px 24px;
     box-shadow: 0 2px 32px black;
-    border-radius: 4px;
+    border-radius: 12px;
     background-color: white;
 }
 
@@ -74,7 +74,7 @@ button:hover {
     border-radius: 4px;
     border: black;
     position: absolute;
-    top: 95%;
+    top: 83%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -97,9 +97,12 @@ button:hover {
     }
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 820px) {
     form {
         width: 42%;
+    }
+    .display-error {
+        top: 87%;
     }
 }
 
