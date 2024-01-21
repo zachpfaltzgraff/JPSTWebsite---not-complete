@@ -17,30 +17,6 @@ bootstrapApplication(AppComponent, appConfig)
       }
     }
   });
-
-  Amplify.configure({
-    Auth: {
-      Cognito: {
-        userPoolClientId: '',
-        userPoolId: 'us-east-1_b1WfWe8LQ',
-        loginWith: { // Optional
-          oauth: {
-            domain: 'https://jpstdolphins.auth.us-east-1.amazoncognito.com',
-            scopes: [
-              'phone',
-              'email',
-              'profile',
-              'openid',
-              'aws.cognito.signin.user.admin'
-            ],
-            redirectSignIn: ['http://localhost:3000/'],
-            redirectSignOut: ['http://localhost:3000/'],
-            responseType: 'code',
-          }
-        }
-      }
-    }
-  });
   
   // You can get the current config object
   const currentConfig = Amplify.getConfig();
