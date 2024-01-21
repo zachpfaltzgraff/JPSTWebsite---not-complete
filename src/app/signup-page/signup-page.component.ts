@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
 
 @Component({
   selector: 'app-signup-page',
@@ -34,8 +35,8 @@ export class SignupPageComponent {
       this.errorMessage = '';
       console.log('Email:', emailValue);
       console.log('Password:', passwordValue);
-    }
 
+    }
   }
 
   profileForm = new FormGroup( {
