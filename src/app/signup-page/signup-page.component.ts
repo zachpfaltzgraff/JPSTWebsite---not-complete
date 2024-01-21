@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
+import { signUp } from 'aws-amplify/auth';
 
 @Component({
   selector: 'app-signup-page',
@@ -13,7 +13,7 @@ import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
 export class SignupPageComponent {
   errorMessage = '';
 
-  onSubmit() {
+  async onSubmit() {
     const emailValue = this.profileForm.value.email ?? '';
     const passwordValue = this.profileForm.value.password ?? '';
     const confirmPasswordValue = this.profileForm.value.confirmPassword ?? '';
@@ -29,6 +29,19 @@ export class SignupPageComponent {
     }
     else if (this.profileForm.get('email')?.hasError('email')) {
       this.errorMessage = 'Error: Invalid Email';
+    }
+
+    try {
+      await signUp({
+        username: emailValue,
+        password: passwordValue
+      });
+  
+      // Handle successful signup (you may want to navigate to a confirmation page)
+      console.log('Signup successful');
+    } catch (error) {
+      // Handle signup error
+      console.error('Error signing up:', error);
     }
 
     if (this.profileForm.valid) {
