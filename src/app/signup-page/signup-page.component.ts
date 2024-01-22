@@ -3,6 +3,12 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { signUp } from 'aws-amplify/auth';
 
+type SignUpParameters = {
+  username: string;
+  password: string;
+  email: string;
+};
+
 @Component({
   selector: 'app-signup-page',
   standalone: true,
@@ -13,7 +19,7 @@ import { signUp } from 'aws-amplify/auth';
 export class SignupPageComponent {
   errorMessage = '';
 
-  async onSubmit() {
+  onSubmit() {
     const emailValue = this.profileForm.value.email ?? '';
     const passwordValue = this.profileForm.value.password ?? '';
     const confirmPasswordValue = this.profileForm.value.confirmPassword ?? '';
@@ -31,24 +37,12 @@ export class SignupPageComponent {
       this.errorMessage = 'Error: Invalid Email';
     }
 
-    try {
-      await signUp({
-        username: emailValue,
-        password: passwordValue
-      });
-  
-      // Handle successful signup (you may want to navigate to a confirmation page)
-      console.log('Signup successful');
-    } catch (error) {
-      // Handle signup error
-      console.error('Error signing up:', error);
-    }
-
     if (this.profileForm.valid) {
       this.errorMessage = '';
       console.log('Email:', emailValue);
       console.log('Password:', passwordValue);
 
+      handleSignUp({ username: emailValue, password: passwordValue, email: emailValue });
     }
   }
 
@@ -57,4 +51,26 @@ export class SignupPageComponent {
     password: new FormControl('', Validators.minLength(8)),
     confirmPassword: new FormControl('', Validators.required)
   });
+}
+
+async function handleSignUp({
+  username,
+  password,
+  email,
+}: SignUpParameters) {
+  try {
+    const { isSignUpComplete, userId, nextStep } = await signUp({
+      username,
+      password,
+      options: {
+        userAttributes: {
+          email,
+        },
+      }
+    });
+
+    console.log(userId);
+  } catch (error) {
+    console.log('error signing up:', error);
+  }
 }
