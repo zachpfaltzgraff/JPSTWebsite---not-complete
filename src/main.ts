@@ -2,6 +2,7 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 import { Amplify } from 'aws-amplify';
+import cdkOutput from '../../jpstCDK/output.json';
 
 
 bootstrapApplication(AppComponent, appConfig)
@@ -11,12 +12,13 @@ bootstrapApplication(AppComponent, appConfig)
     Auth: {
       Cognito: {
         //  Amazon Cognito User Pool ID
-        userPoolId: 'us-east-1_b1WfWe8LQ',
+        userPoolId: cdkOutput.JpstCdkStack.PoolId,
         // OPTIONAL - Amazon Cognito Web Client ID (26-char alphanumeric string)
-        userPoolClientId: '',
+        userPoolClientId: cdkOutput.JpstCdkStack.ClientId,
       }
     }
   });
+
   
   // You can get the current config object
   const currentConfig = Amplify.getConfig();
