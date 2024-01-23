@@ -20,6 +20,5 @@ bootstrapApplication(AppComponent, appConfig)
     }
   });
 
-  
   // You can get the current config object
   const currentConfig = Amplify.getConfig();
