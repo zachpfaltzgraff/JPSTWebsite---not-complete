@@ -15,6 +15,7 @@ bootstrapApplication(AppComponent, appConfig)
         userPoolId: cdkOutput.JpstCdkStack.PoolId,
         // OPTIONAL - Amazon Cognito Web Client ID (26-char alphanumeric string)
         userPoolClientId: cdkOutput.JpstCdkStack.ClientId,
+        signUpVerificationMethod: 'link',
       }
     }
   });
