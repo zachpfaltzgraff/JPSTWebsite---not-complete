@@ -58,7 +58,6 @@ export class VerifyLoginComponent implements AfterViewInit {
   }
 
   onSubmit() {
-    alert('error');
     const verificationCode = Object.values(this.verifyCode.value).join('');
     console.log(verificationCode);
 
