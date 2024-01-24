@@ -1,0 +1,28 @@
+.verify {
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 2px 32px black;
+    padding: 2%;
+    height: 40vh;
+}
+
+.verify h2 {
+    justify-content: center;
+}
+
+.verify form {
+    box-shadow: none;
+}
+
+.verify-input {
+    display: flex;
+    flex-direction: row;
+}
+.verify-input input{
+    margin-right: 15px;
+    height: 40px; 
+    width: 25px;
+}
+.verify-input input:last-child{
+    margin-right: 0px;
+}
