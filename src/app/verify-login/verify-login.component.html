@@ -2,17 +2,17 @@
     <div class="verify">
         <h2>Enter Verification Code</h2>
         <span>A verification code has been sent to your email</span>
-        <form action="">
+        <form [formGroup]="verifyCode" (ngSubmit)="onSubmit()">
             <div class="verify-input">
-                <input type="number">
-                <input type="number" disabled>
-                <input type="number" disabled>
-                <input type="number" disabled>
-                <input type="number" disabled>
-                <input type="number" disabled>
+                <input type="number" formControlName="code1">
+                <input type="number" formControlName="code2">
+                <input type="number" formControlName="code3">
+                <input type="number" formControlName="code4">
+                <input type="number" formControlName="code5">
+                <input type="number" formControlName="code6">
             </div>
 
-            <button type="submit">Verify</button>
+            <button>Verify</button>
         </form>
     </div>
 </div>

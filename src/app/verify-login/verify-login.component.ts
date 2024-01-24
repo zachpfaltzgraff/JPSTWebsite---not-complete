@@ -1,7 +1,13 @@
 import { Component, AfterViewInit } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { confirmSignUp, type ConfirmSignUpInput } from 'aws-amplify/auth';
+import { EmailService } from '../../email.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-verify-login',
+  standalone: true,
+  imports: [ ReactiveFormsModule ],
   templateUrl: './verify-login.component.html',
   styleUrls: ['./verify-login.component.css']
 })
@@ -9,6 +15,7 @@ import { Component, AfterViewInit } from '@angular/core';
 export class VerifyLoginComponent implements AfterViewInit {
   inputs!: NodeListOf<HTMLInputElement>;
   button!: HTMLButtonElement;
+  constructor(private router: Router, private emailService: EmailService) {}
 
   ngAfterViewInit(): void {
     this.inputs = document.querySelectorAll("input");
@@ -19,8 +26,7 @@ export class VerifyLoginComponent implements AfterViewInit {
       const nextInput = currentInput.nextElementSibling as HTMLInputElement;
       const prevInput = currentInput.previousElementSibling as HTMLInputElement;
 
-      if (nextInput && nextInput.hasAttribute("disabled") && currentInput.value !== "") {
-        nextInput.removeAttribute("disabled");
+      if (nextInput && currentInput.value !== "") {
         nextInput.focus();
       }
 
@@ -32,15 +38,9 @@ export class VerifyLoginComponent implements AfterViewInit {
       const currentIndex = Array.from(this.inputs).indexOf(currentInput);
 
       if (event.key === "Backspace") {
-        this.inputs.forEach((input, index2) => {
-          if (currentIndex <= index2 && prevInput) {
-            input.setAttribute("disabled", 'true');
-
-            if (prevInput instanceof HTMLInputElement) {
-              prevInput.focus();
-            }
-          }
-        });
+        if (prevInput instanceof HTMLInputElement) {
+          prevInput.focus();
+        }
       }
 
       if (!this.inputs[5].disabled && this.inputs[5].value !== "") {
@@ -55,5 +55,40 @@ export class VerifyLoginComponent implements AfterViewInit {
     });
 
     window.addEventListener("load", () => this.inputs[0].focus());
+  }
+
+  onSubmit() {
+    alert('error');
+    const verificationCode = Object.values(this.verifyCode.value).join('');
+    console.log(verificationCode);
+
+    const emailValue = this.emailService.getEmail();
+
+    handleSignUpConfirmation({username: emailValue, confirmationCode: verificationCode});
+
+    this.router.navigate(['']);
+  }
+
+  verifyCode = new FormGroup( {
+    code1: new FormControl(''),
+    code2: new FormControl(''),
+    code3: new FormControl(''),
+    code4: new FormControl(''),
+    code5: new FormControl(''),
+    code6: new FormControl(''),
+  });
+}
+
+async function handleSignUpConfirmation({
+  username,
+  confirmationCode
+}: ConfirmSignUpInput) {
+  try {
+    const { isSignUpComplete, nextStep } = await confirmSignUp({
+      username,
+      confirmationCode
+    });
+  } catch (error) {
+    console.log('error confirming sign up', error);
   }
 }
