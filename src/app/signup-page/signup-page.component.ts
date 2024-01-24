@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { signUp } from 'aws-amplify/auth';
+import { Router } from '@angular/router';
 
 type SignUpParameters = {
   username: string;
@@ -18,6 +19,8 @@ type SignUpParameters = {
 })
 export class SignupPageComponent {
   errorMessage = '';
+
+  constructor(private router: Router) {}
 
   onSubmit() {
     const emailValue = this.profileForm.value.email ?? '';
@@ -43,6 +46,7 @@ export class SignupPageComponent {
       console.log('Password:', passwordValue);
 
       handleSignUp({ username: emailValue, password: passwordValue, email: emailValue });
+      this.router.navigate(['/verify']);
     }
   }
 
