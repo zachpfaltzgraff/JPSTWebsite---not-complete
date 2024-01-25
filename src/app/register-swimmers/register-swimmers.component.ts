@@ -70,14 +70,14 @@ export class RegisterSwimmersComponent {
       breaststroke:[''],
       butterfly:[''],
       firstStroke:[''],
-      secondStroke:[''],
-      thirdStroke:[''],
       firstTime:[''],
+      secondStroke:[''],
       secondTime:[''],
+      thirdStroke:[''],
       thirdTime:[''],
 
       ageGroup:[''],
-      cost:['']
+      cost:[''],
     });
 
     this.saveButtonText.push('Save');
@@ -91,16 +91,12 @@ export class RegisterSwimmersComponent {
     const today = new Date();
     const month = today.getMonth() + 1;
 
-    let cost = 'Error';
-
     if (month < 6) {
-      cost = (135 - (this.amtRegistered * 10)).toString();
+      return (135 - (this.amtRegistered * 10)).toString();
     }
     else {
-      cost = (150 - (this.amtRegistered * 10)).toString();
+      return (150 - (this.amtRegistered * 10)).toString();
     }
-
-    return cost;
   }
 
   calcAgeGroup(index: number): string {
@@ -198,7 +194,7 @@ export class RegisterSwimmersComponent {
         console.log(`${controlName}: ${control?.value}`);
       })
     }
-    this.saveButtonText[index] = 'Registered✓'
+    this.saveButtonText[index] = 'Registered✓ '
     this.amtRegistered++;
     this.registerButtonClicked = false;
   }

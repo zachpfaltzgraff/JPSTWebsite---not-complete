@@ -26,7 +26,7 @@ export class LoginPageComponent {
       console.log('Password:', passwordValue);
 
       await handleSignIn({ username: emailValue, password: passwordValue });
-      const isLoggedIn = this.emailService.setLogin(true);
+      this.emailService.setLogin(true);
       this.router.navigate(['']);
     }
     else {
@@ -44,6 +44,6 @@ async function handleSignIn({ username, password}: SignInInput) {
   try {
     const { isSignedIn, nextStep } = await signIn({ username, password });
   } catch (error) {
-    alert(error); // TODO fix this later
+    alert(error);
   }
 }
