@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class EmailService {
   private userEmail: string = '';
+  private isLoggedIn: boolean = false;
 
   setEmail(email: string) {
     this.userEmail = email;
@@ -12,5 +13,12 @@ export class EmailService {
 
   getEmail(): string {
     return this.userEmail;
+  }
+
+  setLogin(loggedIn: boolean) {
+    this.isLoggedIn = loggedIn;
+  }
+  getLogin(): boolean {
+    return this.isLoggedIn;
   }
 }

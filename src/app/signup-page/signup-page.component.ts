@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { signUp } from 'aws-amplify/auth';
 import { Router } from '@angular/router';
-import { EmailService } from '../../email.service';
+import { EmailService } from '../../values.service';
 
 type SignUpParameters = {
   username: string;

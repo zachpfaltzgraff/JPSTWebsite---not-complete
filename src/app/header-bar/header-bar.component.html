@@ -1,17 +1,19 @@
 <div class="banner">
     <img src="assets/watertexture.png" alt="">
-
+  
     <div class="middle-logo">
-        <a href="">JPST Dolphins</a>
+      <a href="">JPST Dolphins</a>
     </div>
     
     <li class="menu-bar">
-        <a href="">Home</a>
-        <a href="">Meet The Coaches</a>
-        <a href="">Team Records</a>
-        <a href="">Meet Results</a>
-        <a href="/register-swimmers">Register Swimmers</a>
-        <a href="/contact">Contact Us</a>
-        <a href="/login">Login</a>
+      <a href="">Home</a>
+      <a href="">Meet The Coaches</a>
+      <a href="">Team Records</a>
+      <a href="">Meet Results</a>
+      <a href="/register-swimmers">Register Swimmers</a>
+      <a href="/contact">Contact Us</a>
+      <a href="/login" *ngIf="!isLoggedIn()">Sign In</a>
+      <a href="" (click)="signOut()" *ngIf="isLoggedIn()">Sign Out</a>
     </li>
-</div>
+  </div>
+  

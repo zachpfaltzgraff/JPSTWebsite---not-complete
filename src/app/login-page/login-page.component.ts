@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { signIn, type SignInInput } from 'aws-amplify/auth';
+import { Router } from '@angular/router';
+import { EmailService } from '../../values.service';
 
 @Component({
   selector: 'app-login-page',
@@ -12,8 +14,9 @@ import { signIn, type SignInInput } from 'aws-amplify/auth';
 })
 export class LoginPageComponent {
   errorMessage = '';
+  constructor(private router: Router, private emailService: EmailService) {}
 
-  onSubmit() {
+  async onSubmit() {
     if (this.profileForm.valid) {
       this.errorMessage = '';
       const emailValue = this.profileForm.value.email ?? '';
@@ -22,7 +25,9 @@ export class LoginPageComponent {
       console.log('Email:', emailValue);
       console.log('Password:', passwordValue);
 
-      handleSignIn({ username: emailValue, password: passwordValue });
+      await handleSignIn({ username: emailValue, password: passwordValue });
+      const isLoggedIn = this.emailService.setLogin(true);
+      this.router.navigate(['']);
     }
     else {
       this.errorMessage = 'Invalid Form: Please fill out all fields';
@@ -35,10 +40,10 @@ export class LoginPageComponent {
   })
 }
 
-async function handleSignIn({ username, password }: SignInInput) {
+async function handleSignIn({ username, password}: SignInInput) {
   try {
     const { isSignedIn, nextStep } = await signIn({ username, password });
   } catch (error) {
-    console.log('error signing in', error);
+    alert(error); // TODO fix this later
   }
 }

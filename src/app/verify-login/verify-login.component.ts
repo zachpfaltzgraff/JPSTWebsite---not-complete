@@ -1,7 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { confirmSignUp, type ConfirmSignUpInput } from 'aws-amplify/auth';
-import { EmailService } from '../../email.service';
+import { EmailService } from '../../values.service';
 import { Router } from '@angular/router';
 
 @Component({
