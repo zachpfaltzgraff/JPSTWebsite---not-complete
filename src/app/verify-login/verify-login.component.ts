@@ -21,6 +21,21 @@ export class VerifyLoginComponent implements AfterViewInit {
     this.inputs = document.querySelectorAll("input");
     this.button = document.querySelector("button") as HTMLButtonElement;
 
+    const handlePaste = (event: ClipboardEvent) => {
+      event.preventDefault();
+      const clipboardData = event.clipboardData || (window as any).clipboardData;
+      const pastedData = clipboardData.getData('text');
+  
+      if (pastedData.length === 6) {
+        this.inputs.forEach((input, index) => {
+          input.value = pastedData[index];
+        });
+  
+        this.inputs[5].dispatchEvent(new Event('keyup'));
+        this.inputs[5].focus();
+      }
+    };
+
     const handleKeyUp = (event: KeyboardEvent) => {
       const currentInput = event.target as HTMLInputElement;
       const nextInput = currentInput.nextElementSibling as HTMLInputElement;
@@ -52,6 +67,11 @@ export class VerifyLoginComponent implements AfterViewInit {
 
     this.inputs.forEach((input) => {
       input.addEventListener("keyup", handleKeyUp);
+    });
+
+    this.inputs.forEach((input) => {
+    input.addEventListener('keyup', handleKeyUp);
+    input.addEventListener('paste', handlePaste);
     });
 
     window.addEventListener("load", () => this.inputs[0].focus());
