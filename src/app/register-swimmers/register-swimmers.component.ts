@@ -195,6 +195,7 @@ export class RegisterSwimmersComponent {
       })
     }
     this.saveButtonText[index] = 'Registered✓ '
+    this.cancelButtonText[index] = 'hidden';
     this.amtRegistered++;
     this.registerButtonClicked = false;
   }

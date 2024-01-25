@@ -81,7 +81,7 @@
 
                         <div class="form-buttons">
                             <button type="submit" (click)="registerField(i)" [disabled]="registeredOrNot(i)">{{saveRegisterText(i)}}</button>
-                            <button type="button" class="cancel-button" (click)="cancelEditBtn(i)" [disabled]="registeredOrNot(i)">{{cancelEditText(i)}}</button>
+                            <button type="button" class="cancel-button" (click)="cancelEditBtn(i)" *ngIf="cancelButtonText[i] !== 'hidden'" >{{cancelEditText(i)}}</button>
                         </div>
                     </form>
 
