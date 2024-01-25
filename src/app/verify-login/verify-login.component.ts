@@ -21,43 +21,26 @@ export class VerifyLoginComponent implements AfterViewInit {
     this.inputs = document.querySelectorAll("input");
     this.button = document.querySelector("button") as HTMLButtonElement;
 
-    const handlePaste = (event: ClipboardEvent) => {
-      event.preventDefault();
-      const clipboardData = event.clipboardData || (window as any).clipboardData;
-      const pastedData = clipboardData.getData('text');
-  
-      if (pastedData.length === 6) {
-        this.inputs.forEach((input, index) => {
-          input.value = pastedData[index];
-        });
-  
-        this.inputs[5].dispatchEvent(new Event('keyup'));
-        this.inputs[5].focus();
-      }
-    };
-
     const handleKeyUp = (event: KeyboardEvent) => {
       const currentInput = event.target as HTMLInputElement;
       const nextInput = currentInput.nextElementSibling as HTMLInputElement;
       const prevInput = currentInput.previousElementSibling as HTMLInputElement;
-
+    
       if (nextInput && currentInput.value !== "") {
         nextInput.focus();
       }
-
+    
       if (currentInput.value.length > 1) {
-        currentInput.value = "";
+        currentInput.value = currentInput.value.slice(-1);
         return;
       }
-
-      const currentIndex = Array.from(this.inputs).indexOf(currentInput);
-
+    
       if (event.key === "Backspace") {
         if (prevInput instanceof HTMLInputElement) {
           prevInput.focus();
         }
       }
-
+    
       if (!this.inputs[5].disabled && this.inputs[5].value !== "") {
         this.button.classList.add("active");
       } else {
@@ -71,7 +54,6 @@ export class VerifyLoginComponent implements AfterViewInit {
 
     this.inputs.forEach((input) => {
     input.addEventListener('keyup', handleKeyUp);
-    input.addEventListener('paste', handlePaste);
     });
 
     window.addEventListener("load", () => this.inputs[0].focus());
