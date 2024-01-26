@@ -13,15 +13,20 @@ import { EmailService } from '../../values.service';
   styleUrl: './header-bar.component.css'
 })
 
-export class HeaderBarComponent implements OnInit {
+export class HeaderBarComponent {
 
   constructor(private router: Router, private emailService: EmailService) {}
 
-  ngOnInit() {
-    this.currentAuthenticatedUser();
-  }
-
-  isLoggedIn(): boolean {
+  assessLoginState = () => {
+    this.currentAuthenticatedUser()
+      .then(sess => {
+        console.log('logged in');
+        this.emailService.setLogin(true);
+      })
+      .catch (() => {
+        console.log('Not Logged in')
+        this.emailService.setLogin(false);
+      })
     return this.emailService.getLogin();
   }
 
