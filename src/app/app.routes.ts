@@ -6,10 +6,19 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ContactComponent } from './contact/contact.component';
 import { VerifyLoginComponent } from './verify-login/verify-login.component';
 
+import { 
+    AuthGuardService as AuthGuard 
+  } from '../auth-guard.service';
+
 export const routes: Routes = [
     {path: 'login', component: LoginPageComponent},
     {path: 'signup', component: SignupPageComponent},
-    {path: 'register-swimmers', component: RegisterSwimmersComponent},
+    {
+        path: 'register-swimmers',
+        component: RegisterSwimmersComponent,
+        canActivate: [AuthGuard]
+    },
+    {path: '**', redirectTo: ''},
     {path: '', component: HomePageComponent},
     {path: 'contact', component: ContactComponent},
     {path: 'verify', component: VerifyLoginComponent}
