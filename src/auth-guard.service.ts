@@ -1,16 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Router, CanActivate } from '@angular/router';
-import { AuthService } from './auth.service';
+import { Router, UrlTree } from '@angular/router';
+import { getCurrentUser } from 'aws-amplify/auth';
 @Injectable()
 
 
-export class AuthGuardService implements CanActivate {
-  constructor(public auth: AuthService, public router: Router) {}
-  canActivate(): boolean {
-    if (!this.auth.isAuthenticated()) {
-      this.router.navigate(['login']);
-      return false;
-    }
-    return true;
+export class AuthGuardService {
+  constructor( public router: Router) {}
+  canActivate(): Promise<boolean | UrlTree> {
+    let promise = new Promise<boolean | UrlTree>((resolve, reject) => {
+      getCurrentUser().then(value => {
+        if (value) {
+          resolve(true);
+        }
+        else {
+          resolve(false);
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        resolve(this.router.parseUrl('/login'));
+      })
+    });
+
+    return promise;
   }
 }

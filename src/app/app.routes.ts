@@ -9,6 +9,7 @@ import { VerifyLoginComponent } from './verify-login/verify-login.component';
 import { 
     AuthGuardService as AuthGuard 
   } from '../auth-guard.service';
+import { inject } from '@angular/core';
 
 export const routes: Routes = [
     {path: 'login', component: LoginPageComponent},
@@ -16,10 +17,10 @@ export const routes: Routes = [
     {
         path: 'register-swimmers',
         component: RegisterSwimmersComponent,
-        canActivate: [AuthGuard]
+        canActivate: [() => inject(AuthGuard).canActivate()]
     },
-    {path: '**', redirectTo: ''},
     {path: '', component: HomePageComponent},
     {path: 'contact', component: ContactComponent},
-    {path: 'verify', component: VerifyLoginComponent}
+    {path: 'verify', component: VerifyLoginComponent},
+    {path: '**', redirectTo: 'login'},
 ];
