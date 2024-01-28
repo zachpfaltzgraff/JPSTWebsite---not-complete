@@ -45,8 +45,14 @@ form h1 {
 .names, .contact {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    margin-right: 50%;
+    justify-content: left;
+}
+
+.send-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    padding-right: 2%;
 }
 
 textarea {
