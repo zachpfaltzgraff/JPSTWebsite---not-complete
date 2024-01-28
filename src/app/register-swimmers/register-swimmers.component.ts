@@ -18,6 +18,8 @@ export class RegisterSwimmersComponent {
   cancelButtonText: string[] = [];
   registerButtonClicked: boolean = false;
 
+  registerBtnIndex: number = -1;
+
   constructor(private fb: FormBuilder) {
     this.addForm();
   }
@@ -30,11 +32,14 @@ export class RegisterSwimmersComponent {
   }
   registerCancelbtn() {
     this.registerButtonClicked = false;
+    this.registerBtnIndex = -1;
   }
 
   registerField(index: number) {
-    if (this.saveButtonText[index] == 'Register')
-    this.registerButtonClicked = true;
+    if (this.saveButtonText[index] == 'Register') {
+      this.registerButtonClicked = true;
+      this.registerBtnIndex = index;
+    }
   }
 
   saveRegisterText(index: number): string {
@@ -185,18 +190,26 @@ export class RegisterSwimmersComponent {
     }
   }
 
-  registerForm(index: number) {
-    const formGroup = this.formGroups[index];
-
-    if (formGroup) {
-      Object.keys(formGroup.controls).forEach(controlName => {
-        const control = formGroup.get(controlName);
-        console.log(`${controlName}: ${control?.value}`);
-      })
+  registerForm() {
+    const index = this.registerBtnIndex;
+    if (index == -1) {
+      console.log('Error, invalid index of form')
     }
-    this.saveButtonText[index] = 'Registered✓ '
-    this.cancelButtonText[index] = 'hidden';
-    this.amtRegistered++;
-    this.registerButtonClicked = false;
+    else {
+      const formGroup = this.formGroups[index];
+
+      if (formGroup) {
+        Object.keys(formGroup.controls).forEach(controlName => {
+          const control = formGroup.get(controlName);
+          console.log(`${controlName}: ${control?.value}`);
+        })
+      }
+      this.saveButtonText[index] = 'Registered✓ '
+      this.cancelButtonText[index] = 'hidden';
+      this.amtRegistered++;
+      this.registerButtonClicked = false;
+
+      this.registerBtnIndex = -1;
+    }
   }
 }
