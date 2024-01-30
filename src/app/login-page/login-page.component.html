@@ -1,6 +1,5 @@
 <div class="login-page">
     <div class="background-image">
-
         <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
             <h1>Login</h1>
 
@@ -17,7 +16,20 @@
             <button type="submit">Login →</button>
 
             <p>Need an acoount? <a href="\signup">Sign up</a></p>
+            <p>Forgot Password? <a href="" onclick="getEmail()">click here</a></p>
         </form>
+
+        <div class="password-recovery">
+            <h1>Password Recovery</h1>
+            <form class="recovery-form" [formGroup]="profileForm" (ngSubmit)="resetPassword()">
+                <div class="email-form">
+                    <label for="email">Enter the email of your account:</label>
+                    <input id="email" autocomplete="email" type="email" formControlName="'email">
+                </div>
+
+                <button type="submit">Send Code</button>
+            </form>
+        </div>
 
         <div class="display-error" *ngIf="errorMessage !== ''">
             <p>{{errorMessage}}</p>
