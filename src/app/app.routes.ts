@@ -5,6 +5,7 @@ import { RegisterSwimmersComponent } from './register-swimmers/register-swimmers
 import { HomePageComponent } from './home-page/home-page.component';
 import { ContactComponent } from './contact/contact.component';
 import { VerifyLoginComponent } from './verify-login/verify-login.component';
+import { RecoveryPageComponent } from './recovery-page/recovery-page.component';
 
 import { AuthGuardService as AuthGuard } from '../auth-guard.service';
 import { inject } from '@angular/core';
@@ -17,5 +18,6 @@ export const routes: Routes = [
     {path: '', component: HomePageComponent},
     {path: 'contact', component: ContactComponent},
     {path: 'verify', component: VerifyLoginComponent},
+    {path: 'recovery', component: RecoveryPageComponent},
     {path: '**', redirectTo: 'login'},
 ];

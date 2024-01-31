@@ -1,0 +1,88 @@
+.background-image {
+    background-image: url('/assets/dolphins.png');
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+h1 {
+    border-bottom: 1px solid grey;
+}
+
+.password-recovery {
+    position: absolute;
+    background-color: white;
+    width: 20vw;
+    height: 40vh;
+    border-radius: 12px;
+    padding: 1%;
+}
+
+.email-form {
+    text-align: center;
+    padding: 5%;
+}
+
+.disclaimer {
+    display: flex;
+    text-align: center;        
+    padding: 0% 10%;
+}
+
+input {
+    padding: 8px;
+    height: 16px;
+    border-radius: 4px;
+    width: 75%;
+    border: 2px solid grey;
+}
+
+button {
+    position: absolute;
+    justify-content: center;
+    right: 0;
+    bottom: 0;
+    background-color: blue;
+    color: white;
+    padding: 8px;
+    width: 80%;
+    border-radius: 4px;
+    font-size: 18px;
+    margin-right: 10%;
+    margin-bottom: 5%;
+}
+button:hover {
+    background-color: darkblue;
+    cursor: pointer;
+}
+
+label {
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 1520px) {
+    .password-recovery {
+        width: 25vw;
+    }
+}
+@media only screen and (max-width: 1260px) {
+    .password-recovery {
+        width: 30vw;
+    }
+    label {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .password-recovery {
+        width: 80vw;
+    }
+    label {
+        font-size: 18px;
+    }
+}

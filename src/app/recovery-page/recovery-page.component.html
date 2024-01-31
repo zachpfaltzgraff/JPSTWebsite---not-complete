@@ -1,0 +1,17 @@
+
+<div class="background-image">
+    <div class="password-recovery">
+        <h1>Password Recovery</h1>
+        <form class="recovery-form" [formGroup]="profileForm" (ngSubmit)="resetPassword()">
+            <div class="email-form">
+                <label for="email">Enter the email of your account:</label>
+                <input id="email" autocomplete="email" type="email" formControlName="email">
+            </div>
+            <div class="disclaimer">
+                <span>If there is an account with your email, you will be sent an email</span>
+            </div>
+
+            <button type="submit">Send Code</button>
+        </form>
+    </div>
+</div>

@@ -76,25 +76,6 @@ a:hover {
     transform: translate(-50%, -50%);
 }
 
-.password-recovery {
-    position: absolute;
-    background-color: white;
-    width: 30vw;
-    height: 50vh;
-    border-radius: 12px;
-}
-
-.recovery-form {
-    box-shadow: none;
-    border: none;
-}
-
-.email-form {
-    width: 20vw;
-    box-shadow: none;
-    border: none;
-}
-
 @media only screen and (max-width: 1500px) {
     form {
         width: 25%;
