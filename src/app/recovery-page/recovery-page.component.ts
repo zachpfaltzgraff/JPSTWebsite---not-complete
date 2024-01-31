@@ -21,6 +21,11 @@ export class RecoveryPageComponent {
   profileForm = new FormGroup( {
     email: new FormControl('', [Validators.email, Validators.required]),
   })
+
+  passwordForm = new FormGroup( {
+    password: new FormControl('', [Validators.minLength(8), Validators.required]),
+    confirmPassword: new FormControl('', [Validators.minLength(8), Validators.required]),
+  })
 }
 
 async function handleResetPassword(username: string) {
@@ -45,5 +50,17 @@ function handleResetPasswordNextSteps(output: ResetPasswordOutput) {
     case 'DONE':
       console.log('Successfully reset password.');
       break;
+  }
+}
+
+async function handleConfirmResetPassword({
+  username,
+  confirmationCode,
+  newPassword
+}: ConfirmResetPasswordInput) {
+  try {
+    await confirmResetPassword({ username, confirmationCode, newPassword });
+  } catch (error) {
+    console.log(error);
   }
 }
