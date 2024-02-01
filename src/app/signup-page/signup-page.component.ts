@@ -48,7 +48,8 @@ export class SignupPageComponent {
       console.log('Password:', passwordValue);
 
       handleSignUp({ username: emailValue, password: passwordValue, email: emailValue });
-      const email = this.emailService.setEmail(emailValue);
+      this.emailService.setEmail(emailValue);
+      this.emailService.setPassword(passwordValue);
       this.router.navigate(['/verify']);
     }
   }

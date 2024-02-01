@@ -12,11 +12,42 @@ import {confirmResetPassword, type ConfirmResetPasswordInput} from 'aws-amplify/
   styleUrl: './recovery-page.component.css'
 })
 export class RecoveryPageComponent {
+  isVisible = true;
+  gotCode = false;
+  email = '';
 
 
   resetPassword() {
-    const email = this.profileForm.value.email ?? '';
-    handleResetPassword(email);
+    this.email = this.profileForm.value.email ?? '';
+    handleResetPassword(this.email);
+    this.isVisible = false;
+  }
+
+  getPassword() {
+    const confirmCode = this.passwordForm.value.confirmCode ?? '';
+    const password = this.passwordForm.value.password ?? '';
+    const confirmPassword = this.passwordForm.value.confirmPassword ?? '';
+
+    if (this.gotCode) {
+      if (password && confirmPassword != null) {
+        if (password == confirmPassword) {
+          handleConfirmResetPassword({ 
+            username: this.email, 
+            confirmationCode: confirmCode.toString(),
+            newPassword: password,
+          })
+        }
+        else {
+          alert("Passwords have to match");
+        }
+      }
+      else {
+        alert("Please fill in all fields");
+      }
+    }
+    if (confirmCode != null) {
+      this.gotCode = true;
+    }
   }
 
   profileForm = new FormGroup( {
@@ -24,6 +55,7 @@ export class RecoveryPageComponent {
   })
 
   passwordForm = new FormGroup( {
+    confirmCode: new FormControl('', Validators.required),
     password: new FormControl('', [Validators.minLength(8), Validators.required]),
     confirmPassword: new FormControl('', [Validators.minLength(8), Validators.required]),
   })
@@ -60,6 +92,7 @@ async function handleConfirmResetPassword({
 }: ConfirmResetPasswordInput) {
   try {
     await confirmResetPassword({ username, confirmationCode, newPassword });
+    alert("Password Reset Successfully");
   } catch (error) {
     console.log(error);
   }

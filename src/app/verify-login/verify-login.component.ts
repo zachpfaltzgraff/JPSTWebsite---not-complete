@@ -2,7 +2,9 @@ import { Component, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { confirmSignUp, type ConfirmSignUpInput } from 'aws-amplify/auth';
 import { EmailService } from '../../values.service';
+import { signIn, type SignInInput } from 'aws-amplify/auth';
 import { Router } from '@angular/router';
+import { emit } from 'process';
 
 @Component({
   selector: 'app-verify-login',
@@ -65,7 +67,7 @@ export class VerifyLoginComponent implements AfterViewInit {
 
     const emailValue = this.emailService.getEmail();
 
-    handleSignUpConfirmation({username: emailValue, confirmationCode: verificationCode});
+    handleSignUpConfirmation(this.emailService, this.router, {username: emailValue, confirmationCode: verificationCode});
 
     this.router.navigate(['']);
   }
@@ -80,7 +82,7 @@ export class VerifyLoginComponent implements AfterViewInit {
   });
 }
 
-async function handleSignUpConfirmation({
+async function handleSignUpConfirmation(emailService: EmailService, router: Router, {
   username,
   confirmationCode
 }: ConfirmSignUpInput) {
@@ -89,7 +91,20 @@ async function handleSignUpConfirmation({
       username,
       confirmationCode
     });
+
+    handleSignIn(emailService, router, {username: emailService.getEmail(), password: emailService.getPassword()});
   } catch (error) {
     console.log('error confirming sign up', error);
+  }
+}
+
+async function handleSignIn(emailService: EmailService, router: Router, { username, password}: SignInInput) {
+  try {
+    const { isSignedIn, nextStep } = await signIn({ username, password });
+    emailService.setLogin(true);
+    router.navigate(['']);
+  } catch (error) {
+    emailService.setLogin(false);
+    alert(error);
   }
 }

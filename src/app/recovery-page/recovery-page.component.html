@@ -1,6 +1,6 @@
 
 <div class="background-image">
-    <div class="password-recovery">
+    <div class="password-recovery" *ngIf="isVisible">
         <h1>Password Recovery</h1>
         <form class="recovery-form" [formGroup]="profileForm" (ngSubmit)="resetPassword()">
             <div class="email-form">
@@ -12,6 +12,28 @@
             </div>
 
             <button type="submit">Send Code</button>
+        </form>
+    </div>
+
+    <div class="password-reset" *ngIf="!isVisible">
+        <h1>Change Password</h1>
+        <form class="recovery-form" [formGroup]="passwordForm" (ngSubmit)="getPassword()" >
+            <div class="email-form" *ngIf="!gotCode">
+                <label for="email">Enter The Code From Your Email: </label>
+                <input id="number" autocomplete="" type="number" formControlName="confirmCode">
+            </div>
+
+            <div class="email-form" *ngIf="gotCode">
+                <label for="password">New Password:</label>
+                <input type="password" autocomplete="password" formControlName="password">
+            </div>
+            
+            <div class="email-form" *ngIf="gotCode">
+                <label for="password">Confirm New Password:</label>
+                <input type="password" autocomplete="password" formControlName="confirmPassword">
+            </div>
+
+            <button type="submit">Confirm</button>
         </form>
     </div>
 </div>

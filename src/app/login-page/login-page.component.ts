@@ -26,21 +26,11 @@ export class LoginPageComponent {
       console.log('Email:', emailValue);
       console.log('Password:', passwordValue);
 
-      await handleSignIn({ username: emailValue, password: passwordValue });
-      this.emailService.setLogin(true);
-      this.router.navigate(['']);
+      await handleSignIn(this.emailService, this.router, { username: emailValue, password: passwordValue });
+
     }
     else {
       this.errorMessage = 'Invalid Form: Please fill out all fields';
-    }
-  }
-
-  getEmail() {
-    if (this.profileForm.valid) {
-      const recoverEmail = this.profileForm.value.email ?? '';
-    }
-    else {
-      alert('Please fill in all fields');
     }
   }
 
@@ -50,10 +40,13 @@ export class LoginPageComponent {
   })
 }
 
-async function handleSignIn({ username, password}: SignInInput) {
+async function handleSignIn(emailService: EmailService, router: Router, { username, password}: SignInInput) {
   try {
     const { isSignedIn, nextStep } = await signIn({ username, password });
+    emailService.setLogin(true);
+    router.navigate(['']);
   } catch (error) {
+    emailService.setLogin(false);
     alert(error);
   }
 }
