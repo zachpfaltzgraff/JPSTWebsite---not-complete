@@ -95,13 +95,18 @@ export class RegisterSwimmersComponent {
   calcCost(index: number): string {
     const today = new Date();
     const month = today.getMonth() + 1;
+    var cost = '';
 
     if (month < 6) {
-      return (135 - (this.amtRegistered * 10)).toString();
+      cost = (135 - (this.amtRegistered * 10)).toString();
     }
     else {
-      return (150 - (this.amtRegistered * 10)).toString();
+      cost = (150 - (this.amtRegistered * 10)).toString();
     }
+    this.formGroups[index].patchValue({
+      cost: cost
+    });
+    return cost;
   }
 
   calcAgeGroup(index: number): string {
