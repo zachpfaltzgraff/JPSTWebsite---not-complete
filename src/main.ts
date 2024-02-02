@@ -12,9 +12,9 @@ bootstrapApplication(AppComponent, appConfig)
     Auth: {
       Cognito: {
         //  Amazon Cognito User Pool ID
-        userPoolId: cdkOutput.JpstCdkStack.PoolId,
+        userPoolId: cdkOutput.CognitoStack.PoolId,
         // OPTIONAL - Amazon Cognito Web Client ID (26-char alphanumeric string)
-        userPoolClientId: cdkOutput.JpstCdkStack.ClientId,
+        userPoolClientId: cdkOutput.CognitoStack.ClientId,
         signUpVerificationMethod: 'code',
       }
     }
