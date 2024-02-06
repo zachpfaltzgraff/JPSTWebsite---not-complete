@@ -1,0 +1,2 @@
+animations for pages
+    register swimmers when you add swimmer and delete
