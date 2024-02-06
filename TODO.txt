@@ -1,2 +1,13 @@
 animations for pages
     register swimmers when you add swimmer and delete
+meet results page
+team records page
+meet the coaches page
+place for admins to see registered swimmers
+
+
+
+
+backend
+    get api gateways working
+        https://www.youtube.com/watch?v=7u1p5dieIh8
