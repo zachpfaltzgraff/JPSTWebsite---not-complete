@@ -4,7 +4,6 @@ import { confirmSignUp, type ConfirmSignUpInput } from 'aws-amplify/auth';
 import { EmailService } from '../../values.service';
 import { signIn, type SignInInput } from 'aws-amplify/auth';
 import { Router } from '@angular/router';
-import { emit } from 'process';
 
 @Component({
   selector: 'app-verify-login',

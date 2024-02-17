@@ -4,7 +4,6 @@ import { AppComponent } from './app/app.component';
 import { Amplify } from 'aws-amplify';
 import cdkOutput from '../../jpstCDK/output.json';
 
-
 bootstrapApplication(AppComponent, appConfig)
   .catch((err) => console.error(err));
 

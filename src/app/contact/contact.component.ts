@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import cdkOutput from '../../../../jpstCDK/output.json';
+import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-contact',
@@ -8,16 +12,35 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css'
 })
+
 export class ContactComponent {
+
+  constructor(private http: HttpClient ) {} 
+
+  apiEndpoint = cdkOutput.LambdaStack.APIEndpoint1793E782;
 
   onSubmit() {
     if(this.contactForm.valid) {
-      const firstName = this.contactForm.value.firstName ?? '';
-      const lastName = this.contactForm.value.lastName ?? '';
-      const email = this.contactForm.value.email ?? '';
-      const phone = this.contactForm.value.phone ?? '';
-      const message = this.contactForm.value.message ?? '';
-    }
+      const formData = {
+        firstName: this.contactForm.value.firstName ?? '',
+        lastName: this.contactForm.value.lastName ?? '',
+        email: this.contactForm.value.email ?? '',
+        phone: this.contactForm.value.phone ?? '',
+        message: this.contactForm.value.message ?? '',
+      };
+        this.http.post(this.apiEndpoint + 'post-data', formData)
+        .pipe(
+          catchError(error => {
+            // Handle errors here
+            console.error('Error:', error);
+            return throwError(error);
+          })
+        )
+        .subscribe(response => {
+          // Handle successful response here
+          console.log('Response:', response);
+        })
+      }
     else {
       alert('Please Fill in all fields');
     }
