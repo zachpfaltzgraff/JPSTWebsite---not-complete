@@ -4,6 +4,7 @@ import cdkOutput from '../../../../jpstCDK/output.json';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { fetchAuthSession } from 'aws-amplify/auth';
 
 @Component({
   selector: 'app-contact',
@@ -28,19 +29,20 @@ export class ContactComponent {
         phone: this.contactForm.value.phone ?? '',
         message: this.contactForm.value.message ?? '',
       };
-        this.http.post(this.apiEndpoint + 'post-data', formData)
-        .pipe(
-          catchError(error => {
-            // Handle errors here
-            console.error('Error:', error);
-            return throwError(error);
-          })
-        )
-        .subscribe(response => {
-          // Handle successful response here
-          console.log('Response:', response);
+      
+      this.http.post(this.apiEndpoint + 'user/post-data', formData)
+      .pipe(
+        catchError(error => {
+          // Handle errors here
+          console.error('Error:', error);
+          return throwError(error);
         })
-      }
+      )
+      .subscribe(response => {
+        // Handle successful response here
+        console.log('Response:', response);
+      })
+    }
     else {
       alert('Please Fill in all fields');
     }
@@ -53,4 +55,12 @@ export class ContactComponent {
     phone: new FormControl(''),
     message: new FormControl('', Validators.required)
   })
+}
+
+async function CurrentSession() {
+  try {
+    const { accessToken, idToken } = (await fetchAuthSession()).tokens ?? {};
+  } catch(err) {
+    console.log(err);
+  }
 }
