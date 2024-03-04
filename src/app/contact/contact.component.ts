@@ -4,7 +4,7 @@ import cdkOutput from '../../../../jpstCDK/output.json';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { fetchAuthSession } from 'aws-amplify/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact',
@@ -16,7 +16,7 @@ import { fetchAuthSession } from 'aws-amplify/auth';
 
 export class ContactComponent {
 
-  constructor(private http: HttpClient ) {} 
+  constructor(private http: HttpClient, private router: Router ) {} 
 
   apiEndpoint = cdkOutput.LambdaStack.APIEndpoint1793E782;
 
@@ -41,6 +41,7 @@ export class ContactComponent {
       .subscribe(response => {
         // Handle successful response here
         console.log('Response:', response);
+        this.router.navigate(['']);
       })
     }
     else {
@@ -55,12 +56,4 @@ export class ContactComponent {
     phone: new FormControl(''),
     message: new FormControl('', Validators.required)
   })
-}
-
-async function CurrentSession() {
-  try {
-    const { accessToken, idToken } = (await fetchAuthSession()).tokens ?? {};
-  } catch(err) {
-    console.log(err);
-  }
 }

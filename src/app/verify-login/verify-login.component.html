@@ -4,14 +4,8 @@
         <span>A verification code has been sent to your email</span>
         <form [formGroup]="verifyCode" (ngSubmit)="onSubmit()">
             <div class="verify-input">
-                <input type="number" formControlName="code1">
-                <input type="number" formControlName="code2">
-                <input type="number" formControlName="code3">
-                <input type="number" formControlName="code4">
-                <input type="number" formControlName="code5">
-                <input type="number" formControlName="code6">
+                <input type="number" formControlName="code">
             </div>
-
             <button>Verify</button>
         </form>
     </div>

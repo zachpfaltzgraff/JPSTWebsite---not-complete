@@ -21,9 +21,14 @@
     border-radius: 12px;
 }
 
+span {
+    text-align: center;
+}
+
 .verify h2 {
     color: black;
     border-bottom: 2px solid grey;
+    text-align: center;
 }
 
 .verify-input {
@@ -31,18 +36,13 @@
     flex-direction: row;
     margin-top: 10%;
 }
-.verify-input input{
-    margin-right: 15px;
-    height: 40px; 
-    width: 25px;
-    padding: 8px;
-    border-radius: 4px;
+.verify-input input {
+    width: 100%;
+    padding: 4%;
+    border-radius: 6px;
     border: 2px solid grey;
     font-size: 1.125rem;
     text-align: center;
-}
-.verify-input input:last-child{
-    margin-right: 0px;
 }
 
 .verify-input input::-webkit-inner-spin-button,
@@ -56,15 +56,9 @@ button {
     padding: 2%;
     width: 90%;
     border-radius: 4px;
-    pointer-events: none;
     font-size: 18px;
     margin: 10px;
-    border: none;
     margin-top: 10%;
-}
-button.active {
-    background: blue;
-    pointer-events: auto;
 }
 button:hover {
     background-color: darkblue;
