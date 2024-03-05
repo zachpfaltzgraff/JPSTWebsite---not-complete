@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { resetPassword, type ResetPasswordOutput } from 'aws-amplify/auth';
 import {confirmResetPassword, type ConfirmResetPasswordInput} from 'aws-amplify/auth';
 
@@ -15,7 +15,6 @@ export class RecoveryPageComponent {
   isVisible = true;
   gotCode = false;
   email = '';
-
 
   resetPassword() {
     this.email = this.profileForm.value.email ?? '';

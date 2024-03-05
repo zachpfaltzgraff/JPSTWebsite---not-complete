@@ -16,7 +16,7 @@ h1 {
 .password-recovery, .password-reset {
     position: absolute;
     background-color: white;
-    width: 20vw;
+    width: 22vw;
     height: 40vh;
     border-radius: 12px;
     padding: 1%;
@@ -24,7 +24,10 @@ h1 {
 
 .email-form {
     text-align: center;
-    padding: 5%;
+    padding: 4% 10%;
+}
+.email-form label {
+    padding: 0% 0%;
 }
 
 .disclaimer {
@@ -34,11 +37,16 @@ h1 {
 }
 
 input {
-    padding: 8px;
-    height: 16px;
-    border-radius: 4px;
-    width: 75%;
+    width: 85%;
+    padding: 3%;
+    border-radius: 8px;
     border: 2px solid grey;
+    font-size: 1rem;
+    text-align: center;
+}
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+    display: none;
 }
 
 button {
@@ -50,7 +58,7 @@ button {
     color: white;
     padding: 8px;
     width: 80%;
-    border-radius: 4px;
+    border-radius: 8px;
     font-size: 18px;
     margin-right: 10%;
     margin-bottom: 5%;
@@ -61,11 +69,12 @@ button:hover {
 }
 
 label {
-    font-size: 20px;
+    font-size: 18px;
+    margin-bottom: 10%;
 }
 
 @media only screen and (max-width: 1520px) {
-    .password-recovery {
+    .password-recovery, .password-reset  {
         width: 25vw;
     }
 }
@@ -76,10 +85,16 @@ label {
     label {
         font-size: 18px;
     }
+    .password-recovery, .password-reset {
+        width: 35vw;
+    }
+    .email-form {
+        padding: 2% 5%;
+    }
 }
 
 @media only screen and (max-width: 1000px) {
-    .password-recovery {
+    .password-recovery, .password-reset  {
         width: 40vw;
     }
     label {
@@ -87,7 +102,7 @@ label {
     }
 }
 @media only screen and (max-width: 800px) {
-    .password-recovery {
+    .password-recovery, .password-reset  {
         width: 45vw;
     }
     label {
@@ -96,10 +111,15 @@ label {
 }
 
 @media only screen and (max-width: 700px) {
-    .password-recovery {
-        width: 80vw;
+    h1 {
+        font-size: 150%;
     }
-    label {
-        font-size: 18px;
+    .password-recovery, .password-reset {
+        width: 55vw;
+    }
+}
+@media only screen and (max-width: 550px) {
+    .password-recovery, .password-reset {
+        width: 75vw;
     }
 }
