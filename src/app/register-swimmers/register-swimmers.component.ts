@@ -100,7 +100,7 @@ export class RegisterSwimmersComponent {
     this.lastIndex++;
   }
 
-  calcCost(index: number): string {
+  calcCost(formGroups: FormGroup[], index: number): string {
     const today = new Date();
     const month = today.getMonth() + 1;
     var cost = '';
@@ -111,83 +111,71 @@ export class RegisterSwimmersComponent {
     else {
       cost = (150 - (this.amtRegistered * 10)).toString();
     }
-    this.formGroups[index].patchValue({
+
+    formGroups[index].patchValue({
       cost: cost
     });
+
     return cost;
   }
 
-  calcAgeGroup(index: number): string {
-    const birthDate = this.formGroups[index].get('birthDate');
+  calcAgeGroup(formGroup: FormGroup): string {
+    const birthDate = formGroup.get('birthDate')?.value;
 
-    if (birthDate && birthDate.value) {
-      const today = new Date();
-      const birthDateObj = new Date(birthDate.value);
+    if (birthDate) {
+        const today = new Date();
+        const birthDateObj = new Date(birthDate);
 
-      const cutoffDate = new Date(today.getFullYear(), 5, 1);
+        const cutoffDate = new Date(today.getFullYear(), 5, 1);
 
-      let age = today.getFullYear() - birthDateObj.getFullYear();
+        let age = today.getFullYear() - birthDateObj.getFullYear();
 
-      const hasBirthOcc = today.getMonth() > birthDateObj.getMonth() ||
-      (today.getMonth() == birthDateObj.getMonth() &&
-      today.getDate() >= birthDateObj.getDate());
+        const hasBirthOcc = today.getMonth() > birthDateObj.getMonth() ||
+            (today.getMonth() == birthDateObj.getMonth() &&
+                today.getDate() >= birthDateObj.getDate());
 
-      if (hasBirthOcc) {
-        age--;
-      }
+        if (hasBirthOcc) {
+            age--;
+        }
 
-      const hasCelebratedBirthday =
-      today.getMonth() > cutoffDate.getMonth() ||
-      (today.getMonth() === cutoffDate.getMonth() &&
-        today.getDate() >= cutoffDate.getDate());
+        const hasCelebratedBirthday =
+            today.getMonth() > cutoffDate.getMonth() ||
+            (today.getMonth() === cutoffDate.getMonth() &&
+                today.getDate() >= cutoffDate.getDate());
 
-      if (!hasCelebratedBirthday && birthDateObj.getMonth() <= 5) {
-        age--;
-      }
-      
-      if (age <= 8) {
-        this.formGroups[index].patchValue({
-          ageGroup: '8 & Under'
-        });
-        return '8 & Under';
-      }
-      else if (age == 9 || age == 10) {
-        this.formGroups[index].patchValue({
-          ageGroup: '9-10'
-        });
-        return '9-10';
-      }
-      else if (age == 11 || age == 12) {
-        this.formGroups[index].patchValue({
-          ageGroup: '11-12'
-        });
-        return '11-12';
-      }
-      else if (age > 13) {
-        this.formGroups[index].patchValue({
-          ageGroup: '13+'
-        });
-        return '13+';
-      }
+        if (!hasCelebratedBirthday && birthDateObj.getMonth() <= 5) {
+            age--;
+        }
+
+        if (age <= 8) {
+            return '8 & Under';
+        } else if (age == 9 || age == 10) {
+            return '9-10';
+        } else if (age == 11 || age == 12) {
+            return '11-12';
+        } else if (age > 13) {
+            return '13+';
+        }
     }
 
     return "Error";
   }
 
+
   cancelEditBtn(index: number) {
 
     if (this.cancelButtonText[index] == 'Delete') {
-      this.saveButtonText[index] = 'Save';
-      this.isOpenForm = false;
-      this.formGroups.splice(index, 1);
-      this.submitted.splice(index, 1);
-      this.lastIndex--;
 
       this.removeFormAnimation[index] = true;
 
-    setTimeout(() => {
-      this.removeFormAnimation[index] = false;
-    }, 300);
+      setTimeout(() => {
+        this.removeFormAnimation[index] = false;
+        this.saveButtonText[index] = 'Save';
+        this.isOpenForm = false;
+        this.formGroups.splice(index, 1);
+        this.submitted.splice(index, 1);
+        this.lastIndex--;
+      }, 300);
     }
     else {
       this.submitted[index] = false;
@@ -199,17 +187,22 @@ export class RegisterSwimmersComponent {
 
   onSubmit(formGroup: FormGroup, index: number) {
     if (!formGroup.valid) {
-      alert("Please Fill in all required fields");
-    }
+        alert("Please Fill in all required fields");
+    } 
     else if (this.saveButtonText[index] == 'Save') {
-      if (formGroup.valid) {
-        this.isOpenForm = false;
-        this.submitted[index] = true;
-        this.saveButtonText[index] = 'Register';
-        this.cancelButtonText[index] = 'Edit';
-      }
+        if (formGroup.valid) {
+            this.isOpenForm = false;
+            this.submitted[index] = true;
+            this.saveButtonText[index] = 'Register';
+            this.cancelButtonText[index] = 'Edit';
+
+            const ageGroup = this.calcAgeGroup(formGroup);
+            formGroup.patchValue({
+                ageGroup: ageGroup
+            });
+        }
     }
-  }
+}
 
   registerForm() {
     const index = this.registerBtnIndex;

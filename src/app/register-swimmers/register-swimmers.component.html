@@ -86,7 +86,7 @@
                         </div>
                     </form>
 
-                    <div *ngIf="registerButtonClicked" class="registration-form">
+                    <div *ngIf="registerButtonClicked && registerBtnIndex === i" class="registration-form">
                         <form class="registration" [formGroup]="formGroup">
                             <h1>Registration</h1>
                             <div class="register-group">
@@ -175,12 +175,12 @@
 
                             <div class="ageAndCost">
                                 <label>Age Group:</label>
-                                <label>{{calcAgeGroup(i)}}</label>
+                                <label>{{ formGroups[i].get('ageGroup')?.value }}</label>
                             </div>
 
                             <div class="ageAndCost">
                                 <label>Cost:</label>
-                                <label>${{calcCost(i)}}</label>
+                                <label>${{calcCost(formGroups, i)}}</label>
                             </div>
 
                             <div class="register-buttons">
