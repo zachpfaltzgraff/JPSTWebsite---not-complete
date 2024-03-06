@@ -4,7 +4,6 @@ meet results page
 team records page
 meet the coaches page
 place for admins to see registered swimmers
-    and contact us
 
 
 

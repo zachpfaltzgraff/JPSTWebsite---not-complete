@@ -232,6 +232,34 @@ button:disabled:hover:nth-child(2) {
     background-color: rgb(75, 75, 75);
 }
 
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutToBottom {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+.slide-in {
+    animation: slideInFromBottom 0.3s ease forwards;
+}
+.slide-out {
+    animation: slideOutToBottom 0.3s ease forwards;
+}
+
 @media only screen and (max-width: 1700px){ 
     .white-box {
         grid-template-rows: 87% 13%;

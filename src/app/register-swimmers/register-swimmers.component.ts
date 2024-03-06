@@ -5,9 +5,9 @@ import {FormGroup, ReactiveFormsModule, Validators, FormBuilder} from '@angular/
 @Component({
   selector: 'app-register-swimmers',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule ],
   templateUrl: './register-swimmers.component.html',
-  styleUrl: './register-swimmers.component.css'
+  styleUrl: './register-swimmers.component.css',
 })
 export class RegisterSwimmersComponent {
   formGroups: FormGroup[] = [];
@@ -17,8 +17,10 @@ export class RegisterSwimmersComponent {
   saveButtonText: string[] = [];
   cancelButtonText: string[] = [];
   registerButtonClicked: boolean = false;
-
   registerBtnIndex: number = -1;
+  addFormAnimation: boolean[] = [];
+  removeFormAnimation: boolean[] = [];
+  lastIndex: number = 0;
 
   constructor(private fb: FormBuilder) {
     this.addForm();
@@ -55,6 +57,13 @@ export class RegisterSwimmersComponent {
   }
   
   addForm() {
+
+    this.addFormAnimation[this.lastIndex]= true;
+
+    setTimeout(() => {
+      this.addFormAnimation[this.lastIndex] = false;
+    }, 300);
+
     const newFormGroup = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -84,12 +93,12 @@ export class RegisterSwimmersComponent {
       ageGroup:[''],
       cost:[''],
     });
-
     this.saveButtonText.push('Save');
     this.cancelButtonText.push('Delete')
     this.submitted.push(false);
     this.isOpenForm = true;
     this.formGroups.push(newFormGroup);
+    this.lastIndex++;
   }
 
   calcCost(index: number): string {
@@ -167,11 +176,19 @@ export class RegisterSwimmersComponent {
   }
 
   cancelEditBtn(index: number) {
+
     if (this.cancelButtonText[index] == 'Delete') {
       this.saveButtonText[index] = 'Save';
       this.isOpenForm = false;
       this.formGroups.splice(index, 1);
       this.submitted.splice(index, 1);
+      this.lastIndex--;
+
+      this.removeFormAnimation[index] = true;
+
+    setTimeout(() => {
+      this.removeFormAnimation[index] = false;
+    }, 300);
     }
     else {
       this.submitted[index] = false;
