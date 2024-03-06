@@ -1,10 +1,10 @@
 animations for pages
-    register swimmers when you add swimmer and delete
+    register swimmers when you delete swimmer
+    fix register swimmer form
 meet results page
 team records page
 meet the coaches page
 place for admins to see registered swimmers
-
 
 
 
