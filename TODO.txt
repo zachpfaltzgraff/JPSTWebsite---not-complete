@@ -1,10 +1,10 @@
 animations for all pages
+register page registered button looking weird
 meet results page
 team records page
 meet the coaches page
 place for admins to see registered swimmers
 
-fix register page not taking correct names and stuff
 
 
 
