@@ -100,68 +100,6 @@ export class RegisterSwimmersComponent {
     this.lastIndex++;
   }
 
-  calcCost(formGroups: FormGroup[], index: number): string {
-    const today = new Date();
-    const month = today.getMonth() + 1;
-    var cost = '';
-
-    if (month < 6) {
-      cost = (135 - (this.amtRegistered * 10)).toString();
-    }
-    else {
-      cost = (150 - (this.amtRegistered * 10)).toString();
-    }
-
-    formGroups[index].patchValue({
-      cost: cost
-    });
-
-    return cost;
-  }
-
-  calcAgeGroup(formGroup: FormGroup): string {
-    const birthDate = formGroup.get('birthDate')?.value;
-
-    if (birthDate) {
-        const today = new Date();
-        const birthDateObj = new Date(birthDate);
-
-        const cutoffDate = new Date(today.getFullYear(), 5, 1);
-
-        let age = today.getFullYear() - birthDateObj.getFullYear();
-
-        const hasBirthOcc = today.getMonth() > birthDateObj.getMonth() ||
-            (today.getMonth() == birthDateObj.getMonth() &&
-                today.getDate() >= birthDateObj.getDate());
-
-        if (hasBirthOcc) {
-            age--;
-        }
-
-        const hasCelebratedBirthday =
-            today.getMonth() > cutoffDate.getMonth() ||
-            (today.getMonth() === cutoffDate.getMonth() &&
-                today.getDate() >= cutoffDate.getDate());
-
-        if (!hasCelebratedBirthday && birthDateObj.getMonth() <= 5) {
-            age--;
-        }
-
-        if (age <= 8) {
-            return '8 & Under';
-        } else if (age == 9 || age == 10) {
-            return '9-10';
-        } else if (age == 11 || age == 12) {
-            return '11-12';
-        } else if (age > 13) {
-            return '13+';
-        }
-    }
-
-    return "Error";
-  }
-
-
   cancelEditBtn(index: number) {
 
     if (this.cancelButtonText[index] == 'Delete') {
@@ -222,8 +160,68 @@ export class RegisterSwimmersComponent {
       this.cancelButtonText[index] = 'hidden';
       this.amtRegistered++;
       this.registerButtonClicked = false;
-
       this.registerBtnIndex = -1;
     }
+  }
+
+  calcCost(formGroups: FormGroup[], index: number): string {
+    const today = new Date();
+    const month = today.getMonth() + 1;
+    var cost = '';
+
+    if (month < 6) {
+      cost = (135 - (this.amtRegistered * 10)).toString();
+    }
+    else {
+      cost = (150 - (this.amtRegistered * 10)).toString();
+    }
+
+    formGroups[index].patchValue({
+      cost: cost
+    });
+
+    return cost;
+  }
+
+  calcAgeGroup(formGroup: FormGroup): string {
+    const birthDate = formGroup.get('birthDate')?.value;
+
+    if (birthDate) {
+        const today = new Date();
+        const birthDateObj = new Date(birthDate);
+
+        const cutoffDate = new Date(today.getFullYear(), 5, 1);
+
+        let age = today.getFullYear() - birthDateObj.getFullYear();
+
+        const hasBirthOcc = today.getMonth() > birthDateObj.getMonth() ||
+            (today.getMonth() == birthDateObj.getMonth() &&
+                today.getDate() >= birthDateObj.getDate());
+
+        if (hasBirthOcc) {
+            age--;
+        }
+
+        const hasCelebratedBirthday =
+            today.getMonth() > cutoffDate.getMonth() ||
+            (today.getMonth() === cutoffDate.getMonth() &&
+                today.getDate() >= cutoffDate.getDate());
+
+        if (!hasCelebratedBirthday && birthDateObj.getMonth() <= 5) {
+            age--;
+        }
+
+        if (age <= 8) {
+            return '8 & Under';
+        } else if (age == 9 || age == 10) {
+            return '9-10';
+        } else if (age == 11 || age == 12) {
+            return '11-12';
+        } else if (age > 13) {
+            return '13+';
+        }
+    }
+
+    return "Error";
   }
 }
