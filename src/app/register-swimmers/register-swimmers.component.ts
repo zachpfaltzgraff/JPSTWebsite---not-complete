@@ -89,7 +89,6 @@ export class RegisterSwimmersComponent {
       secondTime:[''],
       thirdStroke:[''],
       thirdTime:[''],
-
       ageGroup:[''],
       cost:[''],
     });

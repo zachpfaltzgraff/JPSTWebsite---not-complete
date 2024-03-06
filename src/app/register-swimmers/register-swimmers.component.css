@@ -257,7 +257,7 @@ button:disabled:hover:nth-child(2) {
     animation: slideInFromBottom 0.3s ease forwards;
 }
 .slide-out {
-    animation: slideOutToBottom 0.3s ease forwards;
+    animation: slideInFromBottom 0.3s ease backwards;
 }
 
 @media only screen and (max-width: 1700px){ 

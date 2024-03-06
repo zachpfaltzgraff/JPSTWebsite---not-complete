@@ -2,9 +2,9 @@
     <div class="background-image">
         <div class="white-box">
             <div class="form-box">
-                <div class="swimmer-form" *ngFor="let formGroup of formGroups; let i = index"
+                <div class="swimmer-form" *ngFor="let formGroup of formGroups; let i = index">
+                    <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup, i)"
                     [class.slide-in]="addFormAnimation" [class.slide-out]="removeFormAnimation[i]">
-                    <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup, i)">
                         <div class="swimmer-info">
 
                             <h2>Swimmer Information</h2>
