@@ -25,36 +25,6 @@ export class RegisterSwimmersComponent {
   constructor(private fb: FormBuilder) {
     this.addForm();
   }
-
-  registeredOrNot(index: number): boolean {
-    if (this.saveButtonText[index] == 'Registered✓') {
-      return true;
-    }
-    return false;
-  }
-  registerCancelbtn() {
-    this.registerButtonClicked = false;
-    this.registerBtnIndex = -1;
-  }
-
-  registerField(index: number) {
-    if (this.saveButtonText[index] == 'Register') {
-      this.registerButtonClicked = true;
-      this.registerBtnIndex = index;
-    }
-  }
-
-  saveRegisterText(index: number): string {
-    return this.saveButtonText[index];
-  }
-
-  cancelEditText(index: number): string {
-    return this.cancelButtonText[index];
-  }
-
-  isSumbitted(index:number): boolean {
-    return this.submitted[index];
-  }
   
   addForm() {
 
@@ -100,20 +70,20 @@ export class RegisterSwimmersComponent {
     this.lastIndex++;
   }
 
-  cancelEditBtn(index: number) {
+  async cancelEditBtn(index: number) {
 
     if (this.cancelButtonText[index] == 'Delete') {
 
       this.removeFormAnimation[index] = true;
 
-      setTimeout(() => {
-        this.removeFormAnimation[index] = false;
-        this.saveButtonText[index] = 'Save';
-        this.isOpenForm = false;
-        this.formGroups.splice(index, 1);
-        this.submitted.splice(index, 1);
-        this.lastIndex--;
-      }, 300);
+      await new Promise(resolve => setTimeout(resolve, 300));
+      
+      this.removeFormAnimation[index] = false;
+      this.saveButtonText[index] = 'Save';
+      this.isOpenForm = false;
+      this.formGroups.splice(index, 1);
+      this.submitted.splice(index, 1);
+      this.lastIndex--;
     }
     else {
       this.submitted[index] = false;
@@ -140,7 +110,7 @@ export class RegisterSwimmersComponent {
             });
         }
     }
-}
+  }
 
   registerForm() {
     const index = this.registerBtnIndex;
@@ -223,5 +193,36 @@ export class RegisterSwimmersComponent {
     }
 
     return "Error";
+  }
+
+  registeredOrNot(index: number): boolean {
+    if (this.saveButtonText[index] == 'Registered✓') {
+      return true;
+    }
+    return false;
+  }
+
+  registerCancelbtn() {
+    this.registerButtonClicked = false;
+    this.registerBtnIndex = -1;
+  }
+
+  registerField(index: number) {
+    if (this.saveButtonText[index] == 'Register') {
+      this.registerButtonClicked = true;
+      this.registerBtnIndex = index;
+    }
+  }
+
+  saveRegisterText(index: number): string {
+    return this.saveButtonText[index];
+  }
+
+  cancelEditText(index: number): string {
+    return this.cancelButtonText[index];
+  }
+
+  isSumbitted(index:number): boolean {
+    return this.submitted[index];
   }
 }

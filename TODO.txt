@@ -1,12 +1,11 @@
 animations for all pages
 register page registered button looking weird
+register page disable background when in register swimmers form
 meet results page
 team records page
 meet the coaches page
 place for admins to see registered swimmers
-
-
-
+place for admins to see contact us
 
 backend
     lambdas
