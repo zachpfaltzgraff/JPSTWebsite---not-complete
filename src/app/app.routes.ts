@@ -6,9 +6,10 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ContactComponent } from './contact/contact.component';
 import { VerifyLoginComponent } from './verify-login/verify-login.component';
 import { RecoveryPageComponent } from './recovery-page/recovery-page.component';
+import { AdminContactUsComponent } from './admin-contact-us/admin-contact-us.component';
 
 import { AuthGuardService as AuthGuard } from '../auth-guard.service';
-import { inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 export const routes: Routes = [
     {path: 'login', component: LoginPageComponent},
@@ -16,6 +17,7 @@ export const routes: Routes = [
     { path: 'register-swimmers', component: RegisterSwimmersComponent, 
         canActivate: [() => inject(AuthGuard).canActivate()]},
     {path: 'contact', component: ContactComponent},
+    { path: 'admint-contact', component: AdminContactUsComponent },
     {path: '', component: HomePageComponent},
     {path: 'verify', component: VerifyLoginComponent},
     {path: 'recovery', component: RecoveryPageComponent},

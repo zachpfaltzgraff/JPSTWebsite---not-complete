@@ -21,7 +21,7 @@ export class RegisterSwimmersComponent {
   addFormAnimation: boolean[] = [];
   removeFormAnimation: boolean[] = [];
   lastIndex: number = 0;
-
+  
   constructor(private fb: FormBuilder) {
     this.addForm();
   }
