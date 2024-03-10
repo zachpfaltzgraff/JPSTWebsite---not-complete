@@ -17,7 +17,7 @@ export const routes: Routes = [
     { path: 'register-swimmers', component: RegisterSwimmersComponent, 
         canActivate: [() => inject(AuthGuard).canActivate()]},
     {path: 'contact', component: ContactComponent},
-    { path: 'admint-contact', component: AdminContactUsComponent },
+    { path: 'admin-contact', component: AdminContactUsComponent },
     {path: '', component: HomePageComponent},
     {path: 'verify', component: VerifyLoginComponent},
     {path: 'recovery', component: RecoveryPageComponent},

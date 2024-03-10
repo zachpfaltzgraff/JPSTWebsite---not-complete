@@ -139,11 +139,11 @@ export class RegisterSwimmersComponent {
     const month = today.getMonth() + 1;
     var cost = '';
 
-    if (month < 6) {
-      cost = (135 - (this.amtRegistered * 10)).toString();
+    if (this.amtRegistered < 4) {
+      cost = (150 - (this.amtRegistered * 10)).toString();
     }
     else {
-      cost = (150 - (this.amtRegistered * 10)).toString();
+      cost = (120).toString();
     }
 
     formGroups[index].patchValue({
