@@ -5,11 +5,13 @@ import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
 
+  
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ButtonModule ],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css'
 })
@@ -20,8 +22,16 @@ export class ContactComponent {
 
   apiEndpoint = cdkOutput.LambdaStack.APIEndpoint1793E782;
 
+  loading: boolean = false;
+
+  async redirect() {
+    await new Promise(resolve => setTimeout(resolve, 500));
+        
+    this.router.navigate(['']);
+  }
   onSubmit() {
     if(this.contactForm.valid) {
+      this.loading = true;
       const formData = {
         firstName: this.contactForm.value.firstName ?? '',
         lastName: this.contactForm.value.lastName ?? '',
@@ -41,7 +51,10 @@ export class ContactComponent {
       .subscribe(response => {
         // Handle successful response here
         console.log('Response:', response);
-        this.router.navigate(['']);
+        this.loading = false;
+        alert("Thank you, please give us up to one week to respond");
+
+        this.redirect();
       })
     }
     else {
