@@ -30,7 +30,7 @@ export class ContactComponent {
         message: this.contactForm.value.message ?? '',
       };
       
-      this.http.post(this.apiEndpoint + 'user/post-data', formData)
+      this.http.post(this.apiEndpoint + 'user/post-data-contact', formData)
       .pipe(
         catchError(error => {
           // Handle errors here

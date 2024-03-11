@@ -1,6 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {FormGroup, ReactiveFormsModule, Validators, FormBuilder} from '@angular/forms';
+import cdkOutput from '../../../../jpstCDK/output.json';
+import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-register-swimmers',
@@ -10,6 +17,17 @@ import {FormGroup, ReactiveFormsModule, Validators, FormBuilder} from '@angular/
   styleUrl: './register-swimmers.component.css',
 })
 export class RegisterSwimmersComponent {
+
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private router: Router
+  ) {
+    this.fb = fb;
+  }
+
+  apiEndpoint = cdkOutput.LambdaStack.APIEndpoint1793E782;
+
   formGroups: FormGroup[] = [];
   isOpenForm: boolean = true;
   submitted: boolean[] = [];
@@ -21,13 +39,49 @@ export class RegisterSwimmersComponent {
   addFormAnimation: boolean[] = [];
   removeFormAnimation: boolean[] = [];
   lastIndex: number = 0;
-  
-  constructor(private fb: FormBuilder) {
-    this.addForm();
+
+  userData: any;
+  ngOnInit(): void {
+    this.http.get<any>(this.apiEndpoint + 'swimmer/get-data-swimmer')
+    .pipe(catchError(error => {
+      console.error('Error frontend: ', error)
+      return throwError(error);
+    }))
+    .subscribe(response => {
+      this.userData = response.data;
+      console.log('User Data: ', this.userData);
+      
+        this.userData.forEach((userData: any) => { // Use UserData as the type
+        this.addExistingForm(userData);
+      });
+    })
+  }
+
+  addExistingForm(userData: any) {
+    const newFormGroup = this.fb.group({
+      firstName: [userData.swimmer.M.firstName.S],
+      lastName: [userData.swimmer.M.lastName.S],
+      preferredName: [userData.swimmer.M.preferredName.S],
+      birthDate: [userData.swimmer.M.birthDate.S],
+      pFirstName: [userData.parent.M.firstName.S],
+      pLastName: [userData.parent.M.lastName.S],
+      pPhoneNumber: [userData.parent.M.phoneNumber.S],
+      pEmail: [userData.parent.M.email.S],
+      eFirstName: [userData.eContact.M.firstName.S],
+      eLastName: [userData.eContact.M.lastName.S],
+      ePhoneNumber: [userData.eContact.M.phoneNumber.S],
+      eEmail: [userData.eContact.M.email.S],
+    })
+
+    this.saveButtonText[this.lastIndex] = 'Register';
+    this.cancelButtonText[this.lastIndex] = 'Edit';
+    this.submitted.push(true);
+    this.isOpenForm = false;
+    this.formGroups.push(newFormGroup);
+    this.lastIndex++;
   }
   
   addForm() {
-
     this.addFormAnimation[this.lastIndex]= true;
 
     setTimeout(() => {
@@ -62,8 +116,8 @@ export class RegisterSwimmersComponent {
       ageGroup:[''],
       cost:[''],
     });
-    this.saveButtonText.push('Save');
-    this.cancelButtonText.push('Delete')
+    this.saveButtonText[this.lastIndex] = 'Save';
+    this.cancelButtonText[this.lastIndex] = 'Delete';
     this.submitted.push(false);
     this.isOpenForm = true;
     this.formGroups.push(newFormGroup);
@@ -71,7 +125,6 @@ export class RegisterSwimmersComponent {
   }
 
   async cancelEditBtn(index: number) {
-
     if (this.cancelButtonText[index] == 'Delete') {
 
       this.removeFormAnimation[index] = true;
@@ -79,7 +132,8 @@ export class RegisterSwimmersComponent {
       await new Promise(resolve => setTimeout(resolve, 300));
       
       this.removeFormAnimation[index] = false;
-      this.saveButtonText[index] = 'Save';
+      this.saveButtonText[index] = 'Register';
+      this.cancelButtonText[index] = 'Edit';
       this.isOpenForm = false;
       this.formGroups.splice(index, 1);
       this.submitted.splice(index, 1);
@@ -98,17 +152,41 @@ export class RegisterSwimmersComponent {
         alert("Please Fill in all required fields");
     } 
     else if (this.saveButtonText[index] == 'Save') {
-        if (formGroup.valid) {
-            this.isOpenForm = false;
-            this.submitted[index] = true;
-            this.saveButtonText[index] = 'Register';
-            this.cancelButtonText[index] = 'Edit';
+        this.isOpenForm = false;
+        this.submitted[index] = true;
+        this.saveButtonText[index] = 'Register';
+        this.cancelButtonText[index] = 'Edit';
 
-            const ageGroup = this.calcAgeGroup(formGroup);
-            formGroup.patchValue({
-                ageGroup: ageGroup
-            });
+        const ageGroup = this.calcAgeGroup(formGroup);
+        formGroup.patchValue({
+            ageGroup: ageGroup
+        });
+
+        const formData = {
+          firstName: formGroup.value.firstName ?? '',
+          lastName: formGroup.value.lastName ?? '',
+          preferredName: formGroup.value.preferredName ?? '',
+          birthDate: formGroup.value.birthDate ?? '',
+          pFirstName: formGroup.value.pFirstName ?? '',
+          pLastName: formGroup.value.pLastName ?? '',
+          pPhoneNumber: formGroup.value.pPhoneNumber ?? '',
+          pEmail: formGroup.value.pEmail ?? '',
+          eFirstName: formGroup.value.eFirstName ?? '',
+          eLastName: formGroup.value.eLastName ?? '',
+          ePhoneNumber: formGroup.value.ePhoneNumber ?? '',
+          eEmail: formGroup.value.eEmail ?? '',
         }
+
+        this.http.post(this.apiEndpoint + 'swimmer/post-data-swimmer', formData)
+        .pipe(
+          catchError(error => {
+            console.error('Error: ', error);
+            return throwError(error);
+          })
+        )
+        .subscribe(response => {
+          console.log('Response: ', response);
+        });
     }
   }
 
@@ -126,6 +204,7 @@ export class RegisterSwimmersComponent {
           console.log(`${controlName}: ${control?.value}`);
         })
       }
+
       this.saveButtonText[index] = 'Registered✓ '
       this.cancelButtonText[index] = 'hidden';
       this.amtRegistered++;
@@ -135,8 +214,6 @@ export class RegisterSwimmersComponent {
   }
 
   calcCost(formGroups: FormGroup[], index: number): string {
-    const today = new Date();
-    const month = today.getMonth() + 1;
     var cost = '';
 
     if (this.amtRegistered < 4) {

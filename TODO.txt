@@ -1,13 +1,16 @@
-animations for all pages
-register page registered button looking weird
-register page disable background when in register swimmers form
-meet results page
-team records page
-meet the coaches page
 place for admins to see registered swimmers
-place for admins to see contact us
+place for admins to see contact us - make look good
 
 backend
     lambdas
-        get for contact us
-        get, post, and put for swimmers page
+        delete for contact us
+        get, post, and put, delete for swimmers page
+
+
+
+register page disable background when in register swimmers form
+animations for all pages
+register page registered button looking weird
+meet results page
+team records page
+meet the coaches page

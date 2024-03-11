@@ -23,7 +23,7 @@ export class AdminContactUsComponent {
     apiEndpoint = cdkOutput.LambdaStack.APIEndpoint1793E782;
 
     ngOnInit(): void {
-      this.http.get<any>(this.apiEndpoint + 'user/get-data')
+      this.http.get<any>(this.apiEndpoint + 'user/get-data-contact')
       .pipe(catchError(error => {
         console.error('Error: ', error);
         return throwError(error);
