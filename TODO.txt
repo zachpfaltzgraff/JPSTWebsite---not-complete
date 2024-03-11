@@ -1,10 +1,10 @@
-place for admins to see registered swimmers
+place for admins to see registered swimmers, make a get for it
 place for admins to see contact us - make look good
 
 backend
     lambdas
         delete for contact us
-        get, post, and put, delete for swimmers page
+        and put, delete for swimmers page
 
 
 
