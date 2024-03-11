@@ -121,7 +121,6 @@
 form {
     display: flex;
     margin: 10px;
-    height: 120px;
     padding: 8px 16px 16px 16px;
     box-shadow: 0 2px 32px black;
     border-radius: 12px;
@@ -155,9 +154,9 @@ label {
 }
 
 input {
-    padding: 6px;
-    height: 12px;
-    border-radius: 4px;
+    padding: 2%;
+    height: 60%;
+    border-radius: 8px;
     width: 100%;
     border: 2px solid grey;
 }
@@ -323,7 +322,7 @@ button:disabled:hover:nth-child(2) {
     }
 
     form {
-        height: 250px;
+        height: 300px;
     }
     form button {
         width: 100%;
@@ -386,19 +385,22 @@ button:disabled:hover:nth-child(2) {
 
     input {
         margin-bottom: 10px;
+        width: 100%;
     }
 
     form button {
-        width: 100%;
-        margin-top: 5px;
-        justify-content: center;
+        width: 35%;
+        padding: 10px;
+        margin-left: 32.5%;
     }
-
-    input {
-        width: 100%;
-    }
-
     h2 {
         font-size: 16px;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    form button {
+        width: 45%;
+        margin-left: 27.5%;
     }
 }

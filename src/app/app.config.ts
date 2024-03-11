@@ -5,13 +5,10 @@ import { EmailService } from '../values.service';
 import { AuthGuardService } from '../auth-guard.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../auth-intercepter.service';
-import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    BrowserModule,
-    BrowserAnimationsModule,
     provideRouter(routes),
     EmailService,
     AuthGuardService,

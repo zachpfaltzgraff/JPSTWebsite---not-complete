@@ -29,7 +29,7 @@ export class RegisterSwimmersComponent {
   apiEndpoint = cdkOutput.LambdaStack.APIEndpoint1793E782;
 
   formGroups: FormGroup[] = [];
-  isOpenForm: boolean = true;
+  isOpenForm: boolean = false;
   submitted: boolean[] = [];
   amtRegistered: number = 0;
   saveButtonText: string[] = [];
@@ -126,18 +126,29 @@ export class RegisterSwimmersComponent {
 
   async cancelEditBtn(index: number) {
     if (this.cancelButtonText[index] == 'Delete') {
+      const confirmed = confirm("Are you sure you want to delete this swimmer?");
 
-      this.removeFormAnimation[index] = true;
+      if (confirmed) {
+        const formGroup = this.formGroups[index].value;
+        const swimmerName = formGroup.firstName + " " + formGroup.lastName;
+        console.log(swimmerName);
 
-      await new Promise(resolve => setTimeout(resolve, 300));
-      
-      this.removeFormAnimation[index] = false;
-      this.saveButtonText[index] = 'Register';
-      this.cancelButtonText[index] = 'Edit';
-      this.isOpenForm = false;
-      this.formGroups.splice(index, 1);
-      this.submitted.splice(index, 1);
-      this.lastIndex--;
+        const response = await this.http.delete<any>(`${this.apiEndpoint}swimmer/delete-data-swimmer`, 
+        { body: { swimmerName } }).toPromise();
+        console.log("Response: ", response);
+
+        this.removeFormAnimation[index] = true;
+
+        await new Promise(resolve => setTimeout(resolve, 300));
+        this.removeFormAnimation[index] = false;
+
+        this.saveButtonText[index] = 'Register';
+        this.cancelButtonText[index] = 'Edit';
+        this.isOpenForm = false;
+        this.formGroups.splice(index, 1);
+        this.submitted.splice(index, 1);
+        this.lastIndex--;
+      }
     }
     else {
       this.submitted[index] = false;
