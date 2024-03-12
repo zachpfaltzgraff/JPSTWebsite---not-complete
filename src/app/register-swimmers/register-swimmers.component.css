@@ -78,18 +78,11 @@
     bottom: 10px;
     right: 10px;
 }
-.registration button {
-    width: fit-content;
+.registration p-button {
     padding: 10px;
-    margin-left: 20px;
+    margin-left: 2%;
 }
-.registration button:last-child {
-    background-color: grey;
-}
-.registration button:last-child:hover {
-    background-color: rgb(75, 75, 75);
-    
-}
+
 
 .ageAndCost {
     display: flex;
@@ -155,7 +148,6 @@ label {
 
 input {
     padding: 2%;
-    height: 60%;
     border-radius: 8px;
     width: 100%;
     border: 2px solid grey;
@@ -170,10 +162,9 @@ input:read-only:hover {
     cursor: default;
 }
 
-form button {
+form p-button {
     margin-top: auto;
     margin-left: auto;
-    border-radius: 12px;
 }
 
 .add-button {
@@ -192,43 +183,11 @@ form button {
     cursor: default;
 }
 
-.add-button button {
-    border-radius: 12px;
-    width: auto;
-    margin: 10px;
-}
-
-button {
-    background-color: blue;
-    color: white;
-    padding: 4px;
-    border-radius: 6px;
-    font-size: 22px;
-    width: 125px;
-}
-button:hover {
-    cursor: pointer;
-    background-color: darkblue;
-}
 
 .form-buttons {
     display: flex;
     flex-direction: column;
     padding-left: 7%;
-}
-button:disabled:hover {
-    background-color: blue;
-    cursor: default;
-}
-button:disabled:hover:nth-child(2) {
-    background-color: grey;
-}
-
-.cancel-button {
-    background-color: grey;
-}
-.cancel-button:hover {
-    background-color: rgb(75, 75, 75);
 }
 
 @keyframes slideInFromBottom {
@@ -286,11 +245,6 @@ button:disabled:hover:nth-child(2) {
         padding: 0%;
     }
 
-    button {
-        padding: 5%;
-        width: 110%;
-    }
-
     h2 {
         font-size: 18px;
     }
@@ -324,22 +278,17 @@ button:disabled:hover:nth-child(2) {
     form {
         height: 300px;
     }
-    form button {
-        width: 100%;
+    form p-button {
         margin: 5px;
     }
 
-    .add-button button {
+    .add-button p-button {
         padding: 5px;
         margin: 5px;
     }
 
     .registration {
         width: 80vw;
-    }
-
-    button {
-        height: fit-content;
     }
 
     .best-strokes select {
@@ -388,19 +337,19 @@ button:disabled:hover:nth-child(2) {
         width: 100%;
     }
 
-    form button {
-        width: 35%;
-        padding: 10px;
-        margin-left: 32.5%;
-    }
     h2 {
         font-size: 16px;
     }
+    .form-buttons {
+        flex-direction: row;
+        padding: 0;
+        margin-left: 35%;
+    }
+    
 }
 
 @media only screen and (max-width:600px) {
-    form button {
-        width: 45%;
-        margin-left: 27.5%;
+    .form-buttons {
+        margin-left: 20%;
     }
 }

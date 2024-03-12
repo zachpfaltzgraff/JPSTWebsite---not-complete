@@ -6,12 +6,18 @@ import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
-import { InputMask, InputMaskModule } from 'primeng/inputmask';
+import { ButtonModule } from 'primeng/button';
+import { DropdownModule } from 'primeng/dropdown';
+
+interface experience {
+  name: number,
+  value: number,
+}
 
 @Component({
   selector: 'app-register-swimmers',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, InputMaskModule ],
+  imports: [ReactiveFormsModule, CommonModule, ButtonModule, DropdownModule ],
   templateUrl: './register-swimmers.component.html',
   styleUrl: './register-swimmers.component.css',
 })
@@ -24,6 +30,18 @@ export class RegisterSwimmersComponent {
   ) {
     this.fb = fb;
   }
+  experience: experience[] = [
+    {name: 1, value: 1},
+    {name: 2, value: 2},
+    {name: 3, value: 3},
+    {name: 4, value: 4},
+    {name: 5, value: 5},
+    {name: 6, value: 6},
+    {name: 7, value: 7},
+    {name: 8, value: 8},
+    {name: 9, value: 9},
+    {name: 10, value: 10},
+  ]
 
   apiEndpoint = cdkOutput.LambdaStack.APIEndpoint1793E782;
 
@@ -89,7 +107,7 @@ export class RegisterSwimmersComponent {
     })
 
     if(userData.isSubmitted.BOOL == true) {
-      this.saveButtonText[this.lastIndex] = 'Registered✓ '
+      this.saveButtonText[this.lastIndex] = 'Registered✓'
       this.cancelButtonText[this.lastIndex] = 'hidden';
       this.amtRegistered++;
       this.submitted.push(true);
@@ -349,12 +367,16 @@ export class RegisterSwimmersComponent {
         }
 
         if (age <= 8) {
+          formGroup.value.ageGroup = '8 & Under';
             return '8 & Under';
         } else if (age == 9 || age == 10) {
+          formGroup.value.ageGroup = '9-10';
             return '9-10';
         } else if (age == 11 || age == 12) {
+          formGroup.value.ageGroup = '11-12';
             return '11-12';
         } else if (age > 13) {
+          formGroup.value.ageGroup = '13+';
             return '13+';
         }
     }

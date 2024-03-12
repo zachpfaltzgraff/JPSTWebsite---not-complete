@@ -81,8 +81,9 @@
                         </div>
 
                         <div class="form-buttons">
-                            <button type="submit" (click)="registerField(i)" [disabled]="registeredOrNot(i)">{{saveRegisterText(i)}}</button>
-                            <button type="button" class="cancel-button" (click)="cancelEditBtn(i)" *ngIf="cancelButtonText[i] !== 'hidden'" >{{cancelEditText(i)}}</button>
+                            <p-button type="submit" (click)="registerField(i)" [disabled]="registeredOrNot(i)" [rounded]="true">{{saveRegisterText(i)}}</p-button>
+                            <p-button type="button" class="cancel-button" (click)="cancelEditBtn(i)" severity="secondary"
+                             *ngIf="cancelButtonText[i] !== 'hidden'" [rounded]="true">{{cancelEditText(i)}}</p-button>
                         </div>
                     </form>
 
@@ -91,20 +92,8 @@
                             <h1>Registration</h1>
                             <div class="register-group">
                                 <label for="yrsOfExp">Years Of Experience:</label>
-                                <select name="yrsOfExp" id="yrsOfExp" formControlName="yrsOfExp">
-                                    <option value="">--Select--</option>
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10+">10+</option>
-                                </select>
+                                <p-dropdown [options]="experience" optionLabel="name" 
+                                [showClear]="true" placeholder="--Select--" formControlName="yrsOfExp"></p-dropdown>
                             </div>
 
                             <label for="strokes">Select Strokes You Can Swim:</label>
@@ -184,15 +173,16 @@
                             </div>
 
                             <div class="register-buttons">
-                                <button type="submit" (click)="registerForm()">Register</button>
-                                <button type="button" id="cancel-button"(click)="registerCancelbtn()">Cancel</button>
+                                <p-button type="submit" (click)="registerForm()" [rounded]="true">Register</p-button>
+                                <p-button type="button" id="cancel-button"(click)="registerCancelbtn()" 
+                                [rounded]="true" severity="secondary">Cancel</p-button>
                             </div>
                         </form>
                     </div>
                 </div>
                 
                 <div class="add-button">
-                    <button [disabled]="isOpenForm" (click)="addForm()">Add Swimmer</button>
+                    <p-button [disabled]="isOpenForm" (click)="addForm()" [rounded]="true">Add Swimmer</p-button>
                 </div>
             </div>
         </div>
