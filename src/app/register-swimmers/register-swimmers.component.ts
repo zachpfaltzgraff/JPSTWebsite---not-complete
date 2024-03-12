@@ -17,8 +17,6 @@ import { InputMask, InputMaskModule } from 'primeng/inputmask';
 })
 export class RegisterSwimmersComponent {
 
-  value2: string | undefined;
-
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
@@ -59,7 +57,9 @@ export class RegisterSwimmersComponent {
   }
 
   addExistingForm(userData: any) {
+
     const newFormGroup = this.fb.group({
+      isSubmitted: [userData.isSubmitted.BOOL],
       firstName: [userData.swimmer.M.firstName.S],
       lastName: [userData.swimmer.M.lastName.S],
       preferredName: [userData.swimmer.M.preferredName.S],
@@ -72,14 +72,36 @@ export class RegisterSwimmersComponent {
       eLastName: [userData.eContact.M.lastName.S],
       ePhoneNumber: [userData.eContact.M.phoneNumber.S],
       eEmail: [userData.eContact.M.email.S],
+
+      yrsOfExp:[userData.experience.M.yrsOfExp.S],
+      freestyle:[userData.experience.M.canSwim.M.freestyle.BOOL],
+      backstroke:[userData.experience.M.canSwim.M.backstroke.BOOL],
+      breaststroke:[userData.experience.M.canSwim.M.breaststroke.BOOL],
+      butterfly:[userData.experience.M.canSwim.M.butterfly.BOOL],
+      firstStroke:[userData.experience.M.swimTimes.M.firstStroke.S],
+      firstTime:[userData.experience.M.swimTimes.M.firstTime.S],
+      secondStroke:[userData.experience.M.swimTimes.M.secondStroke.S],
+      secondTime:[userData.experience.M.swimTimes.M.secondTime.S],
+      thirdStroke:[userData.experience.M.swimTimes.M.thirdStroke.S],
+      thirdTime:[userData.experience.M.swimTimes.M.thirdTime.S],
+      ageGroup:[userData.ageGroup.S],
+      cost:[userData.cost.S],
     })
 
-    this.saveButtonText[this.lastIndex] = 'Register';
-    this.cancelButtonText[this.lastIndex] = 'Edit';
-    this.submitted.push(true);
-    this.isOpenForm = false;
-    this.formGroups.push(newFormGroup);
-    this.lastIndex++;
+    if(userData.isSubmitted.BOOL == true) {
+      this.saveButtonText[this.lastIndex] = 'Registered✓ '
+      this.cancelButtonText[this.lastIndex] = 'hidden';
+      this.amtRegistered++;
+      this.submitted.push(true);
+    }
+    else {
+      this.saveButtonText[this.lastIndex] = 'Register';
+      this.cancelButtonText[this.lastIndex] = 'Edit';
+      this.submitted.push(true);
+    }
+      this.isOpenForm = false;
+      this.formGroups.push(newFormGroup);
+      this.lastIndex++;
   }
   
   addForm() {
@@ -90,6 +112,7 @@ export class RegisterSwimmersComponent {
     }, 300);
 
     const newFormGroup = this.fb.group({
+      isSubmitted: [false],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       preferredName: [''],
@@ -175,6 +198,7 @@ export class RegisterSwimmersComponent {
         });
 
         const formData = {
+          isSubmitted: false,
           firstName: formGroup.value.firstName ?? '',
           lastName: formGroup.value.lastName ?? '',
           preferredName: formGroup.value.preferredName ?? '',
@@ -187,6 +211,20 @@ export class RegisterSwimmersComponent {
           eLastName: formGroup.value.eLastName ?? '',
           ePhoneNumber: formGroup.value.ePhoneNumber ?? '',
           eEmail: formGroup.value.eEmail ?? '',
+
+          yrsOfExp:'',
+          freestyle: '',
+          backstroke:'',
+          breaststroke:'',
+          butterfly:'',
+          firstStroke:'',
+          firstTime:'',
+          secondStroke:'',
+          secondTime:'',
+          thirdStroke:'',
+          thirdTime:'',
+          ageGroup:'',
+          cost:'',
         }
 
         this.http.post(this.apiEndpoint + 'swimmer/post-data-swimmer', formData)
@@ -216,6 +254,48 @@ export class RegisterSwimmersComponent {
           console.log(`${controlName}: ${control?.value}`);
         })
       }
+      formGroup.value.isSubmitted = true;
+
+      const formData = {
+        isSubmitted: true,
+        firstName: formGroup.value.firstName ?? '',
+        lastName: formGroup.value.lastName ?? '',
+        preferredName: formGroup.value.preferredName ?? '',
+        birthDate: formGroup.value.birthDate ?? '',
+        pFirstName: formGroup.value.pFirstName ?? '',
+        pLastName: formGroup.value.pLastName ?? '',
+        pPhoneNumber: formGroup.value.pPhoneNumber ?? '',
+        pEmail: formGroup.value.pEmail ?? '',
+        eFirstName: formGroup.value.eFirstName ?? '',
+        eLastName: formGroup.value.eLastName ?? '',
+        ePhoneNumber: formGroup.value.ePhoneNumber ?? '',
+        eEmail: formGroup.value.eEmail ?? '',
+
+        yrsOfExp: formGroup.value.yrsOfExp,
+        freestyle: formGroup.value.freestyle,
+        backstroke:formGroup.value.backstroke,
+        breaststroke: formGroup.value.breaststroke,
+        butterfly: formGroup.value.butterfly,
+        firstStroke:formGroup.value.firstStroke,
+        firstTime: formGroup.value.firstTime,
+        secondStroke: formGroup.value.secondStroke,
+        secondTime: formGroup.value.secondTime,
+        thirdStroke: formGroup.value.thirdStroke,
+        thirdTime: formGroup.value.thirdTime,
+        ageGroup: formGroup.value.ageGroup,
+        cost: formGroup.value.cost,
+      }
+
+      this.http.post(this.apiEndpoint + 'swimmer/post-data-swimmer', formData)
+      .pipe(
+        catchError(error => {
+          console.error('Error: ', error);
+          return throwError(error);
+        })
+      )
+      .subscribe(response => {
+        console.log('Response: ', response);
+      });
 
       this.saveButtonText[index] = 'Registered✓ '
       this.cancelButtonText[index] = 'hidden';
@@ -248,9 +328,7 @@ export class RegisterSwimmersComponent {
     if (birthDate) {
         const today = new Date();
         const birthDateObj = new Date(birthDate);
-
         const cutoffDate = new Date(today.getFullYear(), 5, 1);
-
         let age = today.getFullYear() - birthDateObj.getFullYear();
 
         const hasBirthOcc = today.getMonth() > birthDateObj.getMonth() ||
