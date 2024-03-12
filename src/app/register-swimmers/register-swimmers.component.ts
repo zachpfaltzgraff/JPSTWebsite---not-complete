@@ -8,16 +8,20 @@ import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
+import { CheckboxModule } from 'primeng/checkbox';
 
 interface experience {
-  name: number,
-  value: number,
+  name: string,
+}
+interface events {
+  name: string,
 }
 
 @Component({
   selector: 'app-register-swimmers',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, ButtonModule, DropdownModule ],
+  imports: [ReactiveFormsModule, CommonModule, ButtonModule, DropdownModule, InputTextModule, CheckboxModule ],
   templateUrl: './register-swimmers.component.html',
   styleUrl: './register-swimmers.component.css',
 })
@@ -31,17 +35,33 @@ export class RegisterSwimmersComponent {
     this.fb = fb;
   }
   experience: experience[] = [
-    {name: 1, value: 1},
-    {name: 2, value: 2},
-    {name: 3, value: 3},
-    {name: 4, value: 4},
-    {name: 5, value: 5},
-    {name: 6, value: 6},
-    {name: 7, value: 7},
-    {name: 8, value: 8},
-    {name: 9, value: 9},
-    {name: 10, value: 10},
+    {name: '1'},
+    {name: '2'},
+    {name: '3'},
+    {name: '4'},
+    {name: '5'},
+    {name: '6'},
+    {name: '7'},
+    {name: '8'},
+    {name: '9'},
+    {name: '10+'},
   ]
+
+  events: events[] = [
+    {name: '50 Freestyle'},
+    {name: '100 Freestyle'},
+    {name: '200 Freestyle'},
+    {name: '500 Freestyle'},
+    {name: '50 Backstroke'},
+    {name: '100 Backstroke'},
+    {name: '50 Breaststroke'},
+    {name: '100 Breaststroke'},
+    {name: '50 Butterfly'},
+    {name: '100 Butterfly'},
+    {name: '100 Individual Medley'},
+    {name: '200 Individual Medley'},
+  ]
+
 
   apiEndpoint = cdkOutput.LambdaStack.APIEndpoint1793E782;
 
@@ -210,11 +230,6 @@ export class RegisterSwimmersComponent {
         this.saveButtonText[index] = 'Register';
         this.cancelButtonText[index] = 'Edit';
 
-        const ageGroup = this.calcAgeGroup(formGroup);
-        formGroup.patchValue({
-            ageGroup: ageGroup
-        });
-
         const formData = {
           isSubmitted: false,
           firstName: formGroup.value.firstName ?? '',
@@ -241,7 +256,7 @@ export class RegisterSwimmersComponent {
           secondTime:'',
           thirdStroke:'',
           thirdTime:'',
-          ageGroup:'',
+          ageGroup:this.calcAgeGroup(formGroup),
           cost:'',
         }
 

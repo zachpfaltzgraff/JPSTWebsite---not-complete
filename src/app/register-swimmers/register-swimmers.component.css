@@ -39,6 +39,7 @@
     grid-template-columns: 25% 75%;
     grid-template-rows: 25% 25% 25% 25%;
     width: fit-content;
+    margin-left: 1%;
 }
 .swim-strokes label {
     justify-self: start;
@@ -63,12 +64,6 @@
     font-size: 120%;
     width: fit-content;
 }
-.registration select {
-    padding: 6px;
-    border-radius: 4px;
-    width: fit-content;
-    border: 2px solid grey;
-}
 
 .register-buttons {
     display: grid;
@@ -89,11 +84,7 @@
     flex-direction: row;
 }
 
-.best-strokes select {
-    padding: 7px;
-    height: fit-content;
-    margin-bottom: 5px;
-}
+
 .best-strokes input{
     width: fit-content;
     padding: 10px;
@@ -146,11 +137,14 @@ label {
     font-size: 15px;
 }
 
+p-dropdown {
+    width: 100%;
+}
+
 input {
     padding: 2%;
     border-radius: 8px;
     width: 100%;
-    border: 2px solid grey;
 }
 input:read-only {
     border-style: hidden;
@@ -289,10 +283,6 @@ form p-button {
 
     .registration {
         width: 80vw;
-    }
-
-    .best-strokes select {
-        width: 40%;
     }
     .best-strokes input {
         width: 40%

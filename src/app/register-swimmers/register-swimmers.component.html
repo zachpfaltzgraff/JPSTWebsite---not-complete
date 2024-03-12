@@ -98,68 +98,33 @@
 
                             <label for="strokes">Select Strokes You Can Swim:</label>
                             <div class="swim-strokes">
-                                <input type="checkbox" id="freestyle" formControlName="freestyle">
+                                <p-checkbox formControlName="freestyle" value="freestyle" inputId="freestyle"></p-checkbox>
                                 <label for="freestyle">Freestyle</label>
-                                <input type="checkbox" id="backstroke" formControlName="backstroke">
-                                <label for="backstroke">Backstroke</label>
-                                <input type="checkbox" id="breaststroke" formControlName="breaststroke">
+                            
+                                <p-checkbox formControlName="backstroke" value="backstroke" inputId="backstroke"></p-checkbox>
+                                <label for="breaststroke">Backstroke</label>
+
+                                <p-checkbox formControlName="breaststroke" value="breaststroke" inputId="breaststroke"></p-checkbox>
                                 <label for="breaststroke">Breaststroke</label>
-                                <input type="checkbox" id="butterfly" formControlName="butterfly">
+                                
+                                <p-checkbox formControlName="butterfly" value="butterfly" inputId="butterfly"></p-checkbox>
                                 <label for="butterfly">Butterfly</label>
+                                
                             </div>
 
                             <label>Top 3 Best Events</label>
                             <div class="best-strokes">
-                                <select name="first-stroke" id="first-stroke" formControlName="firstStroke">
-                                    <option value="">N/A</option>
-                                    <option value="50-free">50 Freestyle</option>
-                                    <option value="100-free">100 Freestyle</option>
-                                    <option value="200-free">200 Freestyle</option>
-                                    <option value="500-free">500 Freestyle</option>
-                                    <option value="50-back">50 Backstroke</option>
-                                    <option value="100-back">100 Backstroke</option>
-                                    <option value="50-breast">50 Breaststroke</option>
-                                    <option value="100-breast">100 Breaststroke</option>
-                                    <option value="50-fly">50 Butterfly</option>
-                                    <option value="100-fly">100 Butterfly</option>
-                                    <option value="100-im">100 Individual Medley</option>
-                                    <option value="200-im">200 Individual Medley</option>
-                                </select>
-                                <input type="text" id="timer" placeholder="mm:ss.ms" formControlName="firstTime">
+                                <p-dropdown [options]="events" optionLabel="name" 
+                                [showClear]="true" placeholder="--Select--" formControlName="firstStroke"></p-dropdown>
+                                <input type="text" id="timer" pInputText formcontrolName="firstTime" placeholder="Best Time"/>
                                 <br>
-                                <select name="second-stroke" id="secont-stroke" formControlName="secondStroke">
-                                    <option value="">N/A</option>
-                                    <option value="50-free">50 Freestyle</option>
-                                    <option value="100-free">100 Freestyle</option>
-                                    <option value="200-free">200 Freestyle</option>
-                                    <option value="500-free">500 Freestyle</option>
-                                    <option value="50-back">50 Backstroke</option>
-                                    <option value="100-back">100 Backstroke</option>
-                                    <option value="50-breast">50 Breaststroke</option>
-                                    <option value="100-breast">100 Breaststroke</option>
-                                    <option value="50-fly">50 Butterfly</option>
-                                    <option value="100-fly">100 Butterfly</option>
-                                    <option value="100-im">100 Individual Medley</option>
-                                    <option value="200-im">200 Individual Medley</option>
-                                </select>
-                                <input type="text" id="timer" placeholder="mm:ss.ms" formControlName="secondTime">
+                                <p-dropdown [options]="events" optionLabel="name" 
+                                [showClear]="true" placeholder="--Select--" formControlName="secondStroke"></p-dropdown>
+                                <input type="text" id="timer" pInputText formcontrolName="secondTime" placeholder="Best Time"/>
                                 <br>
-                                <select name="third-stroke" id="third-stroke" formControlName="thirdStroke">
-                                    <option value="">N/A</option>
-                                    <option value="50-free">50 Freestyle</option>
-                                    <option value="100-free">100 Freestyle</option>
-                                    <option value="200-free">200 Freestyle</option>
-                                    <option value="500-free">500 Freestyle</option>
-                                    <option value="50-back">50 Backstroke</option>
-                                    <option value="100-back">100 Backstroke</option>
-                                    <option value="50-breast">50 Breaststroke</option>
-                                    <option value="100-breast">100 Breaststroke</option>
-                                    <option value="50-fly">50 Butterfly</option>
-                                    <option value="100-fly">100 Butterfly</option>
-                                    <option value="100-im">100 Individual Medley</option>
-                                    <option value="200-im">200 Individual Medley</option>
-                                </select>
-                                <input type="text" id="timer" placeholder="mm:ss.ms" formControlName="thirdTime">
+                                <p-dropdown [options]="events" optionLabel="name" 
+                                [showClear]="true" placeholder="--Select--" formControlName="thirdStroke"></p-dropdown>
+                                <input type="text" id="timer" pInputText formcontrolName="thirdTime" placeholder="Best Time"/>
                             </div>
 
                             <div class="ageAndCost">
