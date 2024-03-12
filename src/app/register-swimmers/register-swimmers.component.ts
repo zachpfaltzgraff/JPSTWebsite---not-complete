@@ -6,17 +6,18 @@ import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
-
-
+import { InputMask, InputMaskModule } from 'primeng/inputmask';
 
 @Component({
   selector: 'app-register-swimmers',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule ],
+  imports: [ReactiveFormsModule, CommonModule, InputMaskModule ],
   templateUrl: './register-swimmers.component.html',
   styleUrl: './register-swimmers.component.css',
 })
 export class RegisterSwimmersComponent {
+
+  value2: string | undefined;
 
   constructor(
     private fb: FormBuilder,

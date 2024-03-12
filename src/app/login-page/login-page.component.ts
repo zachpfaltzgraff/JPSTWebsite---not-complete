@@ -30,7 +30,8 @@ export class LoginPageComponent {
 
     }
     else {
-      this.errorMessage = 'Invalid Form: Please fill out all fields';
+      //this.errorMessage = 'Invalid Form: Please fill out all fields';
+      alert("Invalid Form: Please fill out all fields");
     }
   }
 
