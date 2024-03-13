@@ -191,6 +191,8 @@ export class RegisterSwimmersComponent {
       const confirmed = confirm("Are you sure you want to delete this swimmer?");
 
       if (confirmed) {
+        this.removeFormAnimation[index] = true;
+        
         const formGroup = this.formGroups[index].value;
         const swimmerName = formGroup.firstName + " " + formGroup.lastName;
         console.log(swimmerName);
@@ -198,8 +200,6 @@ export class RegisterSwimmersComponent {
         const response = await this.http.delete<any>(`${this.apiEndpoint}swimmer/delete-data-swimmer`, 
         { body: { swimmerName } }).toPromise();
         console.log("Response: ", response);
-
-        this.removeFormAnimation[index] = true;
 
         await new Promise(resolve => setTimeout(resolve, 300));
         this.removeFormAnimation[index] = false;
