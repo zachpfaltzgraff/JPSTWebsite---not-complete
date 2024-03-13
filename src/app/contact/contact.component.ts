@@ -6,12 +6,15 @@ import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputTextModule } from 'primeng/inputtext';
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 
   
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [ReactiveFormsModule, ButtonModule ],
+  imports: [ReactiveFormsModule, ButtonModule, InputTextareaModule, InputTextModule ],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css'
 })
@@ -40,21 +43,20 @@ export class ContactComponent {
         message: this.contactForm.value.message ?? '',
       };
       
-      this.http.post(this.apiEndpoint + 'user/post-data-contact', formData)
-      .pipe(
-        catchError(error => {
-          // Handle errors here
-          console.error('Error:', error);
-          return throwError(error);
-        })
-      )
-      .subscribe(response => {
-        // Handle successful response here
-        console.log('Response:', response);
+      emailjs.send('service_dozrgr9', 'template_m4otkpg', {
+        ...formData,
+        from_name: formData.firstName + ' ' + formData.lastName + '\n' +
+        formData.email + ' ' + formData.phone
+      }, 'fDVWHz6srbJBO2dQU')
+      .then((response: EmailJSResponseStatus) => {
+        console.log("email send successfully: ", response);
         this.loading = false;
-        alert("Thank you, please give us up to one week to respond");
-
+        alert("Thank you, please give us up to one week to respond!");
         this.redirect();
+      }, (error) => {
+        console.log("error sending email: ", error);
+        this.loading = false;
+        alert("Error: Failed to Send email. Please try again later.");
       })
     }
     else {
