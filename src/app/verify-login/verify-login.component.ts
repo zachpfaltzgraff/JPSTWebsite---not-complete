@@ -17,12 +17,14 @@ export class VerifyLoginComponent {
   constructor(private router: Router, private emailService: EmailService) {}
 
   onSubmit() {
-    const verificationCode = this.verifyCode.value.code ?? '';
-    console.log(verificationCode);
+    const verificationCode = this.verifyCode.value.code;
+    const codeString = verificationCode != null ? String(verificationCode) : ''; // Convert to string preserving leading zeros
+    console.log("verification code: ", codeString);
 
     const emailValue = this.emailService.getEmail();
+    console.log("email: ", emailValue)
 
-    handleSignUpConfirmation(this.emailService, this.router, {username: emailValue, confirmationCode: verificationCode});
+    handleSignUpConfirmation(this.emailService, this.router, {username: emailValue, confirmationCode: codeString});
 
     this.router.navigate(['']);
   }

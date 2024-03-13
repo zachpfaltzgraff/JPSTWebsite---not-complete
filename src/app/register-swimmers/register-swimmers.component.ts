@@ -356,7 +356,7 @@ export class RegisterSwimmersComponent {
   }
 
   calcAgeGroup(formGroup: FormGroup): string {
-    const birthDate = formGroup.get('birthDate')?.value;
+    const birthDate = formGroup.value.birthDate;
 
     if (birthDate) {
         const today = new Date();
