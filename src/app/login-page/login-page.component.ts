@@ -4,11 +4,13 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular
 import { signIn, type SignInInput } from 'aws-amplify/auth';
 import { Router } from '@angular/router';
 import { EmailService } from '../../values.service';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, InputTextModule, ButtonModule],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css'
 })

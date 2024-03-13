@@ -11,22 +11,22 @@
                             
                             <div class="form-group">
                                 <label for="first-name">First Name*</label>
-                                <input id="first-name" autocomplete="first-name" type="text" formControlName="firstName" [readonly]="isSumbitted(i)">
+                                <input type="text" pInputText formControlName="firstName" [readonly]="isSumbitted(i)" autocomplete="first-name" />
                             </div>
 
                             <div class="form-group">
                                 <label for="last-name">Last Name*</label>
-                                <input id="last-name" autocomplete="family-name" type="text" formControlName="lastName" [readonly]="isSumbitted(i)">
+                                <input type="text" pInputText formControlName="lastName" [readonly]="isSumbitted(i)" autocomplete="family-name" />
                             </div>
 
                             <div class="form-group">
                                 <label for="preferred-name">Preferred Name</label>
-                                <input id="preferred-name" autocomplete="first-name" type="text" formControlName="preferredName" [readonly]="isSumbitted(i)">
+                                <input type="text" pInputText formControlName="preferredName" [readonly]="isSumbitted(i)"/>
                             </div>
 
                             <div class="form-group">
                                 <label for="birth-date">Date of Birth*</label>
-                                <input id="birth-date" autocomplete="bday" type="date" formControlName="birthDate" [readonly]="isSumbitted(i)">
+                                <input type="date" pInputText formControlName="birthDate" [readonly]="isSumbitted(i)" autocomplete="bday-day" />
                             </div>
                         </div>
 
@@ -36,22 +36,22 @@
 
                             <div class="form-group">
                                 <label for="first-name">First Name*</label>
-                                <input id="first-name" autocomplete="first-name" type="text" formControlName="pFirstName" [readonly]="isSumbitted(i)">
+                                <input type="text" pInputText formControlName="pFirstName" [readonly]="isSumbitted(i)" autocomplete="first-name" />
                             </div>
 
                             <div class="form-group">
                                 <label for="last-name">Last Name*</label>
-                                <input id="last-name" autocomplete="family-name" type="text" formControlName="pLastName" [readonly]="isSumbitted(i)">
+                                <input type="text" pInputText formControlName="pLastName" [readonly]="isSumbitted(i)" autocomplete="family-name" />
                             </div>
 
                             <div class="form-group">
                                 <label for="phone-number">Phone Number*</label>
-                                <input id="phone-number" autocomplete="tel" type="tel" formControlName="pPhoneNumber" [readonly]="isSumbitted(i)">
+                                <input type="number" pInputText formControlName="pPhoneNumber" [readonly]="isSumbitted(i)" autocomplete="phone" />
                             </div>
 
                             <div class="form-group">
                                 <label for="street-address">Email*</label>
-                                <input id="street-address" autocomplete="email" type="email" formControlName="pEmail" [readonly]="isSumbitted(i)">
+                                <input type="email" pInputText formControlName="pEmail" [readonly]="isSumbitted(i)" autocomplete="email" />
                             </div>
                         </div>
 
@@ -61,22 +61,22 @@
 
                             <div class="form-group">
                                 <label for="first-name">First Name*</label>
-                                <input id="first-name" autocomplete="first-name" type="text" formControlName="eFirstName" [readonly]="isSumbitted(i)">
+                                <input type="text" pInputText formControlName="eLastName" [readonly]="isSumbitted(i)" autocomplete="first-name"/>
                             </div>
 
                             <div class="form-group">
                                 <label for="last-name">Last Name*</label>
-                                <input id="last-name" autocomplete="family-name" type="text" formControlName="eLastName" [readonly]="isSumbitted(i)">
+                                <input type="text" pInputText formControlName="eFirstName" [readonly]="isSumbitted(i)" autocomplete="family-name"/>
                             </div>
 
                             <div class="form-group">
                                 <label for="phone-number">Phone Number*</label>
-                                <input id="phone-number" autocomplete="tel" type="tel" formControlName="ePhoneNumber" [readonly]="isSumbitted(i)">
+                                <input type="number" pInputText formControlName="ePhoneNumber" [readonly]="isSumbitted(i)" autocomplete="phone"/>
                             </div>
 
                             <div class="form-group">
                                 <label for="street-address">Email*</label>
-                                <input id="street-address" autocomplete="email" type="email" formControlName="eEmail" [readonly]="isSumbitted(i)">
+                                <input type="email" pInputText formControlName="eEmail" [readonly]="isSumbitted(i)" autocomplete="email"/>
                             </div>
                         </div>
 
@@ -116,15 +116,15 @@
                             <div class="best-strokes">
                                 <p-dropdown [options]="events" optionLabel="name" 
                                 [showClear]="true" placeholder="--Select--" formControlName="firstStroke"></p-dropdown>
-                                <input type="text" id="timer" pInputText formcontrolName="firstTime" placeholder="Best Time"/>
+                                <input type="text" id="timer" pInputText formControlName="firstTime" placeholder="Best Time"/>
                                 <br>
                                 <p-dropdown [options]="events" optionLabel="name" 
                                 [showClear]="true" placeholder="--Select--" formControlName="secondStroke"></p-dropdown>
-                                <input type="text" id="timer" pInputText formcontrolName="secondTime" placeholder="Best Time"/>
+                                <input type="text" id="timer" pInputText formControlName="secondTime" placeholder="Best Time"/>
                                 <br>
                                 <p-dropdown [options]="events" optionLabel="name" 
                                 [showClear]="true" placeholder="--Select--" formControlName="thirdStroke"></p-dropdown>
-                                <input type="text" id="timer" pInputText formcontrolName="thirdTime" placeholder="Best Time"/>
+                                <input type="text" id="timer" pInputText formControlName="thirdTime" placeholder="Best Time"/>
                             </div>
 
                             <div class="ageAndCost">

@@ -5,15 +5,15 @@
 
             <div class="login-form">
                 <label for="email">Email</label>
-                <input id="email" autocomplete="email" type="email" formControlName="email" required>
+                <input pInputText id="email" autocomplete="email" type="email" formControlName="email"> 
             </div>
 
             <div class="login-form">
                 <label for="password">Password</label>
-                <input id="password" autocomplete="password" type="password" formControlName="password" required>
+                <input pInputText id="password" autocomplete="password" type="password" formControlName="password" required>
             </div>
 
-            <button type="submit">Login →</button>
+            <p-button type="submit" [rounded]="true">Login →</p-button>
 
             <p>Need an acoount? <a href="\signup">Sign up</a></p>
             <a href="\recovery" class="recovery">Forgot Your Password? </a>

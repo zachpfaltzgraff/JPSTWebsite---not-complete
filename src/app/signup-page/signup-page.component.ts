@@ -4,6 +4,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { signUp } from 'aws-amplify/auth';
 import { Router } from '@angular/router';
 import { EmailService } from '../../values.service';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 
 type SignUpParameters = {
   username: string;
@@ -14,7 +16,7 @@ type SignUpParameters = {
 @Component({
   selector: 'app-signup-page',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, InputTextModule, ButtonModule],
   templateUrl: './signup-page.component.html',
   styleUrl: './signup-page.component.css'
 })
@@ -30,16 +32,20 @@ export class SignupPageComponent {
     const confirmPasswordValue = this.profileForm.value.confirmPassword ?? '';
 
     if (emailValue === '' || passwordValue === '' || confirmPasswordValue === '') {
-      this.errorMessage = 'Invalid Form: Please fill in all fields';
+      // this.errorMessage = 'Invalid Form: Please fill in all fields';
+      alert("Please fill in all the fields")
     }
     else if (passwordValue !== confirmPasswordValue){
-      this.errorMessage = 'Error: Passwords must match';
+      // this.errorMessage = 'Error: Passwords must match';
+      alert("Passwords must match")
     }
     else if (passwordValue.length < 8 && emailValue !== '' && confirmPasswordValue !== '') {
-      this.errorMessage = 'Error: Password must be 8 characters'
+      // this.errorMessage = 'Error: Password must be 8 characters'
+      alert("Password must be 8 Characters long")
     }
     else if (this.profileForm.get('email')?.hasError('email')) {
-      this.errorMessage = 'Error: Invalid Email';
+      // this.errorMessage = 'Error: Invalid Email';
+      alert("Invalid Email")
     }
 
     if (this.profileForm.valid) {

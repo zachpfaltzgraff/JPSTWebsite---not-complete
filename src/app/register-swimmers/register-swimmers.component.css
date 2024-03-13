@@ -155,6 +155,10 @@ input:read-only {
 input:read-only:hover {
     cursor: default;
 }
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+    display: none;
+}
 
 form p-button {
     margin-top: auto;

@@ -6,20 +6,20 @@
 
             <div class="login-form">
                 <label for="email">Email</label>
-                <input id="email" autocomplete="email" type="email" formControlName="email">
+                <input pInputText  id="email" autocomplete="email" type="email" formControlName="email">
             </div>
 
             <div class="login-form">
                 <label for="password">Password</label>
-                <input id="password" autocomplete="password" type="password" formControlName="password">
+                <input pInputText  id="password" autocomplete="password" type="password" formControlName="password">
             </div>
 
             <div class="login-form">
                 <label for="password">Confirm Password</label>
-                <input id="confirm-password" autocomplete="password" type="password" formControlName="confirmPassword">
+                <input pInputText  id="confirm-password" autocomplete="password" type="password" formControlName="confirmPassword">
             </div>
 
-            <button type="submit">Sign Up →</button>
+            <p-button [rounded]="true" type="submit">Sign Up →</p-button>
 
             <p>Already have an account?<a href="login"> Login</a></p>
         </form>
