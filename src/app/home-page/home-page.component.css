@@ -39,12 +39,10 @@ p {
     margin-left: 4%;
     margin-top: 0;
     font-family: 'Lato', sans-serif;
-    text-transform: capitalize;
 }
 
 h2 {
     font-family: 'Roboto Condensed', sans-serif;
-    text-transform: uppercase;
 }
 
 span {
@@ -54,7 +52,6 @@ span {
     font-size: 20px;
     margin-left: 2%;
     margin-bottom: 1%;
-    text-transform: capitalize;
     line-height: 125%;
 }
 

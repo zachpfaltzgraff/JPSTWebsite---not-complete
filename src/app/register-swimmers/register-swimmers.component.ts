@@ -230,6 +230,9 @@ export class RegisterSwimmersComponent {
         this.saveButtonText[index] = 'Register';
         this.cancelButtonText[index] = 'Edit';
 
+        let ageGroup = this.calcAgeGroup(formGroup);
+        formGroup.value.ageGroup = ageGroup ?? '';
+
         const formData = {
           isSubmitted: false,
           firstName: formGroup.value.firstName ?? '',
@@ -256,7 +259,7 @@ export class RegisterSwimmersComponent {
           secondTime:'',
           thirdStroke:'',
           thirdTime:'',
-          ageGroup:this.calcAgeGroup(formGroup),
+          ageGroup: formGroup.value.ageGroup ?? '',
           cost:'',
         }
 
@@ -276,7 +279,7 @@ export class RegisterSwimmersComponent {
   registerForm() {
     const index = this.registerBtnIndex;
     if (index == -1) {
-      console.log('Error, invalid index of form')
+      console.log('Error, invalid index of form');
     }
     else {
       const formGroup = this.formGroups[index];
