@@ -62,7 +62,6 @@ export class RegisterSwimmersComponent {
     {name: '200 Individual Medley'},
   ]
 
-
   apiEndpoint = cdkOutput.LambdaStack.APIEndpoint1793E782;
 
   formGroups: FormGroup[] = [];
@@ -91,7 +90,11 @@ export class RegisterSwimmersComponent {
         this.userData.forEach((userData: any) => { // Use UserData as the type
         this.addExistingForm(userData);
       });
-    })
+
+      if (this.lastIndex == 0) {
+        this.addForm();
+      }
+    });
   }
 
   addExistingForm(userData: any) {
@@ -104,11 +107,11 @@ export class RegisterSwimmersComponent {
       birthDate: [userData.swimmer.M.birthDate.S],
       pFirstName: [userData.parent.M.firstName.S],
       pLastName: [userData.parent.M.lastName.S],
-      pPhoneNumber: [userData.parent.M.phoneNumber.S],
+      pPhoneNumber: [userData.parent.M.phoneNumber.N],
       pEmail: [userData.parent.M.email.S],
       eFirstName: [userData.eContact.M.firstName.S],
       eLastName: [userData.eContact.M.lastName.S],
-      ePhoneNumber: [userData.eContact.M.phoneNumber.S],
+      ePhoneNumber: [userData.eContact.M.phoneNumber.N],
       eEmail: [userData.eContact.M.email.S],
 
       yrsOfExp:[userData.experience.M.yrsOfExp.S],
@@ -220,7 +223,7 @@ export class RegisterSwimmersComponent {
     }
   }
 
-  onSubmit(formGroup: FormGroup, index: number) {
+  async onSubmit(formGroup: FormGroup, index: number) {
     if (!formGroup.valid) {
         alert("Please Fill in all required fields");
     } 
@@ -230,8 +233,7 @@ export class RegisterSwimmersComponent {
         this.saveButtonText[index] = 'Register';
         this.cancelButtonText[index] = 'Edit';
 
-        let ageGroup = this.calcAgeGroup(formGroup);
-        formGroup.value.ageGroup = ageGroup ?? '';
+        formGroup.value.ageGroup = this.calcAgeGroup(formGroup) ?? '';
 
         const formData = {
           isSubmitted: false,
