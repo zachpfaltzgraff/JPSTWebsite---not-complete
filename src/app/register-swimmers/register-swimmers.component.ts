@@ -75,7 +75,7 @@ export class RegisterSwimmersComponent {
   addFormAnimation: boolean[] = [];
   removeFormAnimation: boolean[] = [];
   lastIndex: number = 0;
-  oldSwimerName: string = '';
+  oldSwimerName: string[] = [];
 
   userData: any;
   ngOnInit(): void {
@@ -216,7 +216,7 @@ export class RegisterSwimmersComponent {
       }
     }
     else {
-      this.oldSwimerName = formGroup.firstName + " " + formGroup.lastName;
+      this.oldSwimerName[index] = formGroup.firstName + " " + formGroup.lastName;
       this.submitted[index] = false;
       this.isOpenForm = true;
       this.saveButtonText[index] = 'Save';
@@ -237,9 +237,9 @@ export class RegisterSwimmersComponent {
         formGroup.value.ageGroup = this.calcAgeGroup(formGroup) ?? '';
 
         const newName = formGroup.value.firstName + " " + formGroup.value.lastName;
-        const oldName = this.oldSwimerName;
+        const oldName = this.oldSwimerName[index];
 
-        if (newName != this.oldSwimerName) {
+        if (newName != oldName && oldName != null) {
           console.log("DELETING SWIMMER");
           const deleteResponse = await this.http.delete<any>(`${this.apiEndpoint}swimmer/delete-data-swimmer`, 
             { body: { swimmerName: oldName } }).toPromise();
@@ -295,62 +295,67 @@ export class RegisterSwimmersComponent {
       console.log('Error, invalid index of form');
     }
     else {
-      const formGroup = this.formGroups[index];
+      const confirmRegister = confirm("Are you sure you want to register this swimmer?\nOnce you register them you cannot undo this");
+      if (confirmRegister) {
+        const formGroup = this.formGroups[index];
 
-      if (formGroup) {
-        Object.keys(formGroup.controls).forEach(controlName => {
-          const control = formGroup.get(controlName);
-          console.log(`${controlName}: ${control?.value}`);
-        })
+        if (formGroup) {
+          Object.keys(formGroup.controls).forEach(controlName => {
+            const control = formGroup.get(controlName);
+            console.log(`${controlName}: ${control?.value}`);
+          })
+        }
+        formGroup.value.isSubmitted = true;
+  
+        const formData = {
+          isSubmitted: true,
+          firstName: formGroup.value.firstName ?? '',
+          lastName: formGroup.value.lastName ?? '',
+          preferredName: formGroup.value.preferredName ?? '',
+          birthDate: formGroup.value.birthDate ?? '',
+          pFirstName: formGroup.value.pFirstName ?? '',
+          pLastName: formGroup.value.pLastName ?? '',
+          pPhoneNumber: formGroup.value.pPhoneNumber ?? 0,
+          pEmail: formGroup.value.pEmail ?? '',
+          eFirstName: formGroup.value.eFirstName ?? '',
+          eLastName: formGroup.value.eLastName ?? '',
+          ePhoneNumber: formGroup.value.ePhoneNumber ?? 0,
+          eEmail: formGroup.value.eEmail ?? '',
+  
+          yrsOfExp: formGroup.value.yrsOfExp,
+          freestyle: formGroup.value.freestyle,
+          backstroke:formGroup.value.backstroke,
+          breaststroke: formGroup.value.breaststroke,
+          butterfly: formGroup.value.butterfly,
+          firstStroke:formGroup.value.firstStroke,
+          firstTime: formGroup.value.firstTime,
+          secondStroke: formGroup.value.secondStroke,
+          secondTime: formGroup.value.secondTime,
+          thirdStroke: formGroup.value.thirdStroke,
+          thirdTime: formGroup.value.thirdTime,
+          ageGroup: formGroup.value.ageGroup,
+          cost: formGroup.value.cost,
+        }
+  
+        this.http.post(this.apiEndpoint + 'swimmer/post-data-swimmer', formData)
+        .pipe(
+          catchError(error => {
+            console.error('Error: ', error);
+            return throwError(error);
+          })
+        )
+        .subscribe(response => {
+          console.log('Response: ', response);
+        });
+  
+        this.saveButtonText[index] = 'Registered✓ '
+        this.cancelButtonText[index] = 'hidden';
+        this.amtRegistered++;
+        this.registerButtonClicked = false;
+        this.registerBtnIndex = -1;
+      } else {
+        this.registerButtonClicked = false;
       }
-      formGroup.value.isSubmitted = true;
-
-      const formData = {
-        isSubmitted: true,
-        firstName: formGroup.value.firstName ?? '',
-        lastName: formGroup.value.lastName ?? '',
-        preferredName: formGroup.value.preferredName ?? '',
-        birthDate: formGroup.value.birthDate ?? '',
-        pFirstName: formGroup.value.pFirstName ?? '',
-        pLastName: formGroup.value.pLastName ?? '',
-        pPhoneNumber: formGroup.value.pPhoneNumber ?? 0,
-        pEmail: formGroup.value.pEmail ?? '',
-        eFirstName: formGroup.value.eFirstName ?? '',
-        eLastName: formGroup.value.eLastName ?? '',
-        ePhoneNumber: formGroup.value.ePhoneNumber ?? 0,
-        eEmail: formGroup.value.eEmail ?? '',
-
-        yrsOfExp: formGroup.value.yrsOfExp,
-        freestyle: formGroup.value.freestyle,
-        backstroke:formGroup.value.backstroke,
-        breaststroke: formGroup.value.breaststroke,
-        butterfly: formGroup.value.butterfly,
-        firstStroke:formGroup.value.firstStroke,
-        firstTime: formGroup.value.firstTime,
-        secondStroke: formGroup.value.secondStroke,
-        secondTime: formGroup.value.secondTime,
-        thirdStroke: formGroup.value.thirdStroke,
-        thirdTime: formGroup.value.thirdTime,
-        ageGroup: formGroup.value.ageGroup,
-        cost: formGroup.value.cost,
-      }
-
-      this.http.post(this.apiEndpoint + 'swimmer/post-data-swimmer', formData)
-      .pipe(
-        catchError(error => {
-          console.error('Error: ', error);
-          return throwError(error);
-        })
-      )
-      .subscribe(response => {
-        console.log('Response: ', response);
-      });
-
-      this.saveButtonText[index] = 'Registered✓ '
-      this.cancelButtonText[index] = 'hidden';
-      this.amtRegistered++;
-      this.registerButtonClicked = false;
-      this.registerBtnIndex = -1;
     }
   }
 
