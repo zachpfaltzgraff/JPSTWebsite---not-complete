@@ -76,6 +76,7 @@ export class RegisterSwimmersComponent {
   removeFormAnimation: boolean[] = [];
   lastIndex: number = 0;
   oldSwimerName: string[] = [];
+  totalCost: number = 0;
 
   userData: any;
   ngOnInit(): void {
@@ -135,6 +136,11 @@ export class RegisterSwimmersComponent {
     this.cancelButtonText.splice(formIndex, 0, userData.isSubmitted.BOOL ? 'hidden' : 'Edit');
     this.lastIndex++;
     this.submitted.push(true);
+    
+    if (newFormGroup.value.isSubmitted) {
+      this.amtRegistered++;
+      this.totalCost += Number(newFormGroup.value.cost);
+    }
 
     this.isOpenForm = false;
 }
@@ -310,11 +316,11 @@ export class RegisterSwimmersComponent {
           birthDate: formGroup.value.birthDate ?? '',
           pFirstName: formGroup.value.pFirstName ?? '',
           pLastName: formGroup.value.pLastName ?? '',
-          pPhoneNumber: formGroup.value.pPhoneNumber ?? 0,
+          pPhoneNumber: Number(formGroup.value.pPhoneNumber) ?? 0,
           pEmail: formGroup.value.pEmail ?? '',
           eFirstName: formGroup.value.eFirstName ?? '',
           eLastName: formGroup.value.eLastName ?? '',
-          ePhoneNumber: formGroup.value.ePhoneNumber ?? 0,
+          ePhoneNumber: Number(formGroup.value.ePhoneNumber) ?? 0,
           eEmail: formGroup.value.eEmail ?? '',
   
           yrsOfExp: formGroup.value.yrsOfExp,
@@ -348,6 +354,7 @@ export class RegisterSwimmersComponent {
         this.amtRegistered++;
         this.registerButtonClicked = false;
         this.registerBtnIndex = -1;
+        this.totalCost += Number(formData.cost);
       } else {
         this.registerButtonClicked = false;
       }

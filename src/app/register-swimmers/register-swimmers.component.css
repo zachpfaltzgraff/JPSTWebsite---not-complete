@@ -181,6 +181,17 @@ form p-button {
     cursor: default;
 }
 
+.total-cost {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 24px;
+}
+.total-cost p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
 
 .form-buttons {
     display: flex;
