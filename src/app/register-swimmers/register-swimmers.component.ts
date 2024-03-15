@@ -75,6 +75,7 @@ export class RegisterSwimmersComponent {
   addFormAnimation: boolean[] = [];
   removeFormAnimation: boolean[] = [];
   lastIndex: number = 0;
+  oldSwimerName: string = '';
 
   userData: any;
   ngOnInit(): void {
@@ -98,7 +99,6 @@ export class RegisterSwimmersComponent {
   }
 
   addExistingForm(userData: any) {
-
     const newFormGroup = this.fb.group({
       isSubmitted: [userData.isSubmitted.BOOL],
       firstName: [userData.swimmer.M.firstName.S],
@@ -160,11 +160,11 @@ export class RegisterSwimmersComponent {
       birthDate: ['', Validators.required],
       pFirstName: ['', Validators.required],
       pLastName: ['', Validators.required],
-      pPhoneNumber: ['', Validators.required],
+      pPhoneNumber: [null, Validators.required],
       pEmail: ['', Validators.required],
       eFirstName: ['', Validators.required],
       eLastName: ['', Validators.required],
-      ePhoneNumber: ['', Validators.required],
+      ePhoneNumber: [null, Validators.required],
       eEmail: ['', Validators.required],
 
       yrsOfExp:[''],
@@ -190,15 +190,15 @@ export class RegisterSwimmersComponent {
   }
 
   async cancelEditBtn(index: number) {
+    const formGroup = this.formGroups[index].value;
+
     if (this.cancelButtonText[index] == 'Delete') {
       const confirmed = confirm("Are you sure you want to delete this swimmer?");
 
       if (confirmed) {
         this.removeFormAnimation[index] = true;
         
-        const formGroup = this.formGroups[index].value;
         const swimmerName = formGroup.firstName + " " + formGroup.lastName;
-        console.log(swimmerName);
 
         const response = await this.http.delete<any>(`${this.apiEndpoint}swimmer/delete-data-swimmer`, 
         { body: { swimmerName } }).toPromise();
@@ -216,6 +216,7 @@ export class RegisterSwimmersComponent {
       }
     }
     else {
+      this.oldSwimerName = formGroup.firstName + " " + formGroup.lastName;
       this.submitted[index] = false;
       this.isOpenForm = true;
       this.saveButtonText[index] = 'Save';
@@ -235,6 +236,16 @@ export class RegisterSwimmersComponent {
 
         formGroup.value.ageGroup = this.calcAgeGroup(formGroup) ?? '';
 
+        const newName = formGroup.value.firstName + " " + formGroup.value.lastName;
+        const oldName = this.oldSwimerName;
+
+        if (newName != this.oldSwimerName) {
+          console.log("DELETING SWIMMER");
+          const deleteResponse = await this.http.delete<any>(`${this.apiEndpoint}swimmer/delete-data-swimmer`, 
+            { body: { swimmerName: oldName } }).toPromise();
+            console.log(deleteResponse);
+        } 
+
         const formData = {
           isSubmitted: false,
           firstName: formGroup.value.firstName ?? '',
@@ -243,11 +254,11 @@ export class RegisterSwimmersComponent {
           birthDate: formGroup.value.birthDate ?? '',
           pFirstName: formGroup.value.pFirstName ?? '',
           pLastName: formGroup.value.pLastName ?? '',
-          pPhoneNumber: formGroup.value.pPhoneNumber ?? '',
+          pPhoneNumber: Number(formGroup.value.pPhoneNumber),
           pEmail: formGroup.value.pEmail ?? '',
           eFirstName: formGroup.value.eFirstName ?? '',
           eLastName: formGroup.value.eLastName ?? '',
-          ePhoneNumber: formGroup.value.ePhoneNumber ?? '',
+          ePhoneNumber: Number(formGroup.value.ePhoneNumber),
           eEmail: formGroup.value.eEmail ?? '',
 
           yrsOfExp:'',
@@ -302,11 +313,11 @@ export class RegisterSwimmersComponent {
         birthDate: formGroup.value.birthDate ?? '',
         pFirstName: formGroup.value.pFirstName ?? '',
         pLastName: formGroup.value.pLastName ?? '',
-        pPhoneNumber: formGroup.value.pPhoneNumber ?? '',
+        pPhoneNumber: formGroup.value.pPhoneNumber ?? 0,
         pEmail: formGroup.value.pEmail ?? '',
         eFirstName: formGroup.value.eFirstName ?? '',
         eLastName: formGroup.value.eLastName ?? '',
-        ePhoneNumber: formGroup.value.ePhoneNumber ?? '',
+        ePhoneNumber: formGroup.value.ePhoneNumber ?? 0,
         eEmail: formGroup.value.eEmail ?? '',
 
         yrsOfExp: formGroup.value.yrsOfExp,
