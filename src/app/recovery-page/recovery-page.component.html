@@ -5,13 +5,15 @@
         <form class="recovery-form" [formGroup]="profileForm" (ngSubmit)="resetPassword()">
             <div class="email-form">
                 <label for="email">Enter the email of your account:</label>
-                <input id="email" autocomplete="email" type="email" formControlName="email">
+                <input pInputText id="email" autocomplete="email" type="email" formControlName="email">
             </div>
             <div class="disclaimer">
                 <span>If there is an account with your email, you will be sent an email</span>
             </div>
-
-            <button type="submit">Send Code</button>
+            
+            <div class="code-button">
+                <p-button label="Send Code" type="submit" [rounded]="true"></p-button>
+            </div>
         </form>
     </div>
 
@@ -20,20 +22,22 @@
         <form class="recovery-form" [formGroup]="passwordForm" (ngSubmit)="getPassword()" >
             <div class="email-form" *ngIf="!gotCode">
                 <label for="email">Enter The Code From Your Email: </label>
-                <input id="number" autocomplete="" type="number" formControlName="confirmCode">
+                <input pInputText id="number" type="number" formControlName="confirmCode">
             </div>
 
             <div class="email-form" *ngIf="gotCode">
                 <label for="password">New Password:</label>
-                <input type="password" autocomplete="password" formControlName="password">
+                <input pInputText type="password" autocomplete="password" formControlName="password">
             </div>
             
             <div class="email-form" *ngIf="gotCode">
                 <label for="password">Confirm New Password:</label>
-                <input type="password" autocomplete="password" formControlName="confirmPassword">
+                <input pInputText type="password" autocomplete="password" formControlName="confirmPassword">
             </div>
 
-            <button type="submit">Confirm</button>
+            <div class="code-button">
+                <p-button label="Confirm" type="submit" [rounded]="true"></p-button>
+            </div>
         </form>
     </div>
 </div>

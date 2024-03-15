@@ -3,11 +3,13 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { resetPassword, type ResetPasswordOutput } from 'aws-amplify/auth';
 import {confirmResetPassword, type ConfirmResetPasswordInput} from 'aws-amplify/auth';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-recovery-page',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, InputTextModule, ButtonModule],
   templateUrl: './recovery-page.component.html',
   styleUrl: './recovery-page.component.css'
 })
