@@ -127,23 +127,18 @@ export class RegisterSwimmersComponent {
       thirdTime:[userData.experience.M.swimTimes.M.thirdTime.S],
       ageGroup:[userData.ageGroup.S],
       cost:[userData.cost.S],
-    })
+    });
 
-    if(userData.isSubmitted.BOOL == true) {
-      this.saveButtonText[this.lastIndex] = 'Registered✓'
-      this.cancelButtonText[this.lastIndex] = 'hidden';
-      this.amtRegistered++;
-      this.submitted.push(true);
-    }
-    else {
-      this.saveButtonText[this.lastIndex] = 'Register';
-      this.cancelButtonText[this.lastIndex] = 'Edit';
-      this.submitted.push(true);
-    }
-      this.isOpenForm = false;
-      this.formGroups.push(newFormGroup);
-      this.lastIndex++;
-  }
+    const formIndex = userData.isSubmitted.BOOL ? 0 : this.formGroups.length;
+    this.formGroups.splice(formIndex, 0, newFormGroup);
+    this.saveButtonText.splice(formIndex, 0, userData.isSubmitted.BOOL ? 'Registered✓' : 'Register');
+    this.cancelButtonText.splice(formIndex, 0, userData.isSubmitted.BOOL ? 'hidden' : 'Edit');
+    this.lastIndex++;
+    this.submitted.push(true);
+
+    this.isOpenForm = false;
+}
+
   
   addForm() {
     this.addFormAnimation[this.lastIndex]= true;
