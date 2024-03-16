@@ -3,4 +3,15 @@
     flex-direction: row;
     background-color: white;
     width: auto;
+    margin: 2%;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    margin: 2%;
+}
+p {
+    margin: 3%;
+    width: 120%;
 }

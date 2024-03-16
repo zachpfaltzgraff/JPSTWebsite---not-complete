@@ -4,11 +4,12 @@ import cdkOutput from '../../../../jpstCDK/output.json';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-admin-register-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, InputTextModule],
   templateUrl: './admin-register-page.component.html',
   styleUrl: './admin-register-page.component.css'
 })

@@ -1,6 +1,17 @@
 <div *ngFor="let user of userData" class="form">
-    <p>Name: {{ user.name?.S }}</p>
-    <p>Email: {{ user.email?.S }}</p>
-    <p>Number: {{ user.phone?.S }}</p>
-    <p>Message: {{ user.message?.S }}</p>
+    <div *ngIf="user.isSubmitted.BOOL" class="form">
+        <div class="column">
+            <label for="swimmer">Swimmer Name:</label>
+            <input pInputText type="text" readonly [value]="user.swimmer.M.firstName.S + ' ' + user.swimmer.M.lastName.S">
+            <p>Email: {{ user.email?.S }}</p>
+            <p>Number: {{ user.phone?.S }}</p>
+            <p>Message: {{ user.message?.S }}</p>
+        </div>
+        <div class="column">
+            <p>Name: {{ user.ageGroup.S }}</p>
+            <p>Email: {{ user.email?.S }}</p>
+            <p>Number: {{ user.phone?.S }}</p>
+            <p>Message: {{ user.message?.S }}</p>
+        </div>
+      </div>
   </div>
