@@ -1,1 +1,6 @@
-<p>admin-register-page works!</p>
+<div *ngFor="let user of userData" class="form">
+    <p>Name: {{ user.name?.S }}</p>
+    <p>Email: {{ user.email?.S }}</p>
+    <p>Number: {{ user.phone?.S }}</p>
+    <p>Message: {{ user.message?.S }}</p>
+  </div>
