@@ -61,49 +61,50 @@ label {
     margin-bottom: 2%;
 }
 
-
-@media only screen and (max-width: 1300px) {
-    .password-recovery, .password-reset {
-        width: 22vw;
+@media only screen and (max-width: 1200px) {
+    .password-recovery, .password-reset  {
+        width: 30vw;
     }
     label {
         font-size: 18px;
     }
-    .password-recovery, .password-reset {
+}
+@media only screen and (max-width: 960px) {
+    .password-recovery, .password-reset  {
         width: 35vw;
     }
-    .email-form {
-        padding: 2% 5%;
-    }
-}
-
-@media only screen and (max-width: 1000px) {
-    .password-recovery, .password-reset  {
-        width: 40vw;
-    }
     label {
         font-size: 18px;
     }
 }
+
 @media only screen and (max-width: 800px) {
-    .password-recovery, .password-reset  {
-        width: 45vw;
-    }
-    label {
-        font-size: 18px;
-    }
-}
-
-@media only screen and (max-width: 700px) {
     h1 {
         font-size: 150%;
     }
     .password-recovery, .password-reset {
-        width: 55vw;
+        width: 40vw;
     }
 }
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 680px) {
     .password-recovery, .password-reset {
-        width: 75vw;
+        width: 50vw;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .password-recovery, .password-reset {
+        width: 65vw;
+    }
+}
+
+@media only screen and (max-width: 560px) {
+    .password-recovery, .password-reset {
+        width: 72vw;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .password-recovery, .password-reset {
+        width: 80vw;
     }
 }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { signOut } from 'aws-amplify/auth';
 import { getCurrentUser } from 'aws-amplify/auth';
 import { EmailService } from '../../values.service';
+import { AuthGuardService } from '../../auth-guard.service';
 
 @Component({
   selector: 'app-header-bar',
@@ -14,8 +15,9 @@ import { EmailService } from '../../values.service';
 })
 
 export class HeaderBarComponent implements OnInit {
+  isAdmin: boolean = false;
 
-  constructor(private router: Router, private emailService: EmailService) {}
+  constructor(private router: Router, private emailService: EmailService, private authGuard: AuthGuardService) {}
 
   ngOnInit() {
     this.currentAuthenticatedUser();
@@ -32,6 +34,8 @@ export class HeaderBarComponent implements OnInit {
       console.log(`The userId: ${userId}`);
       console.log(`The signInDetails: ${signInDetails}`);
       this.emailService.setLogin(true);
+
+      this.isAdmin = await this.authGuard.isAdmin(this.router);
     } catch (err) {
       console.log(err);
       this.emailService.setLogin(false);

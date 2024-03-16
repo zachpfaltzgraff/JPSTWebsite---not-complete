@@ -6,15 +6,18 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ContactComponent } from './contact/contact.component';
 import { VerifyLoginComponent } from './verify-login/verify-login.component';
 import { RecoveryPageComponent } from './recovery-page/recovery-page.component';
+import { AdminRegisterPageComponent } from './admin-register-page/admin-register-page.component';
 
 import { AuthGuardService as AuthGuard } from '../auth-guard.service';
-import { Component, inject } from '@angular/core';
+import { inject } from '@angular/core';
 
 export const routes: Routes = [
     {path: 'login', component: LoginPageComponent},
     {path: 'signup', component: SignupPageComponent},
     { path: 'register-swimmers', component: RegisterSwimmersComponent, 
         canActivate: [() => inject(AuthGuard).canActivate()]},
+    { path: 'admin-register', component: AdminRegisterPageComponent,
+        canActivate: [() => inject(AuthGuard).canAdminActivate()]},
     {path: 'contact', component: ContactComponent},
     {path: '', component: HomePageComponent},
     {path: 'verify', component: VerifyLoginComponent},
