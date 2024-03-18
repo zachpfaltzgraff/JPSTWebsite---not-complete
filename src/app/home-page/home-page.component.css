@@ -16,16 +16,13 @@ p {
     margin-top: 0;
 }
 
-.page-content-wrapper {
-    margin-left: 15%;
-}
 
 .info-wrapper {
     width: 81%;
     height: fit-content;
-    padding: 1% 2%;
+    padding: 1%;
     margin: 2%;
-    box-shadow: 0 2px 32px black;
+    box-shadow: 0 2px 16px black;
     border-radius: 4px;
     background-color: white;
 }
@@ -68,6 +65,10 @@ span {
     padding-bottom: 4%;
 }
 
+.page-content-wrapper {
+    margin-left: 15%;
+}
+
 .footer h2 {
     color: white;
     font-size: 225%;
@@ -103,10 +104,6 @@ a:hover {
         margin-left: 10%;
     }
 
-    .page-content-wrapper {
-        margin-left: 8%;
-    }
-
     span {
         font-size: 16px;
     }
@@ -138,6 +135,11 @@ a:hover {
 
     .info-wrapper {
         margin-bottom: 20px;
+        width: 92vw;
+    }
+
+    .page-content-wrapper {
+        margin-left: 0;
     }
 
     .ages-section p {
