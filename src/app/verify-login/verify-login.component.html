@@ -4,9 +4,9 @@
         <span>A verification code has been sent to your email</span>
         <form [formGroup]="verifyCode" (ngSubmit)="onSubmit()">
             <div class="verify-input">
-                <input type="number" formControlName="code">
+                <input pInputText type="number" formControlName="code">
             </div>
-            <button>Verify</button>
+            <p-button [rounded]="true">Verify</p-button>
         </form>
     </div>
 </div>

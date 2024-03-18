@@ -1,14 +1,16 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { confirmSignUp, type ConfirmSignUpInput } from 'aws-amplify/auth';
 import { EmailService } from '../../values.service';
 import { signIn, type SignInInput } from 'aws-amplify/auth';
 import { Router } from '@angular/router';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-verify-login',
   standalone: true,
-  imports: [ ReactiveFormsModule ],
+  imports: [ ReactiveFormsModule, InputTextModule, ButtonModule ],
   templateUrl: './verify-login.component.html',
   styleUrls: ['./verify-login.component.css']
 })
