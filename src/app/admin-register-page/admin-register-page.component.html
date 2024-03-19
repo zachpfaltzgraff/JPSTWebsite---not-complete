@@ -7,8 +7,9 @@
                 <th pSortableColumn="parent.M.lastName.S" style="width:20%">Parent Name<p-sortIcon field="parent.M.lastName.S"></p-sortIcon></th>
                 <th pSortableColumn="swimmer.M.lastName.S" style="width:20%">Swimmer Name<p-sortIcon field="swimmer.M.lastName.S"></p-sortIcon></th>
                 <th pSortableColumn="cost.S" style="width:5%">Price <p-sortIcon field="cost.S"></p-sortIcon></th>
+                <th pSortableColumn="swimmer.M.birthDate.S" style="width:20%">Birthday<p-sortIcon field="swimmer.M.birthDate.S"></p-sortIcon></th>
                 <th pSortableColumn="ageGroup.S" style="width:10%">Age Group <p-sortIcon field="ageGroup.S"></p-sortIcon></th>
-                <th pSortableColumn="price" style="width:20%">Price <p-sortIcon field="price"></p-sortIcon></th>
+                <th pSortableColumn="hasPaid.BOOL" style="width:20%">Paid <p-sortIcon field="hasPaid.BOOL"></p-sortIcon></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product>
@@ -16,8 +17,9 @@
                 <td>{{product.parent.M.firstName.S + ' ' + product.parent.M.lastName.S}}</td>
                 <td>{{product.swimmer.M.firstName.S + ' ' + product.swimmer.M.lastName.S}}</td>
                 <td>${{product.cost.S}}</td>
+                <td>{{product.swimmer.M.birthDate.S}}</td>
                 <td>{{product.ageGroup.S}}</td>
-                <td>{{product.price | currency: 'USD'}}</td>
+                <td><input type="checkbox" [checked]="product.hasPaid.BOOL" (change)="onCheckboxChange(product)"></td>
             </tr>
         </ng-template>
     </p-table>

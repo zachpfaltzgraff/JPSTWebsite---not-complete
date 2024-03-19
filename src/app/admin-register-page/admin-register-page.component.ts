@@ -6,11 +6,12 @@ import { throwError } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @Component({
   selector: 'app-admin-register-page',
   standalone: true,
-  imports: [CommonModule, InputTextModule, TableModule ],
+  imports: [CommonModule, InputTextModule, TableModule, CheckboxModule ],
   templateUrl: './admin-register-page.component.html',
   styleUrl: './admin-register-page.component.css'
 })
@@ -30,5 +31,24 @@ export class AdminRegisterPageComponent {
       this.userData = response.data;
       console.log('Retrieved user data:', this.userData);
     });
+  }
+
+  onCheckboxChange(product: any): void {
+    const formData = { 
+      accountID: product.accountID.S,
+      swimmerName: product.swimmer.M.firstName.S + ' ' + product.swimmer.M.lastName.S,
+      hasPaid: !product.hasPaid.BOOL,
+    };
+
+    this.http.put(this.apiEndpoint + 'user/has-paid-swimmer', formData)
+        .pipe(
+          catchError(error => {
+            console.error('Error: ', error);
+            return throwError(error);
+          })
+        )
+        .subscribe(response => {
+          console.log('Response: ', response);
+        });
   }
 }

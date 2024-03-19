@@ -18,3 +18,7 @@ h1 {
     flex-direction: column;
     margin: 2%;
 }
+
+input {
+    scale: 1.75;
+}
