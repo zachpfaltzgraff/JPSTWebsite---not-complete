@@ -24,3 +24,60 @@
         </ng-template>
     </p-table>
 </div>
+
+<h1>Emergency Contact Info</h1>
+<div class="form">
+    <p-table [value]="userData" >
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="swimmer.M.lastName.S" style="width:20%">Swimmer Name<p-sortIcon field="swimmer.M.lastName.S"></p-sortIcon></th>
+                <th pSortableColumn="parent.M.lastName.S" style="width:20%">Parent Name<p-sortIcon field="parent.M.lastName.S"></p-sortIcon></th>
+                <th pSortableColumn="parent.M.phoneNumber.N" style="width:15%">Phone Number <p-sortIcon field="parent.M.phoneNumber.N"></p-sortIcon></th>
+                <th pSortableColumn="parent.M.email.S" style="width:20%">Email<p-sortIcon field="parent.M.email.S"></p-sortIcon></th>
+                <th pSortableColumn="eContact.M.lastName.S" style="width:20%">Emergency Name <p-sortIcon field="eContact.M.lastName.S"></p-sortIcon></th>
+                <th pSortableColumn="eContact.M.phoneNumber.N" style="width:15%">Phone Number <p-sortIcon field="eContact.M.phoneNumber.N"></p-sortIcon></th>
+                <th pSortableColumn="eContact.M.email.S" style="width:15%">Email <p-sortIcon field="eContact.M.email.S"></p-sortIcon></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{product.swimmer.M.firstName.S + ' ' + product.swimmer.M.lastName.S}}</td>
+                <td>{{product.parent.M.firstName.S + ' ' + product.parent.M.lastName.S}}</td>
+                <td>{{product.parent.M.phoneNumber.N}}</td>
+                <td>{{product.parent.M.email.S}}</td>
+                <td>{{product.eContact.M.lastName.S + ' ' + product.eContact.M.firstName.S}}</td>
+                <td>{{product.eContact.M.phoneNumber.N}}</td>
+                <td>{{product.eContact.M.email.S}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<h1>Swimmer Experience</h1>
+<div class="form">
+    <p-table [value]="userData" >
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="swimmer.M.lastName.S" style="width:20%">Swimmer Name<p-sortIcon field="swimmer.M.lastName.S"></p-sortIcon></th>
+                <th pSortableColumn="experience.M.yrsOfExp.M.name.S" style="width:20%">Years<p-sortIcon field="experience.M.yrsOfExp.M.name.S"></p-sortIcon></th>
+                <th pSortableColumn="parent.M.phoneNumber.N" style="width:15%">Phone Number <p-sortIcon field="parent.M.phoneNumber.N"></p-sortIcon></th>
+                <th pSortableColumn="parent.M.email.S" style="width:20%">Email<p-sortIcon field="parent.M.email.S"></p-sortIcon></th>
+                <th pSortableColumn="eContact.M.lastName.S" style="width:20%">Emergency Name <p-sortIcon field="eContact.M.lastName.S"></p-sortIcon></th>
+                <th pSortableColumn="eContact.M.phoneNumber.N" style="width:15%">Phone Number <p-sortIcon field="eContact.M.phoneNumber.N"></p-sortIcon></th>
+                <th pSortableColumn="eContact.M.email.S" style="width:15%">Email <p-sortIcon field="eContact.M.email.S"></p-sortIcon></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{product.swimmer.M.firstName.S + ' ' + product.swimmer.M.lastName.S}}</td>
+                <td>{{product.experience.M.yrsOfExp.M.name.S}}</td>
+                <td>{{product.parent.M.phoneNumber.N}}</td>
+                <td>{{product.parent.M.email.S}}</td>
+                <td>{{product.eContact.M.lastName.S + ' ' + product.eContact.M.firstName.S}}</td>
+                <td>{{product.eContact.M.phoneNumber.N}}</td>
+                <td>{{product.eContact.M.email.S}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
