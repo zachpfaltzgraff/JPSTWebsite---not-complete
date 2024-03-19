@@ -102,6 +102,7 @@ export class RegisterSwimmersComponent {
   addExistingForm(userData: any) {
     const newFormGroup = this.fb.group({
       isSubmitted: [userData.isSubmitted.BOOL],
+      hasPaid: [userData.hasPaid.BOOL],
       firstName: [userData.swimmer.M.firstName.S],
       lastName: [userData.swimmer.M.lastName.S],
       preferredName: [userData.swimmer.M.preferredName.S],
@@ -155,6 +156,7 @@ export class RegisterSwimmersComponent {
 
     const newFormGroup = this.fb.group({
       isSubmitted: [false],
+      hasPaid: [false],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       preferredName: [''],
@@ -249,6 +251,7 @@ export class RegisterSwimmersComponent {
 
         const formData = {
           isSubmitted: false,
+          hasPaid: false,
           firstName: formGroup.value.firstName ?? '',
           lastName: formGroup.value.lastName ?? '',
           preferredName: formGroup.value.preferredName ?? '',
@@ -310,6 +313,7 @@ export class RegisterSwimmersComponent {
   
         const formData = {
           isSubmitted: true,
+          hasPaid: false,
           firstName: formGroup.value.firstName ?? '',
           lastName: formGroup.value.lastName ?? '',
           preferredName: formGroup.value.preferredName ?? '',
