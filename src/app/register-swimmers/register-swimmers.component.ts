@@ -383,45 +383,33 @@ export class RegisterSwimmersComponent {
     const birthDate = formGroup.value.birthDate;
   
     if (birthDate) {
-      const today = new Date();
-      const birthDateObj = new Date(birthDate);
-      const cutoffDate = new Date(today.getFullYear(), 5, 1);
-      let age = today.getFullYear() - birthDateObj.getFullYear();
-  
-      const hasBirthOcc = today.getMonth() > birthDateObj.getMonth() ||
-                          (today.getMonth() == birthDateObj.getMonth() &&
-                            today.getDate() >= birthDateObj.getDate());
-  
-      if (hasBirthOcc) {
-        age--;
-      }
-  
-      const hasCelebratedBirthday =
-        today.getMonth() > cutoffDate.getMonth() ||
-        (today.getMonth() === cutoffDate.getMonth() &&
-          today.getDate() >= cutoffDate.getDate());
-  
-      if (!hasCelebratedBirthday && birthDateObj.getMonth() <= 5) {
-        age--;
-      }
-  
-      let ageGroup = '';
-      if (age <= 8) {
-        ageGroup = '8 & Under';
-      } else if (age == 9 || age == 10) {
-        ageGroup = '9-10';
-      } else if (age == 11 || age == 12) {
-        ageGroup = '11-12';
-      } else if (age > 13) {
-        ageGroup = '13+';
-      }
-  
-      // Use patchValue to update ageGroup in the FormGroup
-      formGroup.patchValue({
-        ageGroup: ageGroup
-      });
-  
-      return ageGroup;
+        const today = new Date();
+        const birthDateObj = new Date(birthDate);
+        let age = today.getFullYear() - birthDateObj.getFullYear();
+      
+        // Adjust age based on birth month and current month
+        if (today.getMonth() < birthDateObj.getMonth() ||
+            (today.getMonth() === birthDateObj.getMonth() && today.getDate() < birthDateObj.getDate())) {
+            age--;
+        }
+      
+        let ageGroup = '';
+        if (age <= 8) {
+            ageGroup = '8 & Under';
+        } else if (age >= 9 && age <= 10) {
+            ageGroup = '9-10';
+        } else if (age >= 11 && age <= 12) {
+            ageGroup = '11-12';
+        } else {
+            ageGroup = '13+';
+        }
+      
+        // Use patchValue to update ageGroup in the FormGroup
+        formGroup.patchValue({
+            ageGroup: ageGroup
+        });
+      
+        return ageGroup;
     }
   
     return "Error";
