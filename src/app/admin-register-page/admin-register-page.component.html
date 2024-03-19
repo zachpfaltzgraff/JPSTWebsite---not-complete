@@ -1,17 +1,24 @@
-<div *ngFor="let user of userData" class="form">
-    <div *ngIf="user.isSubmitted.BOOL" class="form">
-        <div class="column">
-            <label for="swimmer">Swimmer Name:</label>
-            <input pInputText type="text" readonly [value]="user.swimmer.M.firstName.S + ' ' + user.swimmer.M.lastName.S">
-            <p>Email: {{ user.email?.S }}</p>
-            <p>Number: {{ user.phone?.S }}</p>
-            <p>Message: {{ user.message?.S }}</p>
-        </div>
-        <div class="column">
-            <p>Name: {{ user.ageGroup.S }}</p>
-            <p>Email: {{ user.email?.S }}</p>
-            <p>Number: {{ user.phone?.S }}</p>
-            <p>Message: {{ user.message?.S }}</p>
-        </div>
-      </div>
-  </div>
+
+<h1>Regisered Swimmers</h1>
+<div class="form">
+    <p-table [value]="userData" >
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="parent.M.lastName.S" style="width:20%">Parent Name<p-sortIcon field="parent.M.lastName.S"></p-sortIcon></th>
+                <th pSortableColumn="swimmer.M.lastName.S" style="width:20%">Swimmer Name<p-sortIcon field="swimmer.M.lastName.S"></p-sortIcon></th>
+                <th pSortableColumn="cost.S" style="width:5%">Price <p-sortIcon field="cost.S"></p-sortIcon></th>
+                <th pSortableColumn="ageGroup.S" style="width:10%">Age Group <p-sortIcon field="ageGroup.S"></p-sortIcon></th>
+                <th pSortableColumn="price" style="width:20%">Price <p-sortIcon field="price"></p-sortIcon></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{product.parent.M.firstName.S + ' ' + product.parent.M.lastName.S}}</td>
+                <td>{{product.swimmer.M.firstName.S + ' ' + product.swimmer.M.lastName.S}}</td>
+                <td>${{product.cost.S}}</td>
+                <td>{{product.ageGroup.S}}</td>
+                <td>{{product.price | currency: 'USD'}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

@@ -5,11 +5,12 @@ import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
+import { TableModule } from 'primeng/table';
 
 @Component({
   selector: 'app-admin-register-page',
   standalone: true,
-  imports: [CommonModule, InputTextModule],
+  imports: [CommonModule, InputTextModule, TableModule ],
   templateUrl: './admin-register-page.component.html',
   styleUrl: './admin-register-page.component.css'
 })
