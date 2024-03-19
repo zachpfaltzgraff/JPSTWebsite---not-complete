@@ -381,18 +381,22 @@ export class RegisterSwimmersComponent {
 
   calcAgeGroup(formGroup: FormGroup): string {
     const birthDate = formGroup.value.birthDate;
-  
+
     if (birthDate) {
         const today = new Date();
         const birthDateObj = new Date(birthDate);
+
+        // Adjust the birth date to June 1st of the current year
+        const adjustedBirthDate = new Date(today.getFullYear(), 5, 1);
+        adjustedBirthDate.setFullYear(birthDateObj.getFullYear());
+
         let age = today.getFullYear() - birthDateObj.getFullYear();
-      
-        // Adjust age based on birth month and current month
-        if (today.getMonth() < birthDateObj.getMonth() ||
-            (today.getMonth() === birthDateObj.getMonth() && today.getDate() < birthDateObj.getDate())) {
+
+        // If the adjusted birth date is in the future, decrement the age
+        if (today < adjustedBirthDate) {
             age--;
         }
-      
+
         let ageGroup = '';
         if (age <= 8) {
             ageGroup = '8 & Under';
@@ -403,17 +407,18 @@ export class RegisterSwimmersComponent {
         } else {
             ageGroup = '13+';
         }
-      
+
         // Use patchValue to update ageGroup in the FormGroup
         formGroup.patchValue({
             ageGroup: ageGroup
         });
-      
+
         return ageGroup;
     }
-  
+
     return "Error";
-  }
+}
+
 
   registeredOrNot(index: number): boolean {
     if (this.saveButtonText[index] == 'Registered✓') {
