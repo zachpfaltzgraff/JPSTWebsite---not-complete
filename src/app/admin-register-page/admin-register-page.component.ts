@@ -11,7 +11,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 @Component({
   selector: 'app-admin-register-page',
   standalone: true,
-  imports: [CommonModule, InputTextModule, TableModule, CheckboxModule],
+  imports: [CommonModule, InputTextModule, TableModule, CheckboxModule ],
   templateUrl: './admin-register-page.component.html',
   styleUrl: './admin-register-page.component.css'
 })
