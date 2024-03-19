@@ -251,7 +251,7 @@ export class RegisterSwimmersComponent {
 
         const formData = {
           isSubmitted: false,
-          hasPaid: false,
+          hasPaid: formGroup.value.hasPaid ?? false,
           firstName: formGroup.value.firstName ?? '',
           lastName: formGroup.value.lastName ?? '',
           preferredName: formGroup.value.preferredName ?? '',
@@ -313,7 +313,7 @@ export class RegisterSwimmersComponent {
   
         const formData = {
           isSubmitted: true,
-          hasPaid: false,
+          hasPaid: formGroup.value.hasPaid ?? false,
           firstName: formGroup.value.firstName ?? '',
           lastName: formGroup.value.lastName ?? '',
           preferredName: formGroup.value.preferredName ?? '',
