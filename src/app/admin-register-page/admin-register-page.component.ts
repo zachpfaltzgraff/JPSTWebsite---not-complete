@@ -11,7 +11,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 @Component({
   selector: 'app-admin-register-page',
   standalone: true,
-  imports: [CommonModule, InputTextModule, TableModule, CheckboxModule ],
+  imports: [CommonModule, InputTextModule, TableModule, CheckboxModule],
   templateUrl: './admin-register-page.component.html',
   styleUrl: './admin-register-page.component.css'
 })
@@ -20,7 +20,6 @@ export class AdminRegisterPageComponent {
 
   apiEndpoint = cdkOutput.LambdaStack.APIEndpoint1793E782;
   userData: any;
-  totalCost: number = 0;
 
   ngOnInit(): void {
     this.http.get<any>(this.apiEndpoint + 'swimmer/scan-data-swimmer')
@@ -31,7 +30,6 @@ export class AdminRegisterPageComponent {
     .subscribe(response => {
       this.userData = response.data;
       console.log('Retrieved user data:', this.userData);
-      this.totalCost += Number(this.userData.cost.S);
     });
   }
 
