@@ -20,6 +20,9 @@
     padding: 1%;
     border-radius: 16px;
 }
+input {
+    text-align: center;
+}
 
 span {
     text-align: center;
