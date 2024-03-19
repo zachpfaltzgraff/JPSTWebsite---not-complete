@@ -23,7 +23,7 @@ export class AuthGuardService {
     }
   }
 
-  async canAdminActivate(): Promise<boolean | UrlTree> {
+  async canAdminActivate() {
     try {
       const user = await getCurrentUser();
       if (user) {
@@ -37,7 +37,7 @@ export class AuthGuardService {
       }
     } catch (error) {
       console.error(error);
-      return this.router.navigate(['/register-swimmers']);
+      return error;
     }
   }
 
@@ -49,7 +49,6 @@ export class AuthGuardService {
         console.log("Admin Confirmed");
         return true;
       } else {
-        router.navigate(['/register-swimmers']);
         return false;
       }
     } catch (error) {

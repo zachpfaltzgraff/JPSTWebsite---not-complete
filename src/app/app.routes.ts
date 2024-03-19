@@ -14,13 +14,12 @@ import { inject } from '@angular/core';
 export const routes: Routes = [
     {path: 'login', component: LoginPageComponent},
     {path: 'signup', component: SignupPageComponent},
-    { path: 'register-swimmers', component: RegisterSwimmersComponent, 
-        canActivate: [() => inject(AuthGuard).canActivate()]},
-    { path: 'admin-register', component: AdminRegisterPageComponent,
-        canActivate: [() => inject(AuthGuard).canAdminActivate()]},
     {path: 'contact', component: ContactComponent},
     {path: '', component: HomePageComponent},
     {path: 'verify', component: VerifyLoginComponent},
     {path: 'recovery', component: RecoveryPageComponent},
-    {path: '**', redirectTo: 'login'},
+    { path: 'register-swimmers', component: RegisterSwimmersComponent, 
+        canActivate: [() => inject(AuthGuard).canActivate()]},
+    { path: 'admin-register', component: AdminRegisterPageComponent,
+        canActivate: [() => inject(AuthGuard).canAdminActivate()]},
 ];
