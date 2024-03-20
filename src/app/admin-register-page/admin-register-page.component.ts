@@ -20,6 +20,11 @@ export class AdminRegisterPageComponent {
 
   apiEndpoint = cdkOutput.LambdaStack.APIEndpoint1793E782;
   userData: any;
+  totalSwimmers: number = 0;
+  under8: number = 0;
+  nine: number = 0;
+  eleven: number = 0;
+  thirteen: number = 0;
 
   ngOnInit(): void {
     this.http.get<any>(this.apiEndpoint + 'swimmer/scan-data-swimmer')
@@ -30,7 +35,21 @@ export class AdminRegisterPageComponent {
     .subscribe(response => {
       this.userData = response.data;
       console.log('Retrieved user data:', this.userData);
+      this.totalSwimmers = this.userData.length;
+
+      this.userData.forEach((user: any) => {
+        if (user.ageGroup.S == '8 & Under') {
+          this.under8++;
+        } else if(user.ageGroup.S == '9-10') {
+          this.nine++;
+        } else if (user.ageGroup.S == '11-12') {
+          this.eleven++;
+        } else if (user.ageGroup.S == '13+') {
+          this.thirteen++;
+        }
+      });
     });
+
   }
 
   onCheckboxChange(product: any): void {

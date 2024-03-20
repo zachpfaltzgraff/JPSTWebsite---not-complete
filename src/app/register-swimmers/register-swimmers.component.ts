@@ -384,22 +384,19 @@ export class RegisterSwimmersComponent {
   }
 
   calcAgeGroup(formGroup: FormGroup): string {
-    const birthDate = formGroup.value.birthDate;
+    let birthDate = formGroup.value.birthDate;
 
     if (birthDate) {
         const today = new Date();
         const birthDateObj = new Date(birthDate);
 
-        // Adjust the birth date to June 1st of the current year
-        const adjustedBirthDate = new Date(today.getFullYear(), 5, 1);
-        adjustedBirthDate.setFullYear(birthDateObj.getFullYear());
-
         let age = today.getFullYear() - birthDateObj.getFullYear();
 
-        // If the adjusted birth date is in the future, decrement the age
-        if (today < adjustedBirthDate) {
-            age--;
+        if(birthDateObj.getMonth() >= 5) {
+          age--;
         }
+
+        console.log(age);
 
         let ageGroup = '';
         if (age <= 8) {
@@ -412,7 +409,6 @@ export class RegisterSwimmersComponent {
             ageGroup = '13+';
         }
 
-        // Use patchValue to update ageGroup in the FormGroup
         formGroup.patchValue({
             ageGroup: ageGroup
         });

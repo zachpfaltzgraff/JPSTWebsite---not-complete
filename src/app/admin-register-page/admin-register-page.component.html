@@ -1,3 +1,9 @@
+<h1>Statistics</h1>
+<h3>Total: {{totalSwimmers}}</h3>
+<h3>8 & under: {{under8}}</h3>
+<h3>9-10: {{nine}}</h3>
+<h3>11-12: {{eleven}}</h3>
+<h3>13+: {{thirteen}}</h3>
 
 <h1>Regisered Swimmers</h1>
 <div class="form">
@@ -70,7 +76,8 @@
             <tr>
                 <td>{{product.swimmer.M.firstName.S + ' ' + product.swimmer.M.lastName.S}}</td>
                 <td>{{product.swimmer.M.birthDate.S}}</td>
-                <td>{{product.experience.M.yrsOfExp.M.name.S}} years</td>
+                <td *ngIf="product.experience?.M.yrsOfExp?.M">
+                    {{product.experience.M.yrsOfExp.M.name.S}} years</td>
                 <td *ngIf="product.experience?.M?.swimTimes?.M?.firstStroke?.M">
                     {{product.experience.M.swimTimes.M.firstStroke.M.name.S + ' ' + product.experience.M.swimTimes.M.firstTime.S}}</td>
                 <td *ngIf="product.experience?.M?.swimTimes?.M?.secondStroke?.M">
