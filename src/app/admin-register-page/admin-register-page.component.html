@@ -7,14 +7,14 @@
 
 <h1>Regisered Swimmers</h1>
 <div class="form">
-    <p-table [value]="userData" >
+    <p-table [value]="userData">
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="parent.M.lastName.S" style="width:25%">Parent Name<p-sortIcon field="parent.M.lastName.S"></p-sortIcon></th>
+                <th pSortableColumn="parent.M.lastName.S" style="width:25%" pFrozenColumn>Parent Name<p-sortIcon field="parent.M.lastName.S"></p-sortIcon></th>
                 <th pSortableColumn="swimmer.M.lastName.S" style="width:24%">Swimmer Name<p-sortIcon field="swimmer.M.lastName.S"></p-sortIcon></th>
                 <th pSortableColumn="cost.S" style="width:5%">Price <p-sortIcon field="cost.S"></p-sortIcon></th>
                 <th pSortableColumn="swimmer.M.birthDate.S" style="width:20%">Birthday<p-sortIcon field="swimmer.M.birthDate.S"></p-sortIcon></th>
-                <th pSortableColumn="ageGroup.S" style="width:10%">Age Group <p-sortIcon field="ageGroup.S"></p-sortIcon></th>
+                <th pSortableColumn="ageGroup.S" style="width:18%">Age Group <p-sortIcon field="ageGroup.S"></p-sortIcon></th>
                 <th pSortableColumn="hasPaid.BOOL" style="width:20%">Paid <p-sortIcon field="hasPaid.BOOL"></p-sortIcon></th>
             </tr>
         </ng-template>
@@ -61,7 +61,7 @@
 
 <h1>Swimmer Experience</h1>
 <div class="form">
-    <p-table [value]="userData" >
+    <p-table [value]="userData">
         <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="swimmer.M.lastName.S" style="width:20%">Swimmer Name<p-sortIcon field="swimmer.M.lastName.S"></p-sortIcon></th>
